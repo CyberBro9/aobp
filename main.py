@@ -1,5 +1,5 @@
 import xlrd
-import PyQt6
+from PyQt6 import *
 
 def parseDocument(path):
     """
@@ -9,5 +9,3 @@ def parseDocument(path):
     :param path: Path to the Excel file.
     """
     return xlrd.open_workbook(path)
-
-print("How do I merge?")
