@@ -1,5 +1,5 @@
 import xlrd
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow
 
 def parseDocument(path):
     """
