@@ -1,6 +1,7 @@
 import sys
 import xlrd
 from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtGui import QAction
 
 from mainUI import Ui_MainWindow
 
@@ -19,6 +20,9 @@ class Application(QMainWindow):
         super(Application, self).__init__()
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
+
+    def createAction(self):
+        self.openAction = QAction("Open Excel document")
 
 
 app = QApplication(sys.argv)
