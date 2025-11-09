@@ -10,3 +10,5 @@ def parseDocument(path):
     """
     return xlrd.open_workbook(path)
 
+
+QApplication.beep()
