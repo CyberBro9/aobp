@@ -1,5 +1,8 @@
+import sys
 import xlrd
 from PySide6.QtWidgets import QApplication, QMainWindow
+
+from mainUI import Ui_MainWindow
 
 def parseDocument(path):
     """
@@ -11,4 +14,15 @@ def parseDocument(path):
     return xlrd.open_workbook(path)
 
 
-QApplication.beep()
+class Application(QMainWindow):
+    def __init__(self):
+        super(Application, self).__init__()
+        self.UI = Ui_MainWindow()
+        self.UI.setupUi(self)
+
+
+app = QApplication(sys.argv)
+window = Application()
+window.show()
+
+sys.exit(app.exec())
