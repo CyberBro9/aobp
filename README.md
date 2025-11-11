@@ -4,4 +4,4 @@
 
 ## Current features:
 * One function that parses an Excel file
-* Beep
+* Barely functional UI
