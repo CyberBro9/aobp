@@ -1,7 +1,7 @@
 import sys
 import xlrd
+import os, shutil
 from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtGui import QAction
 
 # Source - https://stackoverflow.com/a
 # Posted by tomvodi, modified by community. See post 'Timeline' for change history
@@ -33,17 +33,18 @@ class Application(QMainWindow):
         super(Application, self).__init__()
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
-        self.UI.pushButton_2.clicked.connect(self, self.setupExcelTable)
+        self.UI.AddSelection.clicked.connect(self, self.setupExcelTable)
 
     def setupExcelTable(self):
         """
         Function to open a filedialog. Does not limit selection to .xls files as of now.
-        :return: Path to a file.
+        :returns: Path to a file.
         """
         filePath = filedialog.askopenfilename()
         if filePath:
             document = parseDocument(filePath)
-
+            sheets = document.sheets()
+            self.UI.ExcelTable.setRowCount(len(sheets))
 
 
 app = QApplication(sys.argv)
