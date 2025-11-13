@@ -5,3 +5,4 @@
 ## Current features:
 * One function that parses an Excel file
 * Barely functional UI
+* File select dialog window
