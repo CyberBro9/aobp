@@ -34,6 +34,7 @@ class Application(QMainWindow):
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
         self.UI.AddSelection.clicked.connect(self, self.setupExcelTable)
+        self.Document = None
 
     def setupExcelTable(self):
         """
@@ -42,9 +43,10 @@ class Application(QMainWindow):
         """
         filePath = filedialog.askopenfilename()
         if filePath:
-            document = parseDocument(filePath)
-            sheets = document.sheets()
+            self.Document = parseDocument(filePath)
+            sheets = self.Document.sheets()
             self.UI.ExcelTable.setRowCount(len(sheets))
+            self.UI.ExcelTable.setColumnCount(len(sheets))
 
 
 app = QApplication(sys.argv)
