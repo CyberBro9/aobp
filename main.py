@@ -1,7 +1,7 @@
 import sys
 import xlrd
 import os, shutil
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 
 # Source - https://stackoverflow.com/a
 # Posted by tomvodi, modified by community. See post 'Timeline' for change history
@@ -9,11 +9,11 @@ from PySide6.QtWidgets import QApplication, QMainWindow
 
 import tkinter as tk
 from tkinter import filedialog
+from mainUI import Ui_MainWindow
 
 root = tk.Tk()
 root.withdraw()
 
-from mainUI import Ui_MainWindow
 
 def parseDocument(path):
     """
@@ -31,22 +31,30 @@ class Application(QMainWindow):
     """
     def __init__(self):
         super(Application, self).__init__()
+        self.MainSheet = None
+        self.Document = None
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
-        self.UI.AddSelection.clicked.connect(self, self.setupExcelTable)
-        self.Document = None
+        self.UI.AddSelection.clicked.connect(self.setupExcelTable)
 
     def setupExcelTable(self):
         """
-        Function to open a filedialog. Does not limit selection to .xls files as of now.
+        Opens a file dialog, after which fills the ExcelTable with .xls file data if there is one.
         :returns: Path to a file.
         """
         filePath = filedialog.askopenfilename()
         if filePath:
             self.Document = parseDocument(filePath)
-            sheets = self.Document.sheets()
-            self.UI.ExcelTable.setRowCount(len(sheets))
-            self.UI.ExcelTable.setColumnCount(len(sheets))
+            self.MainSheet = self.Document.sheet_by_index(0)
+            # Set up the table widget
+            self.UI.ExcelTable.setRowCount(self.MainSheet.nrows)
+            self.UI.ExcelTable.setColumnCount(self.MainSheet.ncols)
+
+            for x in range(self.MainSheet.nrows):
+                for y in range(self.MainSheet.ncols):
+                    itemValue = self.MainSheet.cell_value(rowx=x, colx=y)
+                    item = QTableWidgetItem(itemValue)
+                    self.UI.ExcelTable.setItem(x, y, item)
 
 
 app = QApplication(sys.argv)
