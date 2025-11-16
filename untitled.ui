@@ -20,13 +20,15 @@
 	border-radius: 5px;
 	padding: 10px 10px;
 	color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(171, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));
+	
+	font: 9pt &quot;Terminal&quot;;
 }
 #centralwidget {
-	background-color: rgb(0, 0, 0);}
+	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(171, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));}
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="DocumentView">
+   <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -53,7 +55,7 @@
 }</string>
     </property>
    </widget>
-   <widget class="QTableWidget" name="ExcelTable">
+   <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -74,7 +76,7 @@
 }</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="AddSelection">
+   <widget class="QPushButton" name="addSelections">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -90,20 +92,21 @@
      <string>Add selection to image</string>
     </property>
    </widget>
-   <widget class="QLabel" name="Title">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>580</x>
       <y>10</y>
       <width>461</width>
-      <height>181</height>
+      <height>171</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Sans</family>
-      <pointsize>36</pointsize>
-      <bold>false</bold>
+      <family>Terminal</family>
+      <pointsize>15</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
       <stylestrategy>PreferDefault</stylestrategy>
      </font>
     </property>
@@ -121,14 +124,17 @@
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
-	color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(171, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));
+	
+	
+	
+	font: 700 15pt &quot;Terminal&quot;;
 }</string>
     </property>
     <property name="lineWidth">
      <number>1</number>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff8da1;&quot;&gt;AUTOMATIZATION OF BUSINESS PROCESSES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;AUTOMATIZATION OF BUSINESS PROCESSES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="textFormat">
      <enum>Qt::TextFormat::RichText</enum>
@@ -141,6 +147,38 @@
     </property>
     <property name="wordWrap">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="selectExcel">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>520</y>
+      <width>471</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="text">
+     <string>Select Excel file</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveImages">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>580</y>
+      <width>471</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="text">
+     <string>PUSH!! PUSH THIS BUUTTON!!!</string>
     </property>
    </widget>
   </widget>
