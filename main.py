@@ -1,15 +1,23 @@
 import sys
 import xlrd
-import os, shutil
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
-
-# Source - https://stackoverflow.com/a
-# Posted by tomvodi, modified by community. See post 'Timeline' for change history
-# Retrieved 2025-11-12, License - CC BY-SA 4.0
-
+import os
+import shutil
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
 import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
+from ctypes import windll, Structure, c_long, byref
+
+
+class POINT(Structure):
+    _fields_ = [("x", c_long), ("y", c_long)]
+
+
+def queryMousePosition():
+    pt = POINT()
+    windll.user32.GetCursorPos(byref(pt))
+    return { "x": pt.x, "y": pt.y}
+
 
 root = tk.Tk()
 root.withdraw()
@@ -33,9 +41,12 @@ class Application(QMainWindow):
         super(Application, self).__init__()
         self.MainSheet = None
         self.Document = None
+        self.Selecting = False
+        self.MovingLabel = None
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
-        self.UI.AddSelection.clicked.connect(self.setupExcelTable)
+        self.UI.selectExcel.clicked.connect(self.setupExcelTable)
+        self.UI.addSelections.clicked.connect(self.placeSelection)
 
     def setupExcelTable(self):
         """
@@ -47,14 +58,24 @@ class Application(QMainWindow):
             self.Document = parseDocument(filePath)
             self.MainSheet = self.Document.sheet_by_index(0)
             # Set up the table widget
-            self.UI.ExcelTable.setRowCount(self.MainSheet.nrows)
-            self.UI.ExcelTable.setColumnCount(self.MainSheet.ncols)
+            self.UI.tableWidget.setRowCount(self.MainSheet.nrows)
+            self.UI.tableWidget.setColumnCount(self.MainSheet.ncols)
 
             for x in range(self.MainSheet.nrows):
                 for y in range(self.MainSheet.ncols):
                     itemValue = self.MainSheet.cell_value(rowx=x, colx=y)
                     item = QTableWidgetItem(itemValue)
-                    self.UI.ExcelTable.setItem(x, y, item)
+                    self.UI.tableWidget.setItem(x, y, item)
+
+    def placeSelection(self):
+        if not self.Selecting:
+            selection = self.UI.tableWidget.selectedItems()[0].data()
+            self.MovingLabel = QLabel()
+            self.MovingLabel.setText(selection)
+        else:
+            pass
+
+        self.Selecting = not self.Selecting
 
 
 app = QApplication(sys.argv)
