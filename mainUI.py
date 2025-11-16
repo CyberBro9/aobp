@@ -30,54 +30,69 @@ class Ui_MainWindow(object):
 "	border-radius: 5px;\n"
 "	padding: 10px 10px;\n"
 "	color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(171, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));\n"
+"	\n"
+"	font: 9pt \"Terminal\";\n"
 "}\n"
 "#centralwidget {\n"
-"	background-color: rgb(0, 0, 0);}\n"
+"	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(17"
+                        "1, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));}\n"
 "")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.DocumentView = QGraphicsView(self.centralwidget)
-        self.DocumentView.setObjectName(u"DocumentView")
-        self.DocumentView.setGeometry(QRect(10, 10, 551, 521))
-        self.DocumentView.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
-        self.DocumentView.setStyleSheet(u"QGraphicsView {\n"
+        self.graphicsView = QGraphicsView(self.centralwidget)
+        self.graphicsView.setObjectName(u"graphicsView")
+        self.graphicsView.setGeometry(QRect(10, 10, 551, 521))
+        self.graphicsView.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
+        self.graphicsView.setStyleSheet(u"QGraphicsView {\n"
 "	border: 3px solid pink;\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border-radius: 10px;\n"
 "	padding: 10px 10px;\n"
 "}")
-        self.ExcelTable = QTableWidget(self.centralwidget)
-        self.ExcelTable.setObjectName(u"ExcelTable")
-        self.ExcelTable.setGeometry(QRect(580, 190, 481, 251))
-        self.ExcelTable.setStyleSheet(u"QTableWidget {\n"
+        self.tableWidget = QTableWidget(self.centralwidget)
+        self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget.setGeometry(QRect(580, 190, 481, 251))
+        self.tableWidget.setStyleSheet(u"QTableWidget {\n"
 "	border: 3px solid pink;\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border-radius: 10px;\n"
 "	padding: 10px 10px;\n"
 "}")
-        self.AddSelection = QPushButton(self.centralwidget)
-        self.AddSelection.setObjectName(u"AddSelection")
-        self.AddSelection.setGeometry(QRect(580, 460, 471, 51))
-        self.AddSelection.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
-        self.Title = QLabel(self.centralwidget)
-        self.Title.setObjectName(u"Title")
-        self.Title.setGeometry(QRect(570, 10, 461, 181))
+        self.addSelections = QPushButton(self.centralwidget)
+        self.addSelections.setObjectName(u"addSelections")
+        self.addSelections.setGeometry(QRect(580, 460, 471, 51))
+        self.addSelections.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.label = QLabel(self.centralwidget)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(580, 10, 461, 171))
         font = QFont()
-        font.setFamilies([u"Lucida Sans"])
-        font.setPointSize(36)
-        font.setBold(False)
+        font.setFamilies([u"Terminal"])
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setItalic(False)
         font.setStyleStrategy(QFont.PreferDefault)
-        self.Title.setFont(font)
-        self.Title.setToolTipDuration(1)
-        self.Title.setAutoFillBackground(False)
-        self.Title.setStyleSheet(u"QLabel {\n"
-"	color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(171, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));\n"
+        self.label.setFont(font)
+        self.label.setToolTipDuration(1)
+        self.label.setAutoFillBackground(False)
+        self.label.setStyleSheet(u"QLabel {\n"
+"	\n"
+"	\n"
+"	\n"
+"	font: 700 15pt \"Terminal\";\n"
 "}")
-        self.Title.setLineWidth(1)
-        self.Title.setTextFormat(Qt.TextFormat.RichText)
-        self.Title.setScaledContents(True)
-        self.Title.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.Title.setWordWrap(True)
+        self.label.setLineWidth(1)
+        self.label.setTextFormat(Qt.TextFormat.RichText)
+        self.label.setScaledContents(True)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label.setWordWrap(True)
+        self.selectExcel = QPushButton(self.centralwidget)
+        self.selectExcel.setObjectName(u"selectExcel")
+        self.selectExcel.setGeometry(QRect(580, 520, 471, 51))
+        self.selectExcel.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.saveImages = QPushButton(self.centralwidget)
+        self.saveImages.setObjectName(u"saveImages")
+        self.saveImages.setGeometry(QRect(580, 580, 471, 51))
+        self.saveImages.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -91,21 +106,23 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
 #if QT_CONFIG(tooltip)
-        self.DocumentView.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443 \u0431\u0440\u043e</p></body></html>", None))
+        self.graphicsView.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443 \u0431\u0440\u043e</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(whatsthis)
-        self.DocumentView.setWhatsThis(QCoreApplication.translate("MainWindow", u"\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443 \u0431\u0440\u043e", None))
+        self.graphicsView.setWhatsThis(QCoreApplication.translate("MainWindow", u"\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443 \u0431\u0440\u043e", None))
 #endif // QT_CONFIG(whatsthis)
 #if QT_CONFIG(tooltip)
-        self.ExcelTable.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u044d\u043a\u0441\u0435\u043b\u044c \u0444\u0438\u043b\u0435\u0441  \u0431\u0440\u043e</p></body></html>", None))
+        self.tableWidget.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u044d\u043a\u0441\u0435\u043b\u044c \u0444\u0438\u043b\u0435\u0441  \u0431\u0440\u043e</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.AddSelection.setText(QCoreApplication.translate("MainWindow", u"Add selection to image", None))
+        self.addSelections.setText(QCoreApplication.translate("MainWindow", u"Add selection to image", None))
 #if QT_CONFIG(tooltip)
-        self.Title.setToolTip(QCoreApplication.translate("MainWindow", u"\u041d\u0435\u043f\u0440\u0438\u044f\u0442\u043d\u043e\u0441\u0442\u044c \u043d\u0430 \u0431\u043e\u0440\u0442\u0443", None))
+        self.label.setToolTip(QCoreApplication.translate("MainWindow", u"\u041d\u0435\u043f\u0440\u0438\u044f\u0442\u043d\u043e\u0441\u0442\u044c \u043d\u0430 \u0431\u043e\u0440\u0442\u0443", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
-        self.Title.setStatusTip("")
+        self.label.setStatusTip("")
 #endif // QT_CONFIG(statustip)
-        self.Title.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ff8da1;\">AUTOMATIZATION OF BUSINESS PROCESSES</span></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#000000;\">AUTOMATIZATION OF BUSINESS PROCESSES</span></p></body></html>", None))
+        self.selectExcel.setText(QCoreApplication.translate("MainWindow", u"Select Excel file", None))
+        self.saveImages.setText(QCoreApplication.translate("MainWindow", u"PUSH!! PUSH THIS BUUTTON!!!", None))
     # retranslateUi
 
