@@ -5,7 +5,7 @@ import shutil
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
 from PySide6.QtGui import QPixmap
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, PhotoImage
 from mainUI import Ui_MainWindow
 from ctypes import windll, Structure, c_long, byref
 
@@ -21,6 +21,8 @@ def queryMousePosition():
 
 
 root = tk.Tk()
+root.title("Select files")
+root.iconbitmap("aobp.ico")
 root.withdraw()
 
 
