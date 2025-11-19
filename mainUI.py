@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGraphicsView, QHeaderView, QLabel,
-    QMainWindow, QPushButton, QSizePolicy, QStatusBar,
-    QTableWidget, QTableWidgetItem, QWidget)
+from PySide6.QtWidgets import (QApplication, QHeaderView, QLabel, QMainWindow,
+    QPushButton, QSizePolicy, QStatusBar, QTableWidget,
+    QTableWidgetItem, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -39,16 +39,6 @@ class Ui_MainWindow(object):
 "")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.graphicsView = QGraphicsView(self.centralwidget)
-        self.graphicsView.setObjectName(u"graphicsView")
-        self.graphicsView.setGeometry(QRect(10, 10, 551, 521))
-        self.graphicsView.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
-        self.graphicsView.setStyleSheet(u"QGraphicsView {\n"
-"	border: 3px solid pink;\n"
-"	background-color: rgb(255, 255, 255);\n"
-"	border-radius: 10px;\n"
-"	padding: 10px 10px;\n"
-"}")
         self.tableWidget = QTableWidget(self.centralwidget)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setGeometry(QRect(580, 190, 481, 251))
@@ -93,6 +83,14 @@ class Ui_MainWindow(object):
         self.saveImages.setObjectName(u"saveImages")
         self.saveImages.setGeometry(QRect(580, 580, 471, 51))
         self.saveImages.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.addImage = QPushButton(self.centralwidget)
+        self.addImage.setObjectName(u"addImage")
+        self.addImage.setGeometry(QRect(10, 540, 551, 51))
+        self.addImage.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.ImageLabel = QLabel(self.centralwidget)
+        self.ImageLabel.setObjectName(u"ImageLabel")
+        self.ImageLabel.setGeometry(QRect(18, 35, 541, 491))
+        self.ImageLabel.setScaledContents(True)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -106,12 +104,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
 #if QT_CONFIG(tooltip)
-        self.graphicsView.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443 \u0431\u0440\u043e</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(whatsthis)
-        self.graphicsView.setWhatsThis(QCoreApplication.translate("MainWindow", u"\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0443 \u0431\u0440\u043e", None))
-#endif // QT_CONFIG(whatsthis)
-#if QT_CONFIG(tooltip)
         self.tableWidget.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u044d\u043a\u0441\u0435\u043b\u044c \u0444\u0438\u043b\u0435\u0441  \u0431\u0440\u043e</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.addSelections.setText(QCoreApplication.translate("MainWindow", u"Add selection to image", None))
@@ -124,5 +116,7 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#000000;\">AUTOMATIZATION OF BUSINESS PROCESSES</span></p></body></html>", None))
         self.selectExcel.setText(QCoreApplication.translate("MainWindow", u"Select Excel file", None))
         self.saveImages.setText(QCoreApplication.translate("MainWindow", u"PUSH!! PUSH THIS BUUTTON!!!", None))
+        self.addImage.setText(QCoreApplication.translate("MainWindow", u"Add image", None))
+        self.ImageLabel.setText("")
     # retranslateUi
 

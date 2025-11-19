@@ -28,33 +28,6 @@
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>551</width>
-      <height>521</height>
-     </rect>
-    </property>
-    <property name="contextMenuPolicy">
-     <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
-    </property>
-    <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Бро сюда картинку бро&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="whatsThis">
-     <string>Бро сюда картинку бро</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QGraphicsView {
-	border: 3px solid pink;
-	background-color: rgb(255, 255, 255);
-	border-radius: 10px;
-	padding: 10px 10px;
-}</string>
-    </property>
-   </widget>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
@@ -181,7 +154,7 @@
      <string>PUSH!! PUSH THIS BUUTTON!!!</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="selectExcel_2">
+   <widget class="QPushButton" name="addImage">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -195,6 +168,22 @@
     </property>
     <property name="text">
      <string>Add image</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ImageLabel">
+    <property name="geometry">
+     <rect>
+      <x>18</x>
+      <y>35</y>
+      <width>541</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>

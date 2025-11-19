@@ -3,6 +3,7 @@ import xlrd
 import os
 import shutil
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
+from PySide6.QtGui import QPixmap
 import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
@@ -47,11 +48,12 @@ class Application(QMainWindow):
         self.UI.setupUi(self)
         self.UI.selectExcel.clicked.connect(self.setupExcelTable)
         self.UI.addSelections.clicked.connect(self.placeSelection)
+        self.UI.addImage.clicked.connect(self.setUpImageFile)
 
     def setupExcelTable(self):
         """
         Opens a file dialog, after which fills the ExcelTable with .xls file data if there is one.
-        :returns: Path to a file.
+        :returns: Nothing.
         """
         filePath = filedialog.askopenfilename()
         if filePath:
@@ -70,18 +72,32 @@ class Application(QMainWindow):
     def placeSelection(self):
         """
         Creates a dummy text label with reference to a selected document field.
-        :return:
+        :returns: Nothing.
         """
         if not self.Selecting:
             self.UI.addSelections.setText("Reset selection")
-            selection = self.UI.tableWidget.selectedItems()[0].data()
+            selection = self.UI.tableWidget.selectedItems()[0].data(1)
             self.MovingLabel = QLabel()
             self.MovingLabel.setText(selection)
+            mousePosition = queryMousePosition()
+            self.MovingLabel.move(mousePosition["x"], mousePosition["y"])
+            self.MovingLabel.setParent(self)
             self.MovingLabel.show()
         else:
             self.UI.addSelections.setText("Add selection to image")
 
         self.Selecting = not self.Selecting
+
+    def setUpImageFile(self):
+        """
+        Opens a file dialog, after which ImageLabel's pixmap is set to pixmap generated from file path.
+        :returns: 39 gigabyte SQLite database full of corrupted entries.
+        """
+        filePath = filedialog.askopenfilename()
+        if filePath:
+            pixMap = QPixmap()
+            pixMap.load(filePath)
+            self.UI.ImageLabel.setPixmap(pixMap)
 
 
 app = QApplication(sys.argv)
