@@ -181,6 +181,22 @@
      <string>PUSH!! PUSH THIS BUUTTON!!!</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="selectExcel_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>540</y>
+      <width>551</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="text">
+     <string>Add image</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

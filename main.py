@@ -68,12 +68,18 @@ class Application(QMainWindow):
                     self.UI.tableWidget.setItem(x, y, item)
 
     def placeSelection(self):
+        """
+        Creates a dummy text label with reference to a selected document field.
+        :return:
+        """
         if not self.Selecting:
+            self.UI.addSelections.setText("Reset selection")
             selection = self.UI.tableWidget.selectedItems()[0].data()
             self.MovingLabel = QLabel()
             self.MovingLabel.setText(selection)
+            self.MovingLabel.show()
         else:
-            pass
+            self.UI.addSelections.setText("Add selection to image")
 
         self.Selecting = not self.Selecting
 
