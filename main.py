@@ -57,7 +57,7 @@ class Application(QMainWindow):
         Opens a file dialog, after which fills the ExcelTable with .xls file data if there is one.
         :returns: Nothing.
         """
-        filePath = filedialog.askopenfilename()
+        filePath = filedialog.askopenfilename(defaultextension=".xls")
         if filePath:
             self.Document = parseDocument(filePath)
             self.MainSheet = self.Document.sheet_by_index(0)
@@ -87,6 +87,7 @@ class Application(QMainWindow):
             self.MovingLabel.show()
         else:
             self.UI.addSelections.setText("Add selection to image")
+            self.MovingLabel.destroy(False, False)
 
         self.Selecting = not self.Selecting
 
