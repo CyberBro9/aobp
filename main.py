@@ -78,8 +78,11 @@ class Application(QMainWindow):
         """
         if not self.Selecting:
             self.UI.addSelections.setText("Reset selection")
-            selection = self.UI.tableWidget.selectedItems()[0].data(1)
+            selection = self.UI.tableWidget.selectedItems()[0].data(0)
             self.MovingLabel = QLabel()
+            self.MovingLabel.setFont("Terminal")
+            self.MovingLabel.setStyleSheet("QLabel { background-color : #ffffff; }")
+            self.MovingLabel.setBaseSize(200, 100)
             self.MovingLabel.setText(selection)
             mousePosition = queryMousePosition()
             self.MovingLabel.move(mousePosition["x"], mousePosition["y"])
