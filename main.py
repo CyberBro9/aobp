@@ -1,7 +1,12 @@
 import sys
 import xlrd
 import os
-import shutil
+import pyqrcode
+
+url = pyqrcode.create("skibidi")
+
+url.png("skibidi.png", scale=5)
+
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
 from PySide6.QtGui import QPixmap
 import tkinter as tk
@@ -51,6 +56,7 @@ class Application(QMainWindow):
         self.UI.selectExcel.clicked.connect(self.setupExcelTable)
         self.UI.addSelections.clicked.connect(self.placeSelection)
         self.UI.addImage.clicked.connect(self.setUpImageFile)
+        self.UI.saveImages.clicked.connect(self.saveImagesWithDocumentFields)
 
     def setupExcelTable(self):
         """
@@ -99,11 +105,26 @@ class Application(QMainWindow):
         Opens a file dialog, after which ImageLabel's pixmap is set to pixmap generated from file path.
         :returns: 39 gigabyte SQLite database full of corrupted entries.
         """
-        filePath = filedialog.askopenfilename()
+        filePath = filedialog.askopenfilename(defaultextension=".png")
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
             self.UI.ImageLabel.setPixmap(pixMap)
+
+    def saveImagesWithDocumentFields(self):
+        """
+        Prompts the user to select a path to where images are saved, after which saves n images to PC, where n = amount of rows in self.MainSheet with document fields applied to them.
+        :returns: Nothing
+        """
+        if self.MainSheet:
+            filePath = filedialog.askdirectory(mustexist=True)
+            if filePath:
+                dirName = filePath + f"\Output"
+                if not os.path.exists(dirName):
+                    os.mkdir(dirName)
+
+                #for i in range(self.MainSheet.nrows):
+                    #self.UI.ImageLabel.pixmap().toImage().toImageFormat()
 
 
 app = QApplication(sys.argv)
