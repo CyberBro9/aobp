@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1073, 724)
+        MainWindow.resize(1437, 861)
         MainWindow.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid pink;\n"
 "	background-color: rgb(0, 0, 0);\n"
@@ -41,7 +41,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.tableWidget = QTableWidget(self.centralwidget)
         self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setGeometry(QRect(580, 190, 481, 251))
+        self.tableWidget.setGeometry(QRect(910, 180, 481, 251))
         self.tableWidget.setStyleSheet(u"QTableWidget {\n"
 "	border: 3px solid pink;\n"
 "	background-color: rgb(255, 255, 255);\n"
@@ -50,11 +50,11 @@ class Ui_MainWindow(object):
 "}")
         self.addSelections = QPushButton(self.centralwidget)
         self.addSelections.setObjectName(u"addSelections")
-        self.addSelections.setGeometry(QRect(580, 460, 471, 51))
+        self.addSelections.setGeometry(QRect(910, 450, 481, 51))
         self.addSelections.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(580, 10, 461, 171))
+        self.label.setGeometry(QRect(920, 0, 461, 171))
         font = QFont()
         font.setFamilies([u"Terminal"])
         font.setPointSize(15)
@@ -77,19 +77,19 @@ class Ui_MainWindow(object):
         self.label.setWordWrap(True)
         self.selectExcel = QPushButton(self.centralwidget)
         self.selectExcel.setObjectName(u"selectExcel")
-        self.selectExcel.setGeometry(QRect(580, 520, 471, 51))
+        self.selectExcel.setGeometry(QRect(910, 510, 481, 51))
         self.selectExcel.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.saveImages = QPushButton(self.centralwidget)
         self.saveImages.setObjectName(u"saveImages")
-        self.saveImages.setGeometry(QRect(580, 580, 471, 51))
+        self.saveImages.setGeometry(QRect(910, 570, 481, 51))
         self.saveImages.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.addImage = QPushButton(self.centralwidget)
         self.addImage.setObjectName(u"addImage")
-        self.addImage.setGeometry(QRect(10, 540, 551, 51))
+        self.addImage.setGeometry(QRect(20, 640, 861, 51))
         self.addImage.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.ImageLabel = QLabel(self.centralwidget)
         self.ImageLabel.setObjectName(u"ImageLabel")
-        self.ImageLabel.setGeometry(QRect(18, 35, 541, 491))
+        self.ImageLabel.setGeometry(QRect(18, 35, 861, 581))
         self.ImageLabel.setScaledContents(True)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
