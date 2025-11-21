@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1073</width>
-    <height>724</height>
+    <width>1437</width>
+    <height>861</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,8 +31,8 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>190</y>
+      <x>910</x>
+      <y>180</y>
       <width>481</width>
       <height>251</height>
      </rect>
@@ -52,9 +52,9 @@
    <widget class="QPushButton" name="addSelections">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>460</y>
-      <width>471</width>
+      <x>910</x>
+      <y>450</y>
+      <width>481</width>
       <height>51</height>
      </rect>
     </property>
@@ -68,8 +68,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>10</y>
+      <x>920</x>
+      <y>0</y>
       <width>461</width>
       <height>171</height>
      </rect>
@@ -125,9 +125,9 @@
    <widget class="QPushButton" name="selectExcel">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>910</x>
       <y>520</y>
-      <width>471</width>
+      <width>481</width>
       <height>51</height>
      </rect>
     </property>
@@ -141,9 +141,9 @@
    <widget class="QPushButton" name="saveImages">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>910</x>
       <y>580</y>
-      <width>471</width>
+      <width>481</width>
       <height>51</height>
      </rect>
     </property>
@@ -157,9 +157,9 @@
    <widget class="QPushButton" name="addImage">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>540</y>
-      <width>551</width>
+      <x>20</x>
+      <y>640</y>
+      <width>861</width>
       <height>51</height>
      </rect>
     </property>
@@ -175,8 +175,8 @@
      <rect>
       <x>18</x>
       <y>35</y>
-      <width>541</width>
-      <height>491</height>
+      <width>861</width>
+      <height>581</height>
      </rect>
     </property>
     <property name="text">
