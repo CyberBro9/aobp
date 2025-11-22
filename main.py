@@ -86,6 +86,7 @@ class Application(QMainWindow):
 
             def mouseClick(x: int, y: int, button, pressed):
                 appliedFields.append(selection)
+                self.UI.addSelections.setText("Add selection to image")
                 return False
 
             listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
@@ -123,11 +124,13 @@ class Application(QMainWindow):
                 for i in range(self.MainSheet.nrows - 1):
                     canvas = Image.open(self.PathToImage)
                     draw = ImageDraw.Draw(canvas)
-                    font = ImageFont.truetype("sans-serif.ttf", size=20)
+                    font = ImageFont.truetype("Montserrat-VariableFont_wght.ttf", size=20)
                     for field in appliedFields:
-                        label: QLabel = self.UI.ImageLabel[field]
+                        label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
                         column = 1
-                        for _, element in self.MainSheet.row(0):
+
+                        for j in self.MainSheet.row(0):
+                            element = j.value
                             if element == field:
                                 break
 
@@ -135,7 +138,7 @@ class Application(QMainWindow):
 
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
                         draw.text((label.pos().x(), label.pos().y()), text, font=font)
-                        canvas.save(dirName + f"{i}.png")
+                        canvas.save(dirName + fr"\{i}.png")
 
 
 app = QApplication(sys.argv)
