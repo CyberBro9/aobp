@@ -1,29 +1,13 @@
 import sys
 import xlrd
 import os
-import pyqrcode
-
-url = pyqrcode.create("skibidi")
-
-url.png("skibidi.png", scale=5)
-
+import PIL.Image
+from pynput import mouse
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
 from PySide6.QtGui import QPixmap
 import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
-from ctypes import windll, Structure, c_long, byref
-
-
-class POINT(Structure):
-    _fields_ = [("x", c_long), ("y", c_long)]
-
-
-def queryMousePosition():
-    pt = POINT()
-    windll.user32.GetCursorPos(byref(pt))
-    return { "x": pt.x, "y": pt.y}
-
 
 root = tk.Tk()
 root.title("Select files")
@@ -51,6 +35,7 @@ class Application(QMainWindow):
         self.Document = None
         self.Selecting = False
         self.MovingLabel = None
+        self.PathToImage = None
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
         self.UI.selectExcel.clicked.connect(self.setupExcelTable)
@@ -86,14 +71,21 @@ class Application(QMainWindow):
             self.UI.addSelections.setText("Reset selection")
             selection = self.UI.tableWidget.selectedItems()[0].data(0)
             self.MovingLabel = QLabel()
+            self.MovingLabel.setObjectName(selection)
             self.MovingLabel.setFont("Terminal")
             self.MovingLabel.setStyleSheet("QLabel { background-color : #ffffff; }")
             self.MovingLabel.setBaseSize(200, 100)
             self.MovingLabel.setText(selection)
-            mousePosition = queryMousePosition()
-            self.MovingLabel.move(mousePosition["x"], mousePosition["y"])
-            self.MovingLabel.setParent(self)
             self.MovingLabel.show()
+
+            def mouseMove(x, y):
+                self.MovingLabel.move(x, y)
+
+            def mouseClick(x: int, y: int, button, pressed):
+                return False
+
+            listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
+            listener.start()
         else:
             self.UI.addSelections.setText("Add selection to image")
             self.MovingLabel.destroy(False, False)
@@ -109,6 +101,7 @@ class Application(QMainWindow):
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
+            self.PathToImage = filePath
             self.UI.ImageLabel.setPixmap(pixMap)
 
     def saveImagesWithDocumentFields(self):
@@ -123,8 +116,8 @@ class Application(QMainWindow):
                 if not os.path.exists(dirName):
                     os.mkdir(dirName)
 
-                #for i in range(self.MainSheet.nrows):
-                    #self.UI.ImageLabel.pixmap().toImage().toImageFormat()
+                for i in range(self.MainSheet.nrows):
+                    pass
 
 
 app = QApplication(sys.argv)
