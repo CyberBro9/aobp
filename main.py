@@ -4,7 +4,7 @@ import os
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
-from PySide6.QtGui import QPixmap
+from PySide6.QtGui import QPixmap, QFont
 import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
@@ -74,12 +74,13 @@ class Application(QMainWindow):
             selection = self.UI.tableWidget.selectedItems()[0].data(0)
             self.MovingLabel = QLabel()
             self.MovingLabel.setObjectName(selection)
-            self.MovingLabel.setFont("Terminal")
-            self.MovingLabel.setStyleSheet("QLabel { background-color : #ffffff; }")
-            self.MovingLabel.setBaseSize(200, 100)
+            font = QFont("Yu Gothic UI", 40)
+            font.setBold(True)
+            self.MovingLabel.setFont(font)
+            self.MovingLabel.setPalette(self.UI.addSelections.palette())
+            self.MovingLabel.setFixedSize(250, 150)
             self.MovingLabel.setText(selection)
             self.MovingLabel.setParent(self.UI.ImageLabel)
-            self.MovingLabel.show()
 
             def mouseMove(x, y):
                 self.MovingLabel.move(x, y)
@@ -91,6 +92,7 @@ class Application(QMainWindow):
 
             listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
             listener.start()
+            self.MovingLabel.show()
         else:
             self.UI.addSelections.setText("Add selection to image")
             self.MovingLabel.destroy(False, False)
@@ -124,7 +126,7 @@ class Application(QMainWindow):
                 for i in range(self.MainSheet.nrows - 1):
                     canvas = Image.open(self.PathToImage)
                     draw = ImageDraw.Draw(canvas)
-                    font = ImageFont.truetype("Montserrat-VariableFont_wght.ttf", size=20)
+                    font = ImageFont.truetype("Montserrat-VariableFont_wght.ttf", size=40)
                     for field in appliedFields:
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
                         column = 1
@@ -138,7 +140,7 @@ class Application(QMainWindow):
 
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
                         draw.text((label.pos().x(), label.pos().y()), text, font=font)
-                        canvas.save(dirName + fr"\{i}.png")
+                        canvas.save(dirName + fr"\{i + 1}.png")
 
 
 app = QApplication(sys.argv)
