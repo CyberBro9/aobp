@@ -1,7 +1,7 @@
 import sys
 import xlrd
 import os
-import PIL.Image
+from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
 from PySide6.QtGui import QPixmap
@@ -13,6 +13,8 @@ root = tk.Tk()
 root.title("Select files")
 root.iconbitmap("aobp.ico")
 root.withdraw()
+
+appliedFields = []
 
 
 def parseDocument(path):
@@ -76,12 +78,14 @@ class Application(QMainWindow):
             self.MovingLabel.setStyleSheet("QLabel { background-color : #ffffff; }")
             self.MovingLabel.setBaseSize(200, 100)
             self.MovingLabel.setText(selection)
+            self.MovingLabel.setParent(self.UI.ImageLabel)
             self.MovingLabel.show()
 
             def mouseMove(x, y):
                 self.MovingLabel.move(x, y)
 
             def mouseClick(x: int, y: int, button, pressed):
+                appliedFields.append(selection)
                 return False
 
             listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
@@ -106,7 +110,7 @@ class Application(QMainWindow):
 
     def saveImagesWithDocumentFields(self):
         """
-        Prompts the user to select a path to where images are saved, after which saves n images to PC, where n = amount of rows in self.MainSheet with document fields applied to them.
+        Prompts the user to select a path to where images are saved, after which saves n images to PC, where n = amount of rows in self.MainSheet - 1 with document fields applied to them.
         :returns: Nothing
         """
         if self.MainSheet:
@@ -116,8 +120,22 @@ class Application(QMainWindow):
                 if not os.path.exists(dirName):
                     os.mkdir(dirName)
 
-                for i in range(self.MainSheet.nrows):
-                    pass
+                for i in range(self.MainSheet.nrows - 1):
+                    canvas = Image.open(self.PathToImage)
+                    draw = ImageDraw.Draw(canvas)
+                    font = ImageFont.truetype("sans-serif.ttf", size=20)
+                    for field in appliedFields:
+                        label: QLabel = self.UI.ImageLabel[field]
+                        column = 1
+                        for _, element in self.MainSheet.row(0):
+                            if element == field:
+                                break
+
+                            column += 1
+
+                        text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
+                        draw.text((label.pos().x(), label.pos().y()), text, font=font)
+                        canvas.save(dirName + f"{i}.png")
 
 
 app = QApplication(sys.argv)
