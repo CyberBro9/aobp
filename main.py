@@ -53,7 +53,8 @@ class Application(QMainWindow):
         Opens a file dialog, after which fills the ExcelTable with .xls file data if there is one.
         :returns: Nothing.
         """
-        filePath = filedialog.askopenfilename(filetypes=(("Microsoft Excel sheet", "*.xls"),), title="Select Excel file")
+        filePath = filedialog.askopenfilename(filetypes=(("Microsoft Excel sheet", "*.xls"),),
+                                              title="Select Excel file")
         if filePath:
             self.Document = parseDocument(filePath)
             self.MainSheet = self.Document.sheet_by_index(0)
@@ -112,7 +113,10 @@ class Application(QMainWindow):
         Opens a file dialog, after which ImageLabel's pixmap is set to pixmap generated from file path.
         :returns: 39 gigabyte SQLite database full of corrupted entries.
         """
-        filePath = filedialog.askopenfilename(filetypes=(("PNG", "*.png"), ("JPG", "*.jpg"), ("JPEG", "*.jpeg"), ("Bitmap", "*.bmp")), title="Select image file")
+        filePath = filedialog.askopenfilename(filetypes=(("PNG", "*.png"),
+                                                         ("JPG", "*.jpg"),
+                                                         ("JPEG", "*.jpeg"),
+                                                         ("Bitmap", "*.bmp")), title="Select image file")
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
