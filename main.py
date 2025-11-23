@@ -88,6 +88,7 @@ class Application(QMainWindow):
             def mouseClick(x: int, y: int, button, pressed):
                 appliedFields.append(selection)
                 self.UI.addSelections.setText("Add selection to image")
+                self.Selecting = not self.Selecting
                 return False
 
             listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
@@ -119,7 +120,7 @@ class Application(QMainWindow):
         if self.MainSheet:
             filePath = filedialog.askdirectory(mustexist=True)
             if filePath:
-                dirName = filePath + f"\Output"
+                dirName = filePath + fr"\Output"
                 if not os.path.exists(dirName):
                     os.mkdir(dirName)
 
@@ -129,7 +130,7 @@ class Application(QMainWindow):
                     font = ImageFont.truetype("Montserrat-VariableFont_wght.ttf", size=40)
                     for field in appliedFields:
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
-                        column = 1
+                        column = 0
 
                         for j in self.MainSheet.row(0):
                             element = j.value
@@ -140,7 +141,8 @@ class Application(QMainWindow):
 
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
                         draw.text((label.pos().x(), label.pos().y()), text, font=font)
-                        canvas.save(dirName + fr"\{i + 1}.png")
+
+                    canvas.save(dirName + fr"\{i + 1}.png")
 
 
 app = QApplication(sys.argv)
