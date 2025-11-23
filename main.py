@@ -53,7 +53,7 @@ class Application(QMainWindow):
         Opens a file dialog, after which fills the ExcelTable with .xls file data if there is one.
         :returns: Nothing.
         """
-        filePath = filedialog.askopenfilename(defaultextension=".xls")
+        filePath = filedialog.askopenfilename(filetypes=(("Microsoft Excel sheet", "*.xls"),), title="Select Excel file")
         if filePath:
             self.Document = parseDocument(filePath)
             self.MainSheet = self.Document.sheet_by_index(0)
@@ -73,42 +73,46 @@ class Application(QMainWindow):
         :returns: Nothing.
         """
         if not self.Selecting:
-            self.UI.addSelections.setText("Reset selection")
-            selection = self.UI.tableWidget.selectedItems()[0].data(0)
-            self.MovingLabel = QLabel()
-            self.MovingLabel.setObjectName(selection)
-            font = QFont("Yu Gothic UI", 40)
-            font.setBold(True)
-            self.MovingLabel.setFont(font)
-            self.MovingLabel.setPalette(self.UI.addSelections.palette())
-            self.MovingLabel.setFixedSize(250, 150)
-            self.MovingLabel.setText(selection)
-            self.MovingLabel.setParent(self.UI.ImageLabel)
+            selected = self.UI.tableWidget.selectedItems()
+            if selected:
+                self.UI.addSelections.setText("Reset selection")
+                selection = selected[0].data(0)
+                self.MovingLabel = QLabel()
+                self.MovingLabel.setObjectName(selection)
+                font = QFont("Yu Gothic UI", 40)
+                font.setBold(True)
+                self.MovingLabel.setFont(font)
+                self.MovingLabel.setPalette(self.UI.label_2.palette())
+                self.MovingLabel.setFixedSize(250, 150)
+                self.MovingLabel.setText(selection)
+                self.MovingLabel.setParent(self.UI.ImageLabel)
 
-            def mouseMove(x, y):
-                self.MovingLabel.move(x, y)
+                def mouseMove(x, y):
+                    self.MovingLabel.move(x, y)
 
-            def mouseClick(x: int, y: int, button, pressed):
-                appliedFields.append(selection)
-                self.UI.addSelections.setText("Add selection to image")
-                self.Selecting = not self.Selecting
-                return False
+                def mouseClick(x: int, y: int, button, pressed):
+                    appliedFields.append(selection)
+                    self.UI.addSelections.setText("Add selection to image")
+                    self.Selecting = not self.Selecting
+                    return False
 
-            listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
-            listener.start()
-            self.MovingLabel.show()
+                listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
+                listener.start()
+                self.MovingLabel.show()
+            else:
+                self.UI.statusbar.showMessage("Select something first!", 1000)
         else:
             self.UI.addSelections.setText("Add selection to image")
             self.MovingLabel.destroy(False, False)
+            self.Selecting = not self.Selecting
 
-        self.Selecting = not self.Selecting
 
     def setUpImageFile(self):
         """
         Opens a file dialog, after which ImageLabel's pixmap is set to pixmap generated from file path.
         :returns: 39 gigabyte SQLite database full of corrupted entries.
         """
-        filePath = filedialog.askopenfilename(defaultextension=".png")
+        filePath = filedialog.askopenfilename(filetypes=(("PNG", "*.png"), ("JPG", "*.jpg"), ("JPEG", "*.jpeg"), ("Bitmap", "*.bmp")), title="Select image file")
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
@@ -117,11 +121,12 @@ class Application(QMainWindow):
 
     def saveImagesWithDocumentFields(self):
         """
-        Prompts the user to select a path to where images are saved, after which saves n images to PC, where n = amount of rows in self.MainSheet - 1 with document fields applied to them.
+        Prompts the user to select a path to where images are saved, after which saves n images to PC,
+        where n = amount of rows in self.MainSheet - 1 with document fields applied to them.
         :returns: Nothing
         """
-        if self.MainSheet:
-            filePath = filedialog.askdirectory(mustexist=True)
+        if self.MainSheet and self.PathToImage and len(appliedFields) > 0:
+            filePath = filedialog.askdirectory(mustexist=True, title="Save to directory")
             if filePath:
                 dirName = filePath + fr"\Output"
                 if not os.path.exists(dirName):
@@ -143,11 +148,17 @@ class Application(QMainWindow):
                             column += 1
 
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
-                        draw.text((label.pos().x(), label.pos().y()), text, font=font)
+                        draw.text((label.pos().x(), label.pos().y()), text, font=font, fill=0)
 
                     canvas.save(dirName + fr"\{i + 1}.png")
 
                 self.UI.statusbar.showMessage(f"Images saved to {dirName}", 5000)
+        else:
+            self.UI.statusbar.showMessage(
+                (not self.MainSheet and "Add a document first!")
+                or (not self.PathToImage and "Add an image first!")
+                or (not len(appliedFields) > 0 and "Add a field to an image first!"),
+                1000)
 
 
 app = QApplication(sys.argv)
