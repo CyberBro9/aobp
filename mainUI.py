@@ -24,18 +24,17 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1437, 861)
-        MainWindow.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid pink;\n"
-"	background-color: rgb(0, 0, 0);\n"
+        MainWindow.setStyleSheet(u"\n"
+"QPushButton {\n"
+"	border: 2px  solid rgb(100, 255, 218) ;\n"
+"	background-color: transparent;\n"
 "	border-radius: 5px;\n"
 "	padding: 10px 10px;\n"
-"	color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(171, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));\n"
-"	\n"
+"	color: rgb(255, 255, 255);\n"
 "	font: 9pt \"Terminal\";\n"
 "}\n"
 "#centralwidget {\n"
-"	background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(245, 224, 176, 255), stop:0.09 rgba(246, 189, 237, 255), stop:0.14 rgba(194, 207, 246, 255), stop:0.19 rgba(184, 160, 168, 255), stop:0.25 rgba(17"
-                        "1, 186, 248, 255), stop:0.32 rgba(243, 248, 224, 255), stop:0.385 rgba(249, 162, 183, 255), stop:0.47 rgba(100, 115, 124, 255), stop:0.58 rgba(251, 205, 202, 255), stop:0.65 rgba(170, 128, 185, 255), stop:0.75 rgba(252, 222, 204, 255), stop:0.805 rgba(206, 122, 218, 255), stop:0.86 rgba(254, 223, 175, 255), stop:0.91 rgba(254, 236, 244, 255), stop:1 rgba(255, 191, 221, 255));}\n"
+"	background-color: #0a192f}\n"
 "")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -43,8 +42,8 @@ class Ui_MainWindow(object):
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setGeometry(QRect(910, 180, 481, 251))
         self.tableWidget.setStyleSheet(u"QTableWidget {\n"
-"	border: 3px solid pink;\n"
-"	background-color: rgb(255, 255, 255);\n"
+"	border: 3px solid #64ffda;;\n"
+"	background-color: transparent;\n"
 "	border-radius: 10px;\n"
 "	padding: 10px 10px;\n"
 "}")
@@ -113,7 +112,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(statustip)
         self.label.setStatusTip("")
 #endif // QT_CONFIG(statustip)
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#000000;\">AUTOMATIZATION OF BUSINESS PROCESSES</span></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">AUTOMATIZATION OF BUSINESS PROCESSES</span></p></body></html>", None))
         self.selectExcel.setText(QCoreApplication.translate("MainWindow", u"Select Excel file", None))
         self.saveImages.setText(QCoreApplication.translate("MainWindow", u"PUSH!! PUSH THIS BUUTTON!!!", None))
         self.addImage.setText(QCoreApplication.translate("MainWindow", u"Add image", None))
