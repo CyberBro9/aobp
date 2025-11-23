@@ -6,12 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1437</width>
-    <height>861</height>
+    <width>1414</width>
+    <height>654</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Automatization Of Business Processes</string>
   </property>
   <property name="styleSheet">
    <string notr="true">
@@ -21,7 +27,7 @@ QPushButton {
 	border-radius: 5px;
 	padding: 10px 10px;
 	color: rgb(255, 255, 255);
-	font: 9pt &quot;Terminal&quot;;
+	font: 12pt &quot;Yu Gothic UIl&quot;;
 }
 #centralwidget {
 	background-color: #0a192f}
@@ -76,11 +82,10 @@ QPushButton {
     </property>
     <property name="font">
      <font>
-      <family>Terminal</family>
-      <pointsize>15</pointsize>
+      <family>Yu Gothic UI</family>
+      <pointsize>32</pointsize>
       <italic>false</italic>
       <bold>true</bold>
-      <stylestrategy>PreferDefault</stylestrategy>
      </font>
     </property>
     <property name="toolTip">
@@ -100,7 +105,8 @@ QPushButton {
 	
 	
 	
-	font: 700 15pt &quot;Terminal&quot;;
+	;
+	font: 700 32pt &quot;Yu Gothic UI&quot;;
 }</string>
     </property>
     <property name="lineWidth">
@@ -158,7 +164,7 @@ QPushButton {
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>640</y>
+      <y>570</y>
       <width>861</width>
       <height>51</height>
      </rect>
@@ -174,9 +180,9 @@ QPushButton {
     <property name="geometry">
      <rect>
       <x>18</x>
-      <y>35</y>
+      <y>15</y>
       <width>861</width>
-      <height>581</height>
+      <height>541</height>
      </rect>
     </property>
     <property name="text">
@@ -200,7 +206,11 @@ QPushButton {
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

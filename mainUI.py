@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitled.ui'
+## Form generated from reading UI file 'Uncompiled.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.10.0
 ##
@@ -23,7 +23,12 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1437, 861)
+        MainWindow.resize(1414, 654)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setStyleSheet(u"\n"
 "QPushButton {\n"
 "	border: 2px  solid rgb(100, 255, 218) ;\n"
@@ -31,7 +36,7 @@ class Ui_MainWindow(object):
 "	border-radius: 5px;\n"
 "	padding: 10px 10px;\n"
 "	color: rgb(255, 255, 255);\n"
-"	font: 9pt \"Terminal\";\n"
+"	font: 12pt \"Yu Gothic UIl\";\n"
 "}\n"
 "#centralwidget {\n"
 "	background-color: #0a192f}\n"
@@ -55,11 +60,10 @@ class Ui_MainWindow(object):
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(920, 0, 461, 171))
         font = QFont()
-        font.setFamilies([u"Terminal"])
-        font.setPointSize(15)
+        font.setFamilies([u"Yu Gothic UI"])
+        font.setPointSize(32)
         font.setBold(True)
         font.setItalic(False)
-        font.setStyleStrategy(QFont.PreferDefault)
         self.label.setFont(font)
         self.label.setToolTipDuration(1)
         self.label.setAutoFillBackground(False)
@@ -67,7 +71,8 @@ class Ui_MainWindow(object):
 "	\n"
 "	\n"
 "	\n"
-"	font: 700 15pt \"Terminal\";\n"
+"	;\n"
+"	font: 700 32pt \"Yu Gothic UI\";\n"
 "}")
         self.label.setLineWidth(1)
         self.label.setTextFormat(Qt.TextFormat.RichText)
@@ -84,15 +89,19 @@ class Ui_MainWindow(object):
         self.saveImages.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.addImage = QPushButton(self.centralwidget)
         self.addImage.setObjectName(u"addImage")
-        self.addImage.setGeometry(QRect(20, 640, 861, 51))
+        self.addImage.setGeometry(QRect(20, 570, 861, 51))
         self.addImage.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.ImageLabel = QLabel(self.centralwidget)
         self.ImageLabel.setObjectName(u"ImageLabel")
-        self.ImageLabel.setGeometry(QRect(18, 35, 861, 581))
+        self.ImageLabel.setGeometry(QRect(18, 15, 861, 541))
         self.ImageLabel.setScaledContents(True)
+        self.label_2 = QLabel(self.centralwidget)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(1300, 810, 121, 41))
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
+        self.statusbar.setEnabled(True)
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
@@ -101,7 +110,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Automatization Of Business Processes", None))
 #if QT_CONFIG(tooltip)
         self.tableWidget.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u044d\u043a\u0441\u0435\u043b\u044c \u0444\u0438\u043b\u0435\u0441  \u0431\u0440\u043e</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
@@ -117,5 +126,6 @@ class Ui_MainWindow(object):
         self.saveImages.setText(QCoreApplication.translate("MainWindow", u"PUSH!! PUSH THIS BUUTTON!!!", None))
         self.addImage.setText(QCoreApplication.translate("MainWindow", u"Add image", None))
         self.ImageLabel.setText("")
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#000000;\">\u042f \u043d\u0435\u043d\u0430\u0432\u0438\u0436\u0443 \u044d\u0442\u043e \u0433\u043e\u0432\u043d\u043e</span></p></body></html>", None))
     # retranslateUi
 

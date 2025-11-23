@@ -4,13 +4,13 @@ import os
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
-from PySide6.QtGui import QPixmap, QFont
+from PySide6.QtGui import QPixmap, QFont, QIcon
+from PySide6.QtCore import Qt
 import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
 
 root = tk.Tk()
-root.title("Select files")
 root.iconbitmap("aobp.ico")
 root.withdraw()
 
@@ -44,6 +44,9 @@ class Application(QMainWindow):
         self.UI.addSelections.clicked.connect(self.placeSelection)
         self.UI.addImage.clicked.connect(self.setUpImageFile)
         self.UI.saveImages.clicked.connect(self.saveImagesWithDocumentFields)
+        self.setWindowIcon(QIcon("aobp.ico"))
+        self.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
+        self.setWindowFlag(Qt.WindowType.Dialog)
 
     def setupExcelTable(self):
         """
@@ -143,6 +146,8 @@ class Application(QMainWindow):
                         draw.text((label.pos().x(), label.pos().y()), text, font=font)
 
                     canvas.save(dirName + fr"\{i + 1}.png")
+
+                self.UI.statusbar.showMessage(f"Images saved to {dirName}", 5000)
 
 
 app = QApplication(sys.argv)
