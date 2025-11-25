@@ -1,3 +1,6 @@
+<p align="center">
+    <img width="248" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/aobp.ico" alt="AOBP logo which was made in 10 minutes">
+</p>
 # Automatization of Business Processes
 
 ### A project aimed to streamline the process of creating certificates for large groups of people by utilizing Excel spreadsheets
