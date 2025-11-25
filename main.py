@@ -5,7 +5,7 @@ from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
 from PySide6.QtGui import QPixmap, QFont, QIcon
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QSize
 import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
@@ -83,9 +83,9 @@ class Application(QMainWindow):
                 font = QFont("Yu Gothic UI", 40)
                 font.setBold(True)
                 self.MovingLabel.setFont(font)
-                self.MovingLabel.setPalette(self.UI.label_2.palette())
+                self.MovingLabel.setPalette(Qt.GlobalColor.black)
                 self.MovingLabel.setFixedSize(250, 150)
-                self.MovingLabel.setText(selection)
+                self.MovingLabel.setText('<html><head/><body><p><span style=" color:#000000;">' + selection + '</span></p></body></html>')
                 self.MovingLabel.setParent(self.UI.ImageLabel)
 
                 def mouseMove(x, y):
@@ -120,6 +120,10 @@ class Application(QMainWindow):
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
+            pixMap = pixMap.scaled(QSize(self.UI.ImageLabel.width(), self.UI.ImageLabel.height()),
+                          Qt.AspectRatioMode.KeepAspectRatio,
+                          Qt.TransformationMode.SmoothTransformation)
+
             self.PathToImage = filePath
             self.UI.ImageLabel.setPixmap(pixMap)
 
@@ -156,7 +160,7 @@ class Application(QMainWindow):
 
                     canvas.save(dirName + fr"\{i + 1}.png")
 
-                self.UI.statusbar.showMessage(f"Images saved to {dirName}", 5000)
+                self.UI.statusbar.showMessage(f"Images saved to {filePath + '/Output'}", 5000)
         else:
             self.UI.statusbar.showMessage(
                 (not self.MainSheet and "Add a document first!")
