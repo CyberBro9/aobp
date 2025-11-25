@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="248" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/blob/main/aobp.ico" alt="AOBP logo which was made in 10 minutes">
+    <img width="248" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/aobp.ico" alt="AOBP logo which was made in 10 minutes">
 </p>
 # Automatization of Business Processes
 
