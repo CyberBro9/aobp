@@ -143,7 +143,7 @@ class Application(QMainWindow):
                 for i in range(self.MainSheet.nrows - 1):
                     canvas = Image.open(self.PathToImage)
                     draw = ImageDraw.Draw(canvas)
-                    font = ImageFont.truetype("Montserrat-VariableFont_wght.ttf", size=40)
+                    font = ImageFont.truetype("Montserrat-Medium.ttf", size=40)
                     for field in appliedFields:
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
                         column = 0
