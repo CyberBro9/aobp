@@ -38,6 +38,8 @@ class Application(QMainWindow):
         self.Selecting = False
         self.MovingLabel = None
         self.PathToImage = None
+        self.WidthScaleFactor = None
+        self.HeightScaleFactor = None
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
         self.UI.selectExcel.clicked.connect(self.setupExcelTable)
@@ -120,10 +122,14 @@ class Application(QMainWindow):
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
+            BeforeWidth = pixMap.width()
+            BeforeHeight = pixMap.height()
             pixMap = pixMap.scaled(QSize(self.UI.ImageLabel.width(), self.UI.ImageLabel.height()),
                           Qt.AspectRatioMode.KeepAspectRatio,
                           Qt.TransformationMode.SmoothTransformation)
 
+            self.WidthScaleFactor = BeforeWidth / pixMap.width()
+            self.HeightScaleFactor = BeforeHeight / pixMap.height()
             self.PathToImage = filePath
             self.UI.ImageLabel.setPixmap(pixMap)
 
@@ -156,7 +162,8 @@ class Application(QMainWindow):
                             column += 1
 
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
-                        draw.text((label.pos().x(), label.pos().y()), text, font=font, fill=0)
+                        draw.text((label.pos().x() / self.WidthScaleFactor,
+                                   label.pos().y() / self.HeightScaleFactor), text, font=font, fill=0)
 
                     canvas.save(dirName + fr"\{i + 1}.png")
 
