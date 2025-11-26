@@ -162,8 +162,8 @@ class Application(QMainWindow):
                             column += 1
 
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
-                        draw.text((label.pos().x() / self.WidthScaleFactor,
-                                   label.pos().y() / self.HeightScaleFactor), text, font=font, fill=0)
+                        draw.text((label.pos().x() * self.WidthScaleFactor,
+                                   label.pos().y() * self.HeightScaleFactor), text, font=font, fill=0)
 
                     canvas.save(dirName + fr"\{i + 1}.png")
 
