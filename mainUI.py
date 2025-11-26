@@ -94,7 +94,7 @@ class Ui_MainWindow(object):
         self.ImageLabel = QLabel(self.centralwidget)
         self.ImageLabel.setObjectName(u"ImageLabel")
         self.ImageLabel.setGeometry(QRect(18, 15, 861, 541))
-        self.ImageLabel.setScaledContents(True)
+        self.ImageLabel.setScaledContents(False)
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(1300, 810, 121, 41))
