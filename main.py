@@ -5,7 +5,7 @@ from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
 from PySide6.QtGui import QPixmap, QFont, QIcon
-from PySide6.QtCore import Qt, QSize
+from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
@@ -91,7 +91,7 @@ class Application(QMainWindow):
                 self.MovingLabel.setParent(self.UI.ImageLabel)
 
                 def mouseMove(x, y):
-                    self.MovingLabel.move(x, y)
+                    self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint(x, y)))
 
                 def mouseClick(x: int, y: int, button, pressed):
                     appliedFields.append(selection)
@@ -149,7 +149,7 @@ class Application(QMainWindow):
                 for i in range(self.MainSheet.nrows - 1):
                     canvas = Image.open(self.PathToImage)
                     draw = ImageDraw.Draw(canvas)
-                    font = ImageFont.truetype("Montserrat-Medium.ttf", size=40)
+                    font = ImageFont.truetype("Montserrat-Medium.ttf", size=80)
                     for field in appliedFields:
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
                         column = 0
@@ -162,8 +162,8 @@ class Application(QMainWindow):
                             column += 1
 
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
-                        draw.text((label.pos().x() * self.WidthScaleFactor,
-                                   label.pos().y() * self.HeightScaleFactor), text, font=font, fill=0)
+                        draw.text((label.pos().x() * self.WidthScaleFactor // 1,
+                                   label.pos().y() * self.HeightScaleFactor // 1), text, font=font, fill=0)
 
                     canvas.save(dirName + fr"\{i + 1}.png")
 
