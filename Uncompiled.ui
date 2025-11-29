@@ -60,7 +60,7 @@ QPushButton {
      <rect>
       <x>910</x>
       <y>450</y>
-      <width>481</width>
+      <width>401</width>
       <height>51</height>
      </rect>
     </property>
@@ -203,6 +203,22 @@ QPushButton {
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Я ненавижу это говно&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="selectColor">
+    <property name="geometry">
+     <rect>
+      <x>1320</x>
+      <y>450</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="text">
+     <string>Color</string>
     </property>
    </widget>
   </widget>

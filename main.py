@@ -125,8 +125,8 @@ class Application(QMainWindow):
             BeforeWidth = pixMap.width()
             BeforeHeight = pixMap.height()
             pixMap = pixMap.scaled(QSize(self.UI.ImageLabel.width(), self.UI.ImageLabel.height()),
-                          Qt.AspectRatioMode.KeepAspectRatio,
-                          Qt.TransformationMode.SmoothTransformation)
+                                    Qt.AspectRatioMode.KeepAspectRatio,
+                                    Qt.TransformationMode.SmoothTransformation)
 
             self.WidthScaleFactor = BeforeWidth / pixMap.width()
             self.HeightScaleFactor = BeforeHeight / pixMap.height()
