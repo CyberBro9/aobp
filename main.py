@@ -3,8 +3,8 @@ import xlrd
 import os
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel
-from PySide6.QtGui import QPixmap, QFont, QIcon
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog
+from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
 from tkinter import filedialog
@@ -85,9 +85,8 @@ class Application(QMainWindow):
                 font = QFont("Yu Gothic UI", 40)
                 font.setBold(True)
                 self.MovingLabel.setFont(font)
-                self.MovingLabel.setPalette(Qt.GlobalColor.black)
                 self.MovingLabel.setFixedSize(250, 150)
-                self.MovingLabel.setText('<html><head/><body><p><span style=" color:#000000;">' + selection + '</span></p></body></html>')
+                self.MovingLabel.setText(selection)
                 self.MovingLabel.setParent(self.UI.ImageLabel)
 
                 def mouseMove(x, y):
@@ -109,6 +108,17 @@ class Application(QMainWindow):
             self.MovingLabel.destroy(False, False)
             self.Selecting = not self.Selecting
 
+    def applyColorToLabels(self, group: str):
+        dialog = QColorDialog()
+        dialog.setObjectName(group)
+        dialog.open()
+
+        def changeColorOfLabels(color: QColor):
+            for thing in self.UI.ImageLabel.children():
+                if thing.inherits("QLabel") and thing.text() == group:
+                    thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
+
+        dialog.currentColorChanged.connect(changeColorOfLabels)
 
     def setUpImageFile(self):
         """
@@ -143,8 +153,10 @@ class Application(QMainWindow):
             filePath = filedialog.askdirectory(mustexist=True, title="Save to directory")
             if filePath:
                 dirName = filePath + fr"\Output"
-                if not os.path.exists(dirName):
-                    os.mkdir(dirName)
+                if os.path.exists(dirName):
+                    os.rmdir(dirName)
+
+                os.mkdir(dirName)
 
                 for i in range(self.MainSheet.nrows - 1):
                     canvas = Image.open(self.PathToImage)
