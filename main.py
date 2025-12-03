@@ -95,7 +95,6 @@ class Application(QMainWindow):
                 def mouseClick(x: int, y: int, button, pressed):
                     appliedFields.append(selection)
                     self.UI.addSelections.setText("Add selection to image")
-                    self.Selecting = not self.Selecting
                     return False
 
                 listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
