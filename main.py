@@ -31,6 +31,7 @@ class Application(QMainWindow):
     """
     Useless OOP declaration of the Qt application.
     """
+
     def __init__(self):
         super(Application, self).__init__()
         self.MainSheet = None
@@ -41,6 +42,7 @@ class Application(QMainWindow):
         self.WidthScaleFactor = None
         self.HeightScaleFactor = None
         self.UI = Ui_MainWindow()
+        self.Selections = self.UI.selection
         self.UI.setupUi(self)
         self.UI.selectExcel.clicked.connect(self.setupExcelTable)
         self.UI.addSelections.clicked.connect(self.placeSelection)
@@ -63,6 +65,7 @@ class Application(QMainWindow):
             # Set up the table widget
             self.UI.tableWidget.setRowCount(self.MainSheet.nrows)
             self.UI.tableWidget.setColumnCount(self.MainSheet.ncols)
+            self.populateSelections(self.MainSheet.row(0))
 
             for x in range(self.MainSheet.nrows):
                 for y in range(self.MainSheet.ncols):
@@ -119,6 +122,9 @@ class Application(QMainWindow):
 
         dialog.currentColorChanged.connect(changeColorOfLabels)
 
+    def populateSelections(self, entries: list):
+        pass
+
     def setUpImageFile(self):
         """
         Opens a file dialog, after which ImageLabel's pixmap is set to pixmap generated from file path.
@@ -134,8 +140,8 @@ class Application(QMainWindow):
             BeforeWidth = pixMap.width()
             BeforeHeight = pixMap.height()
             pixMap = pixMap.scaled(QSize(self.UI.ImageLabel.width(), self.UI.ImageLabel.height()),
-                                    Qt.AspectRatioMode.KeepAspectRatio,
-                                    Qt.TransformationMode.SmoothTransformation)
+                                   Qt.AspectRatioMode.KeepAspectRatio,
+                                   Qt.TransformationMode.SmoothTransformation)
 
             self.WidthScaleFactor = BeforeWidth / pixMap.width()
             self.HeightScaleFactor = BeforeHeight / pixMap.height()
