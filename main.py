@@ -42,7 +42,6 @@ class Application(QMainWindow):
         self.WidthScaleFactor = None
         self.HeightScaleFactor = None
         self.UI = Ui_MainWindow()
-        self.Selections = self.UI.selection
         self.UI.setupUi(self)
         self.UI.selectExcel.clicked.connect(self.setupExcelTable)
         self.UI.addSelections.clicked.connect(self.placeSelection)
@@ -51,6 +50,7 @@ class Application(QMainWindow):
         self.setWindowIcon(QIcon("aobp.ico"))
         self.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.setWindowFlag(Qt.WindowType.Dialog)
+        self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
 
     def setupExcelTable(self):
         """
@@ -62,16 +62,16 @@ class Application(QMainWindow):
         if filePath:
             self.Document = parseDocument(filePath)
             self.MainSheet = self.Document.sheet_by_index(0)
-            # Set up the table widget
-            self.UI.tableWidget.setRowCount(self.MainSheet.nrows)
-            self.UI.tableWidget.setColumnCount(self.MainSheet.ncols)
             self.populateSelections(self.MainSheet.row(0))
+            # Set up the table widget
+            """self.UI.tableWidget.setRowCount(self.MainSheet.nrows)
+            self.UI.tableWidget.setColumnCount(self.MainSheet.ncols)
 
             for x in range(self.MainSheet.nrows):
                 for y in range(self.MainSheet.ncols):
                     itemValue = self.MainSheet.cell_value(rowx=x, colx=y)
                     item = QTableWidgetItem(itemValue)
-                    self.UI.tableWidget.setItem(x, y, item)
+                    self.UI.tableWidget.setItem(x, y, item)"""
 
     def placeSelection(self):
         """
@@ -183,8 +183,10 @@ class Application(QMainWindow):
                                    label.pos().y() * self.HeightScaleFactor // 1), text, font=font, fill=0)
 
                     canvas.save(dirName + fr"\{i + 1}.png")
+                    self.UI.progressBar.setValue(100 / self.MainSheet.nrows - 1 * i)
 
                 self.UI.statusbar.showMessage(f"Images saved to {filePath + '/Output'}", 5000)
+                self.UI.progressBar.setValue(0)
         else:
             self.UI.statusbar.showMessage(
                 (not self.MainSheet and "Add a document first!")

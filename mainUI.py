@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHeaderView, QLabel, QMainWindow,
-    QPushButton, QSizePolicy, QStatusBar, QTableWidget,
-    QTableWidgetItem, QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QListWidget, QListWidgetItem,
+    QMainWindow, QProgressBar, QPushButton, QSizePolicy,
+    QStatusBar, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -43,18 +43,9 @@ class Ui_MainWindow(object):
 "")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.tableWidget = QTableWidget(self.centralwidget)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setGeometry(QRect(910, 180, 481, 251))
-        self.tableWidget.setStyleSheet(u"QTableWidget {\n"
-"	border: 3px solid #64ffda;;\n"
-"	background-color: transparent;\n"
-"	border-radius: 10px;\n"
-"	padding: 10px 10px;\n"
-"}")
         self.addSelections = QPushButton(self.centralwidget)
         self.addSelections.setObjectName(u"addSelections")
-        self.addSelections.setGeometry(QRect(910, 450, 481, 51))
+        self.addSelections.setGeometry(QRect(910, 450, 401, 51))
         self.addSelections.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
@@ -98,6 +89,27 @@ class Ui_MainWindow(object):
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(1300, 810, 121, 41))
+        self.selectColor = QPushButton(self.centralwidget)
+        self.selectColor.setObjectName(u"selectColor")
+        self.selectColor.setGeometry(QRect(1320, 450, 71, 51))
+        self.selectColor.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.selectColor_2 = QPushButton(self.centralwidget)
+        self.selectColor_2.setObjectName(u"selectColor_2")
+        self.selectColor_2.setGeometry(QRect(1290, 390, 101, 51))
+        self.selectColor_2.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.selections = QListWidget(self.centralwidget)
+        self.selections.setObjectName(u"selections")
+        self.selections.setGeometry(QRect(910, 141, 371, 301))
+        self.selections.setStyleSheet(u"border: 2px  solid rgb(100, 255, 218) ;\n"
+"	background-color: transparent;\n"
+"	border-radius: 5px;\n"
+"	padding: 10px 10px;\n"
+"	color: rgb(255, 255, 255);\n"
+"	font: 12pt \"Yu Gothic UIl\";")
+        self.progressBar = QProgressBar(self.centralwidget)
+        self.progressBar.setObjectName(u"progressBar")
+        self.progressBar.setGeometry(QRect(30, 10, 381, 23))
+        self.progressBar.setValue(24)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -111,9 +123,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Automatization Of Business Processes", None))
-#if QT_CONFIG(tooltip)
-        self.tableWidget.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0411\u0440\u043e \u0441\u044e\u0434\u0430 \u044d\u043a\u0441\u0435\u043b\u044c \u0444\u0438\u043b\u0435\u0441  \u0431\u0440\u043e</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
         self.addSelections.setText(QCoreApplication.translate("MainWindow", u"Add selection to image", None))
 #if QT_CONFIG(tooltip)
         self.label.setToolTip(QCoreApplication.translate("MainWindow", u"\u041d\u0435\u043f\u0440\u0438\u044f\u0442\u043d\u043e\u0441\u0442\u044c \u043d\u0430 \u0431\u043e\u0440\u0442\u0443", None))
@@ -127,5 +136,7 @@ class Ui_MainWindow(object):
         self.addImage.setText(QCoreApplication.translate("MainWindow", u"Add image", None))
         self.ImageLabel.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#000000;\">\u042f \u043d\u0435\u043d\u0430\u0432\u0438\u0436\u0443 \u044d\u0442\u043e \u0433\u043e\u0432\u043d\u043e</span></p></body></html>", None))
+        self.selectColor.setText(QCoreApplication.translate("MainWindow", u"Color", None))
+        self.selectColor_2.setText(QCoreApplication.translate("MainWindow", u"Okoshko", None))
     # retranslateUi
 
