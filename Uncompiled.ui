@@ -34,27 +34,6 @@ QPushButton {
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tableWidget">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>180</y>
-      <width>481</width>
-      <height>251</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Бро сюда эксель филес  бро&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QTableWidget {
-	border: 3px solid #64ffda;;
-	background-color: transparent;
-	border-radius: 10px;
-	padding: 10px 10px;
-}</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="addSelections">
     <property name="geometry">
      <rect>
@@ -219,6 +198,22 @@ QPushButton {
     </property>
     <property name="text">
      <string>Color</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="selectColor_2">
+    <property name="geometry">
+     <rect>
+      <x>1290</x>
+      <y>390</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="text">
+     <string>Okoshko</string>
     </property>
    </widget>
   </widget>
