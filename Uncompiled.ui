@@ -216,6 +216,24 @@ QPushButton {
      <string>Okoshko</string>
     </property>
    </widget>
+   <widget class="QListWidget" name="selections">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>141</y>
+      <width>371</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px  solid rgb(100, 255, 218) ;
+	background-color: transparent;
+	border-radius: 5px;
+	padding: 10px 10px;
+	color: rgb(255, 255, 255);
+	font: 12pt &quot;Yu Gothic UIl&quot;;</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="enabled">
