@@ -3,12 +3,13 @@ import xlrd
 import os
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
+from tableDialog import Ui_Dialog
 
 root = tk.Tk()
 root.iconbitmap("aobp.ico")
@@ -41,6 +42,10 @@ class Application(QMainWindow):
         self.PathToImage = None
         self.WidthScaleFactor = None
         self.HeightScaleFactor = None
+        self.Dialog = QDialog()
+        self.DialogUI = Ui_Dialog()
+        self.DialogUI.setupUi(self.Dialog)
+        self.TableWidget = self.DialogUI.tableWidget
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
         self.UI.selectExcel.clicked.connect(self.setupExcelTable)
@@ -64,14 +69,14 @@ class Application(QMainWindow):
             self.MainSheet = self.Document.sheet_by_index(0)
             self.populateSelections(self.MainSheet.row(0))
             # Set up the table widget
-            """self.UI.tableWidget.setRowCount(self.MainSheet.nrows)
-            self.UI.tableWidget.setColumnCount(self.MainSheet.ncols)
+            self.TableWidget.setRowCount(self.MainSheet.nrows)
+            self.TableWidget.setColumnCount(self.MainSheet.ncols)
 
             for x in range(self.MainSheet.nrows):
                 for y in range(self.MainSheet.ncols):
                     itemValue = self.MainSheet.cell_value(rowx=x, colx=y)
                     item = QTableWidgetItem(itemValue)
-                    self.UI.tableWidget.setItem(x, y, item)"""
+                    self.TableWidget.setItem(x, y, item)
 
     def placeSelection(self):
         """
@@ -79,7 +84,7 @@ class Application(QMainWindow):
         :returns: Nothing.
         """
         if not self.Selecting:
-            selected = self.UI.tableWidget.selectedItems()
+            selected = self.TableWidget.selectedItems()
             if selected:
                 self.UI.addSelections.setText("Reset selection")
                 selection = selected[0].data(0)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Uncompiled.ui'
+## Form generated from reading UI file 'Main.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.10.0
 ##
@@ -93,10 +93,10 @@ class Ui_MainWindow(object):
         self.selectColor.setObjectName(u"selectColor")
         self.selectColor.setGeometry(QRect(1320, 450, 71, 51))
         self.selectColor.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
-        self.selectColor_2 = QPushButton(self.centralwidget)
-        self.selectColor_2.setObjectName(u"selectColor_2")
-        self.selectColor_2.setGeometry(QRect(1290, 390, 101, 51))
-        self.selectColor_2.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+        self.openTableDialog = QPushButton(self.centralwidget)
+        self.openTableDialog.setObjectName(u"openTableDialog")
+        self.openTableDialog.setGeometry(QRect(1290, 390, 101, 51))
+        self.openTableDialog.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
         self.selections = QListWidget(self.centralwidget)
         self.selections.setObjectName(u"selections")
         self.selections.setGeometry(QRect(910, 141, 371, 301))
@@ -109,7 +109,8 @@ class Ui_MainWindow(object):
         self.progressBar = QProgressBar(self.centralwidget)
         self.progressBar.setObjectName(u"progressBar")
         self.progressBar.setGeometry(QRect(30, 10, 381, 23))
-        self.progressBar.setValue(24)
+        self.progressBar.setValue(0)
+        self.progressBar.setTextVisible(False)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -137,6 +138,6 @@ class Ui_MainWindow(object):
         self.ImageLabel.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#000000;\">\u042f \u043d\u0435\u043d\u0430\u0432\u0438\u0436\u0443 \u044d\u0442\u043e \u0433\u043e\u0432\u043d\u043e</span></p></body></html>", None))
         self.selectColor.setText(QCoreApplication.translate("MainWindow", u"Color", None))
-        self.selectColor_2.setText(QCoreApplication.translate("MainWindow", u"Okoshko", None))
+        self.openTableDialog.setText(QCoreApplication.translate("MainWindow", u"Okoshko", None))
     # retranslateUi
 
