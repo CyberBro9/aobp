@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -21,242 +21,195 @@
   </property>
   <property name="styleSheet">
    <string notr="true">
-QPushButton {
-	border: 2px  solid rgb(100, 255, 218) ;
-	background-color: transparent;
-	border-radius: 5px;
-	padding: 10px 10px;
-	color: rgb(255, 255, 255);
-	font: 12pt &quot;Yu Gothic UIl&quot;;
-}
-#centralwidget {
-	background-color: #0a192f}
-</string>
+        QMainWindow {
+        background-color: #0a192f;
+        }
+        QPushButton {
+        border: 2px solid rgb(100, 255, 218);
+        background-color: rgba(100, 255, 218, 0.05);
+        border-radius: 8px;
+        padding: 12px 20px;
+        color: rgb(255, 255, 255);
+        font: bold 12pt &quot;Yu Gothic UI&quot;;
+        min-height: 45px;
+        }
+        QPushButton:hover {
+        background-color: rgba(100, 255, 218, 0.15);
+        }
+        QPushButton:pressed {
+        background-color: rgba(100, 255, 218, 0.2);
+        }
+        QListWidget {
+        border: 2px solid rgb(100, 255, 218);
+        background-color: rgba(16, 42, 67, 0.6);
+        border-radius: 8px;
+        color: rgb(255, 255, 255);
+        font: 11pt &quot;Yu Gothic UI&quot;;
+        padding: 5px;
+        }
+        QListWidget::item {
+        padding: 8px;
+        margin: 2px;
+        border-radius: 4px;
+        }
+        QListWidget::item:selected {
+        background-color: rgba(100, 255, 218, 0.3);
+        }
+        QLabel#ImageLabel {
+        border: 2px dashed rgb(100, 255, 218);
+        border-radius: 8px;
+        background-color: rgba(16, 42, 67, 0.6);
+        }
+      </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="addSelections">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>450</y>
-      <width>401</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="locale">
-     <locale language="English" country="UnitedStates"/>
-    </property>
-    <property name="text">
-     <string>Add selection to image</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>920</x>
-      <y>0</y>
-      <width>461</width>
-      <height>171</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Yu Gothic UI</family>
-      <pointsize>32</pointsize>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="toolTip">
-     <string>Неприятность на борту</string>
-    </property>
-    <property name="toolTipDuration">
-     <number>1</number>
-    </property>
-    <property name="statusTip">
-     <string/>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel {
-	
-	
-	
-	;
-	font: 700 32pt &quot;Yu Gothic UI&quot;;
-}</string>
-    </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;AUTOMATIZATION OF BUSINESS PROCESSES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::TextFormat::RichText</enum>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="selectExcel">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>510</y>
-      <width>481</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="locale">
-     <locale language="English" country="UnitedStates"/>
-    </property>
-    <property name="text">
-     <string>Select Excel file</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="saveImages">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>570</y>
-      <width>481</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="locale">
-     <locale language="English" country="UnitedStates"/>
-    </property>
-    <property name="text">
-     <string>PUSH!! PUSH THIS BUUTTON!!!</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addImage">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>570</y>
-      <width>861</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="locale">
-     <locale language="English" country="UnitedStates"/>
-    </property>
-    <property name="text">
-     <string>Add image</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="ImageLabel">
-    <property name="geometry">
-     <rect>
-      <x>18</x>
-      <y>15</y>
-      <width>861</width>
-      <height>541</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="scaledContents">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>810</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Я ненавижу это говно&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="selectColor">
-    <property name="geometry">
-     <rect>
-      <x>1320</x>
-      <y>450</y>
-      <width>71</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="locale">
-     <locale language="English" country="UnitedStates"/>
-    </property>
-    <property name="text">
-     <string>Color</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="openTableDialog">
-    <property name="geometry">
-     <rect>
-      <x>1290</x>
-      <y>390</y>
-      <width>101</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="locale">
-     <locale language="English" country="UnitedStates"/>
-    </property>
-    <property name="text">
-     <string>Okoshko</string>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="selections">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>141</y>
-      <width>371</width>
-      <height>301</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 2px  solid rgb(100, 255, 218) ;
-	background-color: transparent;
-	border-radius: 5px;
-	padding: 10px 10px;
-	color: rgb(255, 255, 255);
-	font: 12pt &quot;Yu Gothic UIl&quot;;</string>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>381</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>0</number>
-    </property>
-    <property name="textVisible">
-     <bool>false</bool>
-    </property>
-   </widget>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QHBoxLayout" name="mainLayout" stretch="3,2">
+    <item>
+     <layout class="QVBoxLayout" name="leftPanel">
+      <item>
+       <widget class="QProgressBar" name="progressBar">
+        <property name="value">
+         <number>24</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="ImageLabel">
+        <property name="minimumSize">
+         <size>
+          <width>500</width>
+          <height>400</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #8892b0; font: 14pt &quot;Yu Gothic UI&quot;;</string>
+        </property>
+        <property name="text">
+         <string>No image loaded</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="addImage">
+        <property name="text">
+         <string>📁 Add Image</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="rightPanel">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Yu Gothic UI</family>
+          <pointsize>24</pointsize>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: bold 24pt &quot;Yu Gothic UI&quot;; padding: 10px;</string>
+        </property>
+        <property name="text">
+         <string>AUTOMATIZATION OF BUSINESS PROCESSES</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::TextFormat::PlainText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="selectionsLabel">
+        <property name="styleSheet">
+         <string notr="true">font: bold 14pt &quot;Yu Gothic UI&quot;; padding: 5px;</string>
+        </property>
+        <property name="text">
+         <string>Selections List:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="selections"/>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="controlsGrid">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="addSelections">
+          <property name="text">
+           <string>Add Selection to Image</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="selectColor">
+          <property name="text">
+           <string>Color</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="selectExcel">
+          <property name="text">
+           <string>Select Excel File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="openTableDialog">
+          <property name="text">
+           <string>Open Table Window</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QPushButton" name="saveImages">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt &quot;Yu Gothic UI&quot;; color: #64ffda;</string>
+          </property>
+          <property name="text">
+           <string>Save Images</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="enabled">
     <bool>true</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: #64ffda; background-color: rgba(16, 42, 67, 0.8);</string>
+   </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
