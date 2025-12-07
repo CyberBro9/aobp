@@ -19,7 +19,6 @@ from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
     QListWidget, QListWidgetItem, QMainWindow, QProgressBar,
     QPushButton, QSizePolicy, QStatusBar, QVBoxLayout,
     QWidget)
-import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
