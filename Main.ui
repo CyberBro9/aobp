@@ -51,6 +51,7 @@
         padding: 8px;
         margin: 2px;
         border-radius: 4px;
+		color: rgb(0, 0, 0)
         }
         QListWidget::item:selected {
         background-color: rgba(100, 255, 218, 0.3);
@@ -211,5 +212,6 @@
    </property>
   </widget>
  </widget>
+ <resources/>
  <connections/>
 </ui>

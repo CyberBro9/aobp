@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'Main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.1
+## Created by: Qt User Interface Compiler version 6.10.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -61,9 +61,10 @@ class Ui_MainWindow(object):
 "        padding: 8px;\n"
 "        margin: 2px;\n"
 "        border-radius: 4px;\n"
+"		color: rgb"
+                        "(0, 0, 0)\n"
 "        }\n"
-""
-                        "        QListWidget::item:selected {\n"
+"        QListWidget::item:selected {\n"
 "        background-color: rgba(100, 255, 218, 0.3);\n"
 "        }\n"
 "        QLabel#ImageLabel {\n"
@@ -81,7 +82,8 @@ class Ui_MainWindow(object):
         self.leftPanel.setObjectName(u"leftPanel")
         self.progressBar = QProgressBar(self.centralwidget)
         self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(24)
+        self.progressBar.setValue(0)
+        self.progressBar.setTextVisible(False)
 
         self.leftPanel.addWidget(self.progressBar)
 
@@ -114,7 +116,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.label.setFont(font)
-        self.label.setStyleSheet(u"font: bold 24pt \"Yu Gothic UI\"; padding: 10px;")
+        self.label.setStyleSheet(u"color: #ffffff; font: bold 24pt \"Yu Gothic UI\"; padding: 10px;")
         self.label.setTextFormat(Qt.TextFormat.PlainText)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label.setWordWrap(True)
@@ -123,7 +125,7 @@ class Ui_MainWindow(object):
 
         self.selectionsLabel = QLabel(self.centralwidget)
         self.selectionsLabel.setObjectName(u"selectionsLabel")
-        self.selectionsLabel.setStyleSheet(u"font: bold 14pt \"Yu Gothic UI\"; padding: 5px;")
+        self.selectionsLabel.setStyleSheet(u"color: #ffffff; font: bold 14pt \"Yu Gothic UI\"; padding: 5px;")
 
         self.rightPanel.addWidget(self.selectionsLabel)
 
@@ -184,7 +186,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Automatization Of Business Processes", None))
         self.ImageLabel.setText(QCoreApplication.translate("MainWindow", u"No image loaded", None))
-        self.addImage.setText(QCoreApplication.translate("MainWindow", u"\U0001f4c1 Add Image", None))
+        self.addImage.setText(QCoreApplication.translate("MainWindow", u"\ud83d\udcc1 Add Image", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"AUTOMATIZATION OF BUSINESS PROCESSES", None))
         self.selectionsLabel.setText(QCoreApplication.translate("MainWindow", u"Selections List:", None))
         self.addSelections.setText(QCoreApplication.translate("MainWindow", u"Add Selection to Image", None))

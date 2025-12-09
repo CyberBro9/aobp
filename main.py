@@ -3,7 +3,7 @@ import xlrd
 import os
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog, QListWidgetItem
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
@@ -56,6 +56,8 @@ class Application(QMainWindow):
         self.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.setWindowFlag(Qt.WindowType.Dialog)
         self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
+        self.UI.progressBar.setValue(0)
+        self.UI.progressBar.setTextVisible(False)
 
     def setupExcelTable(self):
         """
@@ -67,7 +69,7 @@ class Application(QMainWindow):
         if filePath:
             self.Document = parseDocument(filePath)
             self.MainSheet = self.Document.sheet_by_index(0)
-            self.populateSelections(self.MainSheet.row(0))
+            self.populateSelections()
             # Set up the table widget
             self.TableWidget.setRowCount(self.MainSheet.nrows)
             self.TableWidget.setColumnCount(self.MainSheet.ncols)
@@ -84,7 +86,7 @@ class Application(QMainWindow):
         :returns: Nothing.
         """
         if not self.Selecting:
-            selected = self.TableWidget.selectedItems()
+            selected = self.UI.selections.selectedItems()
             if selected:
                 self.UI.addSelections.setText("Reset selection")
                 selection = selected[0].data(0)
@@ -127,8 +129,10 @@ class Application(QMainWindow):
 
         dialog.currentColorChanged.connect(changeColorOfLabels)
 
-    def populateSelections(self, entries: list):
-        pass
+    def populateSelections(self):
+        for i in range(self.MainSheet.ncols):
+            item = self.MainSheet.cell_value(rowx=0, colx=i)
+            helpIAmOutOfVariableIdeas = QListWidgetItem(item, self.UI.selections)
 
     def setUpImageFile(self):
         """
@@ -188,7 +192,7 @@ class Application(QMainWindow):
                                    label.pos().y() * self.HeightScaleFactor // 1), text, font=font, fill=0)
 
                     canvas.save(dirName + fr"\{i + 1}.png")
-                    self.UI.progressBar.setValue(100 / self.MainSheet.nrows - 1 * i)
+                    self.UI.progressBar.setValue(100 / (self.MainSheet.nrows - 1) * i)
 
                 self.UI.statusbar.showMessage(f"Images saved to {filePath + '/Output'}", 5000)
                 self.UI.progressBar.setValue(0)
