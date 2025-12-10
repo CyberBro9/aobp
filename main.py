@@ -17,6 +17,7 @@ root.iconbitmap("aobp.ico")
 root.withdraw()
 
 appliedFields = []
+colors = []
 
 
 def parseDocument(path):
@@ -65,7 +66,7 @@ class Application(QMainWindow):
         :returns: Nothing.
         """
         filePath = filedialog.askopenfilename(filetypes=(("Microsoft Excel sheet", "*.xls"),),
-                                              title="Select Excel file")
+                                              title="Выбрать файл Excel")
         if filePath:
             self.Document = parseDocument(filePath)
             self.MainSheet = self.Document.sheet_by_index(0)
@@ -88,7 +89,7 @@ class Application(QMainWindow):
         if not self.Selecting:
             selected = self.UI.selections.selectedItems()
             if selected:
-                self.UI.addSelections.setText("Reset selection")
+                self.UI.addSelections.setText("Убрать выделение")
                 selection = selected[0].data(0)
                 self.MovingLabel = QLabel()
                 self.MovingLabel.setObjectName(selection)
@@ -98,46 +99,43 @@ class Application(QMainWindow):
                 self.MovingLabel.setFixedSize(250, 150)
                 self.MovingLabel.setText(selection)
                 self.MovingLabel.setParent(self.UI.ImageLabel)
+                print(self.MovingLabel.styleSheet())
 
                 def mouseMove(x, y):
                     self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint(x, y)))
 
                 def mouseClick(x: int, y: int, button, pressed):
                     appliedFields.append(selection)
-                    self.UI.addSelections.setText("Add selection to image")
+                    self.UI.addSelections.setText("Добавить выбранное на изображение")
                     return False
 
                 listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
                 listener.start()
                 self.MovingLabel.show()
             else:
-                self.UI.statusbar.showMessage("Select something first!", 1000)
+                self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
         else:
-            self.UI.addSelections.setText("Add selection to image")
+            self.UI.addSelections.setText("Добавить выбранное на изображение")
             self.MovingLabel.destroy(False, False)
             self.Selecting = not self.Selecting
 
     def applyColorToLabels(self):
         selections = self.UI.selections.selectedItems()
         if selections:
-            selection = selections[0].data()
+            selection = selections[0].data(0)
             dialog = QColorDialog()
             dialog.setObjectName(selection)
-            dialog.open()
-            dialog.show()
+            color = dialog.getColor(initial=QColor("white"), title=selection)
 
-            def changeColorOfLabels(color: QColor):
-                for thing in self.UI.ImageLabel.children():
-                    if thing.inherits("QLabel") and thing.text() == selection:
-                        thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
+            for thing in self.UI.ImageLabel.children():
+                if thing.inherits("QLabel") and thing.text() == selection:
+                    thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
-                for thing in self.UI.selections.selectedItems():
-                    if thing.text() == selection:
-                        thing.setBackground(color)
-
-            dialog.currentColorChanged.connect(changeColorOfLabels)
+            for thing in self.UI.selections.selectedItems():
+                if thing.text() == selection:
+                    thing.setBackground(color)
         else:
-            self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете окрасить!", 5000)
+            self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете окрасить!", 1000)
 
     def populateSelections(self):
         for i in range(self.MainSheet.ncols):
@@ -153,7 +151,7 @@ class Application(QMainWindow):
         filePath = filedialog.askopenfilename(filetypes=(("PNG", "*.png"),
                                                          ("JPG", "*.jpg"),
                                                          ("JPEG", "*.jpeg"),
-                                                         ("Bitmap", "*.bmp")), title="Select image file")
+                                                         ("Bitmap", "*.bmp")), title="Выбрать изображение")
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
@@ -175,7 +173,7 @@ class Application(QMainWindow):
         :returns: Nothing
         """
         if self.MainSheet and self.PathToImage and len(appliedFields) > 0:
-            filePath = filedialog.askdirectory(mustexist=True, title="Save to directory")
+            filePath = filedialog.askdirectory(mustexist=True, title="Сохранить в путь")
             if filePath:
                 dirName = filePath + fr"\Output"
                 if os.path.exists(dirName):
@@ -199,19 +197,21 @@ class Application(QMainWindow):
                             column += 1
 
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
+                        thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
+                        color = thing[0].background().color().toTuple()
                         draw.text((label.pos().x() * self.WidthScaleFactor // 1,
-                                   label.pos().y() * self.HeightScaleFactor // 1), text, font=font, fill=0)
+                                   label.pos().y() * self.HeightScaleFactor // 1), text, font=font, fill=color)
 
                     canvas.save(dirName + fr"\{i + 1}.png")
                     self.UI.progressBar.setValue(100 / (self.MainSheet.nrows - 1) * i)
 
-                self.UI.statusbar.showMessage(f"Images saved to {filePath + '/Output'}", 5000)
+                self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output'}", 5000)
                 self.UI.progressBar.setValue(0)
         else:
             self.UI.statusbar.showMessage(
-                (not self.MainSheet and "Add a document first!")
-                or (not self.PathToImage and "Add an image first!")
-                or (not len(appliedFields) > 0 and "Add a field to an image first!"),
+                (not self.MainSheet and "Сначала добавьте документ!")
+                or (not self.PathToImage and "Сначала добавьте изображение!")
+                or (not len(appliedFields) > 0 and "Сначала добавьте текст к изображению!"),
                 1000)
 
 

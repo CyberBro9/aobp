@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'Main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.0
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -61,10 +61,9 @@ class Ui_MainWindow(object):
 "        padding: 8px;\n"
 "        margin: 2px;\n"
 "        border-radius: 4px;\n"
-"		color: rgb"
-                        "(0, 0, 0)\n"
 "        }\n"
-"        QListWidget::item:selected {\n"
+""
+                        "        QListWidget::item:selected {\n"
 "        background-color: rgba(100, 255, 218, 0.3);\n"
 "        }\n"
 "        QLabel#ImageLabel {\n"
@@ -82,15 +81,14 @@ class Ui_MainWindow(object):
         self.leftPanel.setObjectName(u"leftPanel")
         self.progressBar = QProgressBar(self.centralwidget)
         self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(0)
-        self.progressBar.setTextVisible(False)
+        self.progressBar.setValue(24)
 
         self.leftPanel.addWidget(self.progressBar)
 
         self.ImageLabel = QLabel(self.centralwidget)
         self.ImageLabel.setObjectName(u"ImageLabel")
         self.ImageLabel.setMinimumSize(QSize(500, 400))
-        self.ImageLabel.setStyleSheet(u"color: #8892b0; font: 14pt \"Yu Gothic UI\";")
+        self.ImageLabel.setStyleSheet(u"")
         self.ImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.leftPanel.addWidget(self.ImageLabel)
@@ -116,7 +114,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setItalic(False)
         self.label.setFont(font)
-        self.label.setStyleSheet(u"color: #ffffff; font: bold 24pt \"Yu Gothic UI\"; padding: 10px;")
+        self.label.setStyleSheet(u"font: bold 24pt \"Yu Gothic UI\"; padding: 10px;")
         self.label.setTextFormat(Qt.TextFormat.PlainText)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label.setWordWrap(True)
@@ -125,7 +123,7 @@ class Ui_MainWindow(object):
 
         self.selectionsLabel = QLabel(self.centralwidget)
         self.selectionsLabel.setObjectName(u"selectionsLabel")
-        self.selectionsLabel.setStyleSheet(u"color: #ffffff; font: bold 14pt \"Yu Gothic UI\"; padding: 5px;")
+        self.selectionsLabel.setStyleSheet(u"font: bold 14pt \"Yu Gothic UI\"; padding: 5px;")
 
         self.rightPanel.addWidget(self.selectionsLabel)
 
@@ -185,14 +183,14 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Automatization Of Business Processes", None))
-        self.ImageLabel.setText(QCoreApplication.translate("MainWindow", u"No image loaded", None))
-        self.addImage.setText(QCoreApplication.translate("MainWindow", u"Add Image", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"AUTOMATIZATION OF BUSINESS PROCESSES", None))
-        self.selectionsLabel.setText(QCoreApplication.translate("MainWindow", u"Selections List:", None))
-        self.addSelections.setText(QCoreApplication.translate("MainWindow", u"Add Selection to Image", None))
-        self.selectColor.setText(QCoreApplication.translate("MainWindow", u"Color", None))
-        self.selectExcel.setText(QCoreApplication.translate("MainWindow", u"Select Excel File", None))
-        self.openTableDialog.setText(QCoreApplication.translate("MainWindow", u"Open Table Window", None))
-        self.saveImages.setText(QCoreApplication.translate("MainWindow", u"Save Images", None))
+        self.ImageLabel.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435 \u0437\u0430\u0433\u0440\u0443\u0436\u0435\u043d\u043e \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435", None))
+        self.addImage.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0430\u0446\u0438\u044f \u0411\u0438\u0437\u043d\u0435\u0441 \u041f\u0440\u043e\u0446\u0435\u0441\u0441\u043e\u0432", None))
+        self.selectionsLabel.setText(QCoreApplication.translate("MainWindow", u"\u041b\u0438\u0441\u0442 \u0432\u044b\u0431\u0440\u0430\u043d\u043d\u043e\u0433\u043e:", None))
+        self.addSelections.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0432\u044b\u0431\u0440\u0430\u043d\u043d\u043e\u0435 \u043d\u0430 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435", None))
+        self.selectColor.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u0446\u0432\u0435\u0442 \u0442\u0435\u043a\u0441\u0442\u0430", None))
+        self.selectExcel.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0431\u0440\u0430\u0442\u044c Excel \u0444\u0430\u0439\u043b", None))
+        self.openTableDialog.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043e\u043a\u043d\u043e \u0442\u0430\u0431\u043b\u0438\u0446\u044b", None))
+        self.saveImages.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
     # retranslateUi
 
