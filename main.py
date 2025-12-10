@@ -17,8 +17,6 @@ root.iconbitmap("aobp.ico")
 root.withdraw()
 
 appliedFields = []
-colors = []
-
 
 def parseDocument(path):
     """
