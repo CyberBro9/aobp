@@ -3,7 +3,8 @@ import xlrd
 import os
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog, QListWidgetItem
+from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
+                               QListWidgetItem)
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
@@ -52,9 +53,8 @@ class Application(QMainWindow):
         self.UI.addSelections.clicked.connect(self.placeSelection)
         self.UI.addImage.clicked.connect(self.setUpImageFile)
         self.UI.saveImages.clicked.connect(self.saveImagesWithDocumentFields)
+        self.UI.selectColor.clicked.connect(self.applyColorToLabels)
         self.setWindowIcon(QIcon("aobp.ico"))
-        self.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
-        self.setWindowFlag(Qt.WindowType.Dialog)
         self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
         self.UI.progressBar.setValue(0)
         self.UI.progressBar.setTextVisible(False)
@@ -117,22 +117,33 @@ class Application(QMainWindow):
             self.MovingLabel.destroy(False, False)
             self.Selecting = not self.Selecting
 
-    def applyColorToLabels(self, group: str):
-        dialog = QColorDialog()
-        dialog.setObjectName(group)
-        dialog.open()
+    def applyColorToLabels(self):
+        selections = self.UI.selections.selectedItems()
+        if selections:
+            selection = selections[0].data()
+            dialog = QColorDialog()
+            dialog.setObjectName(selection)
+            dialog.open()
+            dialog.show()
 
-        def changeColorOfLabels(color: QColor):
-            for thing in self.UI.ImageLabel.children():
-                if thing.inherits("QLabel") and thing.text() == group:
-                    thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
+            def changeColorOfLabels(color: QColor):
+                for thing in self.UI.ImageLabel.children():
+                    if thing.inherits("QLabel") and thing.text() == selection:
+                        thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
-        dialog.currentColorChanged.connect(changeColorOfLabels)
+                for thing in self.UI.selections.selectedItems():
+                    if thing.text() == selection:
+                        thing.setBackground(color)
+
+            dialog.currentColorChanged.connect(changeColorOfLabels)
+        else:
+            self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете окрасить!", 5000)
 
     def populateSelections(self):
         for i in range(self.MainSheet.ncols):
             item = self.MainSheet.cell_value(rowx=0, colx=i)
             helpIAmOutOfVariableIdeas = QListWidgetItem(item, self.UI.selections)
+            helpIAmOutOfVariableIdeas.setBackground(QColor("white"))
 
     def setUpImageFile(self):
         """

@@ -186,7 +186,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Automatization Of Business Processes", None))
         self.ImageLabel.setText(QCoreApplication.translate("MainWindow", u"No image loaded", None))
-        self.addImage.setText(QCoreApplication.translate("MainWindow", u"\ud83d\udcc1 Add Image", None))
+        self.addImage.setText(QCoreApplication.translate("MainWindow", u"Add Image", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"AUTOMATIZATION OF BUSINESS PROCESSES", None))
         self.selectionsLabel.setText(QCoreApplication.translate("MainWindow", u"Selections List:", None))
         self.addSelections.setText(QCoreApplication.translate("MainWindow", u"Add Selection to Image", None))
