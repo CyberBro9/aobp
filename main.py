@@ -91,18 +91,20 @@ class Application(QMainWindow):
                 selection = selected[0].data(0)
                 self.MovingLabel = QLabel()
                 self.MovingLabel.setObjectName(selection)
-                font = QFont("Yu Gothic UI", 40)
+                font = QFont("Yu Gothic UI", 20)
                 font.setBold(True)
                 self.MovingLabel.setFont(font)
                 self.MovingLabel.setFixedSize(250, 150)
                 self.MovingLabel.setText(selection)
+                self.MovingLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
                 self.MovingLabel.setParent(self.UI.ImageLabel)
                 print(self.MovingLabel.styleSheet())
 
                 def mouseMove(x, y):
-                    self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint(x, y)))
+                    self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint(x - 125, y - 75)))
 
                 def mouseClick(x: int, y: int, button, pressed):
+                    print(x, y, button, pressed)
                     appliedFields.append(selection)
                     self.UI.addSelections.setText("Добавить выбранное на изображение")
                     return False
@@ -129,9 +131,7 @@ class Application(QMainWindow):
                 if thing.inherits("QLabel") and thing.text() == selection:
                     thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
-            for thing in self.UI.selections.selectedItems():
-                if thing.text() == selection:
-                    thing.setBackground(color)
+                selections[0].setBackground(color)
         else:
             self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете окрасить!", 1000)
 
@@ -146,10 +146,7 @@ class Application(QMainWindow):
         Opens a file dialog, after which ImageLabel's pixmap is set to pixmap generated from file path.
         :returns: 39 gigabyte SQLite database full of corrupted entries.
         """
-        filePath = filedialog.askopenfilename(filetypes=(("PNG", "*.png"),
-                                                         ("JPG", "*.jpg"),
-                                                         ("JPEG", "*.jpeg"),
-                                                         ("Bitmap", "*.bmp")), title="Выбрать изображение")
+        filePath = filedialog.askopenfilename(filetypes=(("Картинка", ("*.png", "*.jpg", "*.jpeg", "*.bmp", "*.cur", "*.ico", "*.pbm", "*.pgm", "*.ppm")),), title="Выбрать изображение")
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
@@ -178,11 +175,11 @@ class Application(QMainWindow):
                     os.rmdir(dirName)
 
                 os.mkdir(dirName)
+                font = ImageFont.truetype("Montserrat-Medium.ttf", size=40)
 
                 for i in range(self.MainSheet.nrows - 1):
                     canvas = Image.open(self.PathToImage)
                     draw = ImageDraw.Draw(canvas)
-                    font = ImageFont.truetype("Montserrat-Medium.ttf", size=80)
                     for field in appliedFields:
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
                         column = 0
@@ -198,7 +195,8 @@ class Application(QMainWindow):
                         thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
                         color = thing[0].background().color().toTuple()
                         draw.text((label.pos().x() * self.WidthScaleFactor // 1,
-                                   label.pos().y() * self.HeightScaleFactor // 1), text, font=font, fill=color)
+                                   label.pos().y() * self.HeightScaleFactor // 1), text, font=font, fill=color,
+                                            anchor="mm")
 
                     canvas.save(dirName + fr"\{i + 1}.png")
                     self.UI.progressBar.setValue(100 / (self.MainSheet.nrows - 1) * i)

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'Main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.1
+## Created by: Qt User Interface Compiler version 6.10.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -61,10 +61,9 @@ class Ui_MainWindow(object):
 "        padding: 8px;\n"
 "        margin: 2px;\n"
 "        border-radius: 4px;\n"
-"        }\n"
-""
-                        "        QListWidget::item:selected {\n"
-"        background-color: rgba(100, 255, 218, 0.3);\n"
+"		background"
+                        "-color: rgb(255, 255, 255);\n"
+"		color: rgb(0, 0, 0)\n"
 "        }\n"
 "        QLabel#ImageLabel {\n"
 "        border: 2px dashed rgb(100, 255, 218);\n"
