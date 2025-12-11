@@ -123,7 +123,7 @@
          <string notr="true">font: bold 24pt &quot;Yu Gothic UI&quot;; padding: 10px;</string>
         </property>
         <property name="text">
-         <string>Автоматизация Бизнес Процессов</string>
+         <string>Аккредитации (и) Другие Бумаги для Бизнеса</string>
         </property>
         <property name="textFormat">
          <enum>Qt::TextFormat::PlainText</enum>
@@ -142,7 +142,7 @@
          <string notr="true">font: bold 14pt &quot;Yu Gothic UI&quot;; padding: 5px;</string>
         </property>
         <property name="text">
-         <string>Лист выбранного:</string>
+         <string>Поля для добавления:</string>
         </property>
        </widget>
       </item>
@@ -171,7 +171,7 @@
         <item row="1" column="0">
          <widget class="QPushButton" name="selectExcel">
           <property name="text">
-           <string>Выбрать Excel файл</string>
+           <string>Выбрать файл Excel</string>
           </property>
          </widget>
         </item>
