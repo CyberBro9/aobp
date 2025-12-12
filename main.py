@@ -87,7 +87,7 @@ class Application(QMainWindow):
         if not self.Selecting:
             selected = self.UI.selections.selectedItems()
             if selected:
-                self.UI.addSelections.setText("Убрать выделение")
+                self.UI.addSelections.setText("Отменить")
                 selection = selected[0].data(0)
                 self.MovingLabel = QLabel()
                 self.MovingLabel.setObjectName(selection)
@@ -96,9 +96,9 @@ class Application(QMainWindow):
                 self.MovingLabel.setFont(font)
                 self.MovingLabel.setFixedSize(250, 150)
                 self.MovingLabel.setText(selection)
+                self.MovingLabel.setStyleSheet(f"color: {selected[0].background().color().name()}")
                 self.MovingLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
                 self.MovingLabel.setParent(self.UI.ImageLabel)
-                print(self.MovingLabel.styleSheet())
 
                 def mouseMove(x, y):
                     self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint(x - 125, y - 75)))
@@ -106,7 +106,7 @@ class Application(QMainWindow):
                 def mouseClick(x: int, y: int, button, pressed):
                     print(x, y, button, pressed)
                     appliedFields.append(selection)
-                    self.UI.addSelections.setText("Добавить выбранное на изображение")
+                    self.UI.addSelections.setText("Добавить поле на изображение")
                     return False
 
                 listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
@@ -115,7 +115,7 @@ class Application(QMainWindow):
             else:
                 self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
         else:
-            self.UI.addSelections.setText("Добавить выбранное на изображение")
+            self.UI.addSelections.setText("Добавить поле на изображение")
             self.MovingLabel.destroy(False, False)
             self.Selecting = not self.Selecting
 
@@ -131,7 +131,7 @@ class Application(QMainWindow):
                 if thing.inherits("QLabel") and thing.text() == selection:
                     thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
-                selections[0].setBackground(color)
+            selections[0].setBackground(color)
         else:
             self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете окрасить!", 1000)
 
@@ -194,9 +194,9 @@ class Application(QMainWindow):
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
                         thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
                         color = thing[0].background().color().toTuple()
-                        draw.text((label.pos().x() * self.WidthScaleFactor // 1,
-                                   label.pos().y() * self.HeightScaleFactor // 1), text, font=font, fill=color,
-                                            anchor="mm")
+                        draw.text(((label.pos().x() + 125) * self.WidthScaleFactor,
+                                   (label.pos().y() + 50) * self.HeightScaleFactor), text, font=font, fill=color,
+                                            anchor="ms")
 
                     canvas.save(dirName + fr"\{i + 1}.png")
                     self.UI.progressBar.setValue(100 / (self.MainSheet.nrows - 1) * i)

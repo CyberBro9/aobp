@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Automatization Of Business Processes</string>
+   <string>Аккредитации (и) Другие Бумаги для Бизнеса</string>
   </property>
   <property name="styleSheet">
    <string notr="true">
@@ -82,6 +82,11 @@
           <width>500</width>
           <height>400</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true"/>
@@ -157,7 +162,7 @@
         <item row="0" column="0">
          <widget class="QPushButton" name="addSelections">
           <property name="text">
-           <string>Добавить выбранное на изображение</string>
+           <string>Добавить поле</string>
           </property>
          </widget>
         </item>
