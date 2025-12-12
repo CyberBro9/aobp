@@ -44,6 +44,8 @@ class Application(QMainWindow):
         self.HeightScaleFactor = None
         self.Dialog = QDialog()
         self.DialogUI = Ui_Dialog()
+        self.Dialog.setWindowIcon(QIcon("aobp.ico"))
+        self.Dialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.DialogUI.setupUi(self.Dialog)
         self.TableWidget = self.DialogUI.tableWidget
         self.UI = Ui_MainWindow()
@@ -53,6 +55,7 @@ class Application(QMainWindow):
         self.UI.addImage.clicked.connect(self.setUpImageFile)
         self.UI.saveImages.clicked.connect(self.saveImagesWithDocumentFields)
         self.UI.selectColor.clicked.connect(self.applyColorToLabels)
+        self.UI.openTableDialog.clicked.connect(self.openTableDialog)
         self.setWindowIcon(QIcon("aobp.ico"))
         self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
         self.UI.progressBar.setValue(0)
@@ -160,6 +163,9 @@ class Application(QMainWindow):
             self.HeightScaleFactor = BeforeHeight / pixMap.height()
             self.PathToImage = filePath
             self.UI.ImageLabel.setPixmap(pixMap)
+
+    def openTableDialog(self):
+        self.Dialog.open()
 
     def saveImagesWithDocumentFields(self):
         """

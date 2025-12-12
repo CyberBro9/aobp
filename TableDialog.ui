@@ -10,8 +10,11 @@
     <height>288</height>
    </rect>
   </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Таблица Excel</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: #0a192f</string>
@@ -20,13 +23,10 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>20</y>
+     <y>50</y>
      <width>481</width>
-     <height>251</height>
+     <height>221</height>
     </rect>
-   </property>
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Бро сюда эксель филес  бро&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">QTableWidget {
@@ -35,6 +35,33 @@
 	border-radius: 10px;
 	padding: 10px 10px;
 }</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>481</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>В этом окне Вы можете просмотреть свою таблицу Excel и выбрать элементы для предпросмотра.</string>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
