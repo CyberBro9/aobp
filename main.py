@@ -1,6 +1,7 @@
 import sys
 import xlrd
 import os
+import ctypes
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
@@ -90,6 +91,8 @@ class Application(QMainWindow):
         if not self.Selecting:
             selected = self.UI.selections.selectedItems()
             if selected:
+                print(dpi)
+                scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
                 self.UI.addSelections.setText("Отменить")
                 selection = selected[0].data(0)
                 self.MovingLabel = QLabel()
@@ -104,7 +107,8 @@ class Application(QMainWindow):
                 self.MovingLabel.setParent(self.UI.ImageLabel)
 
                 def mouseMove(x, y):
-                    self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint(x - 125, y - 75)))
+                    self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((x - 125) / scaleFactor,
+                                                                                  (y - 75) / scaleFactor)))
 
                 def mouseClick(x: int, y: int, button, pressed):
                     print(x, y, button, pressed)
@@ -174,6 +178,7 @@ class Application(QMainWindow):
         :returns: Nothing
         """
         if self.MainSheet and self.PathToImage and len(appliedFields) > 0:
+            scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
             filePath = filedialog.askdirectory(mustexist=True, title="Сохранить в путь")
             if filePath:
                 dirName = filePath + fr"\Output"
@@ -218,6 +223,7 @@ class Application(QMainWindow):
 
 
 app = QApplication(sys.argv)
+dpi = app.screens()[0].physicalDotsPerInch()
 window = Application()
 window.show()
 
