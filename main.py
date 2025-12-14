@@ -6,7 +6,7 @@ from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem)
-from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
+from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QBrush
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
 from tkinter import filedialog
@@ -15,6 +15,7 @@ from tableDialog import Ui_Dialog
 
 root = tk.Tk()
 root.iconbitmap("aobp.ico")
+root.attributes("-topmost", True)
 root.withdraw()
 
 appliedFields = []
@@ -113,7 +114,7 @@ class Application(QMainWindow):
                 def mouseClick(x: int, y: int, button, pressed):
                     print(x, y, button, pressed)
                     appliedFields.append(selection)
-                    self.UI.addSelections.setText("Добавить поле на изображение")
+                    self.UI.addSelections.setText("Добавить поле")
                     return False
 
                 listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
@@ -122,7 +123,7 @@ class Application(QMainWindow):
             else:
                 self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
         else:
-            self.UI.addSelections.setText("Добавить поле на изображение")
+            self.UI.addSelections.setText("Добавить поле")
             self.MovingLabel.destroy(False, False)
             self.Selecting = not self.Selecting
 
@@ -132,7 +133,7 @@ class Application(QMainWindow):
             selection = selections[0].data(0)
             dialog = QColorDialog()
             dialog.setObjectName(selection)
-            color = dialog.getColor(initial=QColor("white"), title=selection)
+            color = dialog.getColor(initial=QColor(255, 255, 255), title=selection)
 
             for thing in self.UI.ImageLabel.children():
                 if thing.inherits("QLabel") and thing.text() == selection:
@@ -146,7 +147,9 @@ class Application(QMainWindow):
         for i in range(self.MainSheet.ncols):
             item = self.MainSheet.cell_value(rowx=0, colx=i)
             helpIAmOutOfVariableIdeas = QListWidgetItem(item, self.UI.selections)
-            helpIAmOutOfVariableIdeas.setBackground(QColor("white"))
+            helpIAmOutOfVariableIdeas.setFont(QFont("Yu Gothic UI", 15))
+            helpIAmOutOfVariableIdeas.setBackground((QColor(255, 255, 255)))
+            helpIAmOutOfVariableIdeas.setForeground(QColor(0, 0, 0))
 
     def setUpImageFile(self):
         """
@@ -178,7 +181,6 @@ class Application(QMainWindow):
         :returns: Nothing
         """
         if self.MainSheet and self.PathToImage and len(appliedFields) > 0:
-            scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
             filePath = filedialog.askdirectory(mustexist=True, title="Сохранить в путь")
             if filePath:
                 dirName = filePath + fr"\Output"
@@ -205,9 +207,10 @@ class Application(QMainWindow):
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
                         thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
                         color = thing[0].background().color().toTuple()
-                        draw.text(((label.pos().x() + 125) * self.WidthScaleFactor,
-                                   (label.pos().y() + 50) * self.HeightScaleFactor), text, font=font, fill=color,
-                                            anchor="ms")
+                        x = (label.pos().x() + 125 + (dpi - 100)) * self.WidthScaleFactor
+                        y = (label.pos().y() + 50 + (dpi - 100)) * self.HeightScaleFactor
+
+                        draw.text((x, y), text, font=font, fill=color, anchor="ms")
 
                     canvas.save(dirName + fr"\{i + 1}.png")
                     self.UI.progressBar.setValue(100 / (self.MainSheet.nrows - 1) * i)

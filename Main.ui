@@ -47,13 +47,6 @@
         font: 11pt &quot;Yu Gothic UI&quot;;
         padding: 5px;
         }
-        QListWidget::item {
-        padding: 8px;
-        margin: 2px;
-        border-radius: 4px;
-		background-color: rgb(255, 255, 255);
-		color: rgb(0, 0, 0)
-        }
         QLabel#ImageLabel {
         border: 2px dashed rgb(100, 255, 218);
         border-radius: 8px;

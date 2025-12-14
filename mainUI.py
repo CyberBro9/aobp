@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'Main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.0
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -57,18 +57,11 @@ class Ui_MainWindow(object):
 "        font: 11pt \"Yu Gothic UI\";\n"
 "        padding: 5px;\n"
 "        }\n"
-"        QListWidget::item {\n"
-"        padding: 8px;\n"
-"        margin: 2px;\n"
-"        border-radius: 4px;\n"
-"		background"
-                        "-color: rgb(255, 255, 255);\n"
-"		color: rgb(0, 0, 0)\n"
-"        }\n"
 "        QLabel#ImageLabel {\n"
 "        border: 2px dashed rgb(100, 255, 218);\n"
 "        border-radius: 8px;\n"
-"        background-color: rgba(16, 42, 67, 0.6);\n"
+"        back"
+                        "ground-color: rgba(16, 42, 67, 0.6);\n"
 "        }\n"
 "      ")
         self.centralwidget = QWidget(MainWindow)
