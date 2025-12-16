@@ -6,7 +6,7 @@ from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem)
-from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QBrush
+from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
 from tkinter import filedialog
@@ -92,7 +92,6 @@ class Application(QMainWindow):
         if not self.Selecting:
             selected = self.UI.selections.selectedItems()
             if selected:
-                print(dpi)
                 scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
                 self.UI.addSelections.setText("Отменить")
                 selection = selected[0].data(0)
@@ -193,7 +192,7 @@ class Application(QMainWindow):
                 for i in range(self.MainSheet.nrows - 1):
                     canvas = Image.open(self.PathToImage)
                     draw = ImageDraw.Draw(canvas)
-                    for field in appliedFields:
+                    for k, field in enumerate(appliedFields):
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
                         column = 0
 
@@ -207,13 +206,20 @@ class Application(QMainWindow):
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
                         thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
                         color = thing[0].background().color().toTuple()
-                        x = (label.pos().x() + 125 + (dpi - 100)) * self.WidthScaleFactor
-                        y = (label.pos().y() + 50 + (dpi - 100)) * self.HeightScaleFactor
+                        size: QSize = self.UI.ImageLabel.size()
+                        pixmapSize: QSize = self.UI.ImageLabel.pixmap().size()
+                        diffX = size.width() - pixmapSize.width()
+                        diffY = size.height() - pixmapSize.height()
+                        posX = label.pos().x() + 125 - diffX / 2
+                        posY = label.pos().y() + 75 - diffY / 2
+                        xScale = posX / pixmapSize.width()
+                        yScale = posY / pixmapSize.height()
+                        x, y = canvas.size[0] * xScale, canvas.size[1] * yScale
 
                         draw.text((x, y), text, font=font, fill=color, anchor="ms")
+                        self.UI.progressBar.setValue(100 / (self.MainSheet.nrows - 1) * (i * (len(appliedFields) / (k + 1))))
 
                     canvas.save(dirName + fr"\{i + 1}.png")
-                    self.UI.progressBar.setValue(100 / (self.MainSheet.nrows - 1) * i)
 
                 self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output'}", 5000)
                 self.UI.progressBar.setValue(0)
@@ -226,7 +232,6 @@ class Application(QMainWindow):
 
 
 app = QApplication(sys.argv)
-dpi = app.screens()[0].physicalDotsPerInch()
 window = Application()
 window.show()
 
