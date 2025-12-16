@@ -42,8 +42,6 @@ class Application(QMainWindow):
         self.Selecting = False
         self.MovingLabel = None
         self.PathToImage = None
-        self.WidthScaleFactor = None
-        self.HeightScaleFactor = None
         self.Dialog = QDialog()
         self.DialogUI = Ui_Dialog()
         self.Dialog.setWindowIcon(QIcon("aobp.ico"))
@@ -118,6 +116,9 @@ class Application(QMainWindow):
 
                 listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
                 listener.start()
+                pos = mouse.Controller().position
+                self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((pos[0] - 125) / scaleFactor,
+                                                                              (pos[1] - 75) / scaleFactor)))
                 self.MovingLabel.show()
             else:
                 self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
@@ -159,14 +160,10 @@ class Application(QMainWindow):
         if filePath:
             pixMap = QPixmap()
             pixMap.load(filePath)
-            BeforeWidth = pixMap.width()
-            BeforeHeight = pixMap.height()
             pixMap = pixMap.scaled(QSize(self.UI.ImageLabel.width(), self.UI.ImageLabel.height()),
                                    Qt.AspectRatioMode.KeepAspectRatio,
                                    Qt.TransformationMode.SmoothTransformation)
 
-            self.WidthScaleFactor = BeforeWidth / pixMap.width()
-            self.HeightScaleFactor = BeforeHeight / pixMap.height()
             self.PathToImage = filePath
             self.UI.ImageLabel.setPixmap(pixMap)
 

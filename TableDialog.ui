@@ -52,7 +52,7 @@
     </font>
    </property>
    <property name="text">
-    <string>В этом окне Вы можете просмотреть свою таблицу Excel и выбрать элементы для предпросмотра.</string>
+    <string>В этом окне Вы можете просмотреть свою таблицу Excel.</string>
    </property>
    <property name="scaledContents">
     <bool>false</bool>
