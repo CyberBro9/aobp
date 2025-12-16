@@ -184,10 +184,15 @@ class Application(QMainWindow):
                     os.rmdir(dirName)
 
                 os.mkdir(dirName)
-                font = ImageFont.truetype("Montserrat-Medium.ttf", size=40)
+                size: QSize = self.UI.ImageLabel.size()
+                pixmapSize: QSize = self.UI.ImageLabel.pixmap().size()
+                diffX = size.width() - pixmapSize.width()
+                diffY = size.height() - pixmapSize.height()
 
                 for i in range(self.MainSheet.nrows - 1):
                     canvas = Image.open(self.PathToImage)
+                    font = ImageFont.truetype("Montserrat-Medium.ttf", size=20 * canvas.size[0] / 1000 * 1.5)
+                    print(font.size)
                     draw = ImageDraw.Draw(canvas)
                     for k, field in enumerate(appliedFields):
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
@@ -203,10 +208,6 @@ class Application(QMainWindow):
                         text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
                         thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
                         color = thing[0].background().color().toTuple()
-                        size: QSize = self.UI.ImageLabel.size()
-                        pixmapSize: QSize = self.UI.ImageLabel.pixmap().size()
-                        diffX = size.width() - pixmapSize.width()
-                        diffY = size.height() - pixmapSize.height()
                         posX = label.pos().x() + 125 - diffX / 2
                         posY = label.pos().y() + 75 - diffY / 2
                         xScale = posX / pixmapSize.width()
