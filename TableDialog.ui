@@ -51,6 +51,9 @@
      <pointsize>9</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255)</string>
+   </property>
    <property name="text">
     <string>В этом окне Вы можете просмотреть свою таблицу Excel.</string>
    </property>

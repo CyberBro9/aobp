@@ -40,6 +40,7 @@ class Ui_Dialog(object):
         font = QFont()
         font.setPointSize(9)
         self.label.setFont(font)
+        self.label.setStyleSheet(u"color: rgb(255, 255, 255)")
         self.label.setScaledContents(False)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label.setWordWrap(True)
