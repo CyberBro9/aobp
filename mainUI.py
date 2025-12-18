@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(16)
         self.ImageLabel.setFont(font)
-        self.ImageLabel.setStyleSheet(u"")
+        self.ImageLabel.setStyleSheet(u"color: rgb(255, 255, 255)")
         self.ImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.leftPanel.addWidget(self.ImageLabel)
@@ -109,7 +109,8 @@ class Ui_MainWindow(object):
         font1.setBold(True)
         font1.setItalic(False)
         self.label.setFont(font1)
-        self.label.setStyleSheet(u"font: bold 24pt \"Yu Gothic UI\"; padding: 10px;")
+        self.label.setStyleSheet(u"font: bold 24pt \"Yu Gothic UI\"; padding: 10px;\n"
+"color: rgb(255, 255, 255)")
         self.label.setTextFormat(Qt.TextFormat.PlainText)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label.setWordWrap(True)
@@ -118,7 +119,8 @@ class Ui_MainWindow(object):
 
         self.selectionsLabel = QLabel(self.centralwidget)
         self.selectionsLabel.setObjectName(u"selectionsLabel")
-        self.selectionsLabel.setStyleSheet(u"font: bold 14pt \"Yu Gothic UI\"; padding: 5px;")
+        self.selectionsLabel.setStyleSheet(u"font: bold 14pt \"Yu Gothic UI\"; padding: 5px;\n"
+"color: rgb(255, 255, 255)")
 
         self.rightPanel.addWidget(self.selectionsLabel)
 

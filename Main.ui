@@ -82,7 +82,7 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">color: rgb(255, 255, 255)</string>
         </property>
         <property name="text">
          <string>Не загружено изображение</string>
@@ -118,7 +118,8 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: bold 24pt &quot;Yu Gothic UI&quot;; padding: 10px;</string>
+         <string notr="true">font: bold 24pt &quot;Yu Gothic UI&quot;; padding: 10px;
+color: rgb(255, 255, 255)</string>
         </property>
         <property name="text">
          <string>Аккредитации (и) Другие Бумаги для Бизнеса</string>
@@ -137,7 +138,8 @@
       <item>
        <widget class="QLabel" name="selectionsLabel">
         <property name="styleSheet">
-         <string notr="true">font: bold 14pt &quot;Yu Gothic UI&quot;; padding: 5px;</string>
+         <string notr="true">font: bold 14pt &quot;Yu Gothic UI&quot;; padding: 5px;
+color: rgb(255, 255, 255)</string>
         </property>
         <property name="text">
          <string>Поля для добавления:</string>
