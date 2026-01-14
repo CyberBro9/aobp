@@ -1,5 +1,5 @@
 import sys
-import xlrd
+import pyexcel
 import os
 import ctypes
 from PIL import Image, ImageFont, ImageDraw
@@ -20,6 +20,7 @@ root.withdraw()
 
 appliedFields = []
 
+
 def parseDocument(path):
     """
     Parses the Excel file.
@@ -27,7 +28,8 @@ def parseDocument(path):
 
     :param path: Path to the Excel file.
     """
-    return xlrd.open_workbook(path)
+    # return xlrd.open_workbook(path)
+    return pyexcel.get_book(file_name=path)
 
 
 class Application(QMainWindow):
@@ -73,12 +75,12 @@ class Application(QMainWindow):
             self.MainSheet = self.Document.sheet_by_index(0)
             self.populateSelections()
             # Set up the table widget
-            self.TableWidget.setRowCount(self.MainSheet.nrows)
-            self.TableWidget.setColumnCount(self.MainSheet.ncols)
+            self.TableWidget.setRowCount(self.MainSheet.number_of_rows())
+            self.TableWidget.setColumnCount(self.MainSheet.number_of_columns())
 
-            for x in range(self.MainSheet.nrows):
-                for y in range(self.MainSheet.ncols):
-                    itemValue = self.MainSheet.cell_value(rowx=x, colx=y)
+            for x in range(self.MainSheet.number_of_rows()):
+                for y in range(self.MainSheet.number_of_columns()):
+                    itemValue = self.MainSheet.cell_value(row=x, column=y)
                     item = QTableWidgetItem(itemValue)
                     self.TableWidget.setItem(x, y, item)
 
@@ -144,8 +146,8 @@ class Application(QMainWindow):
             self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете окрасить!", 1000)
 
     def populateSelections(self):
-        for i in range(self.MainSheet.ncols):
-            item = self.MainSheet.cell_value(rowx=0, colx=i)
+        for i in range(self.MainSheet.number_of_columns()):
+            item = self.MainSheet.cell_value(row=0, column=i)
             helpIAmOutOfVariableIdeas = QListWidgetItem(item, self.UI.selections)
             helpIAmOutOfVariableIdeas.setFont(QFont("Yu Gothic UI", 15))
             helpIAmOutOfVariableIdeas.setBackground((QColor(255, 255, 255)))
@@ -189,7 +191,7 @@ class Application(QMainWindow):
                 diffX = size.width() - pixmapSize.width()
                 diffY = size.height() - pixmapSize.height()
 
-                for i in range(self.MainSheet.nrows - 1):
+                for i in range(self.MainSheet.number_of_rows() - 1):
                     canvas = Image.open(self.PathToImage)
                     font = ImageFont.truetype("Montserrat-Medium.ttf", size=20 * canvas.size[0] / 1000 * 1.5)
                     print(font.size)
@@ -198,14 +200,13 @@ class Application(QMainWindow):
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
                         column = 0
 
-                        for j in self.MainSheet.row(0):
-                            element = j.value
-                            if element == field:
+                        for j in self.MainSheet.row[0]:
+                            if j == field:
                                 break
 
                             column += 1
 
-                        text = self.MainSheet.cell_value(rowx=i + 1, colx=column)
+                        text = self.MainSheet.cell_value(row=i + 1, column=column)
                         thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
                         color = thing[0].background().color().toTuple()
                         posX = label.pos().x() + 125 - diffX / 2
@@ -215,7 +216,7 @@ class Application(QMainWindow):
                         x, y = canvas.size[0] * xScale, canvas.size[1] * yScale
 
                         draw.text((x, y), text, font=font, fill=color, anchor="ms")
-                        self.UI.progressBar.setValue(100 / (self.MainSheet.nrows - 1) * (i * (len(appliedFields) / (k + 1))))
+                        self.UI.progressBar.setValue(100 / (self.MainSheet.number_of_rows() - 1) * (i * (len(appliedFields) / (k + 1))))
 
                     canvas.save(dirName + fr"\{i + 1}.png")
 
