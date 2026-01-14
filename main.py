@@ -2,6 +2,8 @@ import sys
 import pyexcel
 import os
 import ctypes
+
+import pynput.mouse
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
@@ -41,7 +43,6 @@ class Application(QMainWindow):
         super(Application, self).__init__()
         self.MainSheet = None
         self.Document = None
-        self.Selecting = False
         self.MovingLabel = None
         self.PathToImage = None
         self.Dialog = QDialog()
@@ -89,45 +90,44 @@ class Application(QMainWindow):
         Creates a dummy text label with reference to a selected document field.
         :returns: Nothing.
         """
-        if not self.Selecting:
-            selected = self.UI.selections.selectedItems()
-            if selected:
-                scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
-                self.UI.addSelections.setText("Отменить")
-                selection = selected[0].data(0)
-                self.MovingLabel = QLabel()
-                self.MovingLabel.setObjectName(selection)
-                font = QFont("Yu Gothic UI", 20)
-                font.setBold(True)
-                self.MovingLabel.setFont(font)
-                self.MovingLabel.setFixedSize(250, 150)
-                self.MovingLabel.setText(selection)
-                self.MovingLabel.setStyleSheet(f"color: {selected[0].background().color().name()}")
-                self.MovingLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                self.MovingLabel.setParent(self.UI.ImageLabel)
+        selected = self.UI.selections.selectedItems()
+        if selected:
+            scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
+            self.UI.addSelections.setText("ПКМ, чтобы Отменить")
+            selection = selected[0].data(0)
+            self.MovingLabel = QLabel()
+            self.MovingLabel.setObjectName(selection)
+            font = QFont("Yu Gothic UI", 20)
+            font.setBold(True)
+            self.MovingLabel.setFont(font)
+            self.MovingLabel.setFixedSize(250, 150)
+            self.MovingLabel.setText(selection)
+            self.MovingLabel.setStyleSheet(f"color: {selected[0].background().color().name()}")
+            self.MovingLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.MovingLabel.setParent(self.UI.ImageLabel)
 
-                def mouseMove(x, y):
-                    self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((x - 125) / scaleFactor,
-                                                                                  (y - 75) / scaleFactor)))
+            def mouseMove(x, y):
+                self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((x - 125) / scaleFactor,
+                                                                              (y - 75) / scaleFactor)))
 
-                def mouseClick(x: int, y: int, button, pressed):
-                    print(x, y, button, pressed)
+            def mouseClick(x: int, y: int, button: pynput.mouse.Button, pressed):
+                if button == pynput.mouse.Button.left:
                     appliedFields.append(selection)
                     self.UI.addSelections.setText("Добавить поле")
                     return False
+                else:
+                    self.UI.addSelections.setText("Добавить поле")
+                    self.MovingLabel.hide()
+                    return False
 
-                listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
-                listener.start()
-                pos = mouse.Controller().position
-                self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((pos[0] - 125) / scaleFactor,
-                                                                              (pos[1] - 75) / scaleFactor)))
-                self.MovingLabel.show()
-            else:
-                self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
+            listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
+            listener.start()
+            pos = mouse.Controller().position
+            self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((pos[0] - 125) / scaleFactor,
+                                                                          (pos[1] - 75) / scaleFactor)))
+            self.MovingLabel.show()
         else:
-            self.UI.addSelections.setText("Добавить поле")
-            self.MovingLabel.destroy(False, False)
-            self.Selecting = not self.Selecting
+            self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
 
     def applyColorToLabels(self):
         selections = self.UI.selections.selectedItems()
@@ -216,7 +216,8 @@ class Application(QMainWindow):
                         x, y = canvas.size[0] * xScale, canvas.size[1] * yScale
 
                         draw.text((x, y), text, font=font, fill=color, anchor="ms")
-                        self.UI.progressBar.setValue(100 / (self.MainSheet.number_of_rows() - 1) * (i * (len(appliedFields) / (k + 1))))
+                        self.UI.progressBar.setValue(100 / (self.MainSheet.number_of_rows() - 1)
+                                                     * (i * (len(appliedFields) / (k + 1))))
 
                     canvas.save(dirName + fr"\{i + 1}.png")
 
