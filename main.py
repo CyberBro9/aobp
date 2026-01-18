@@ -2,6 +2,7 @@ import sys
 import pyexcel
 import os
 import ctypes
+from datetime import datetime
 
 import pynput.mouse
 from PIL import Image, ImageFont, ImageDraw
@@ -187,7 +188,8 @@ class Application(QMainWindow):
         if self.MainSheet and self.PathToImage and len(appliedFields) > 0:
             filePath = filedialog.askdirectory(mustexist=True, title="Сохранить в путь")
             if filePath:
-                dirName = filePath + fr"\Output"
+                date = datetime.today().strftime('%d.%m.%Y %H%M%S')
+                dirName = filePath + fr"/" + "Output-" + date
                 if os.path.exists(dirName):
                     os.rmdir(dirName)
 
@@ -227,7 +229,7 @@ class Application(QMainWindow):
 
                     canvas.save(dirName + fr"\{i + 1}.png")
 
-                self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output'}", 5000)
+                self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output-' + date}", 5000)
                 self.UI.progressBar.setValue(0)
         else:
             self.UI.statusbar.showMessage(
