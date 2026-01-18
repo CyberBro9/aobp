@@ -14,6 +14,7 @@ import tkinter as tk
 from tkinter import filedialog
 from mainUI import Ui_MainWindow
 from tableDialog import Ui_Dialog
+from parameters import Ui_Parameters
 
 root = tk.Tk()
 root.iconbitmap("aobp.ico")
@@ -30,7 +31,6 @@ def parseDocument(path):
 
     :param path: Path to the Excel file.
     """
-    # return xlrd.open_workbook(path)
     return pyexcel.get_book(file_name=path)
 
 
@@ -46,10 +46,15 @@ class Application(QMainWindow):
         self.MovingLabel = None
         self.PathToImage = None
         self.Dialog = QDialog()
+        self.ParametersDialog = QDialog()
+        self.Parameters = Ui_Parameters()
         self.DialogUI = Ui_Dialog()
         self.Dialog.setWindowIcon(QIcon("aobp.ico"))
         self.Dialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.DialogUI.setupUi(self.Dialog)
+        self.ParametersDialog.setWindowIcon(QIcon("aobp.ico"))
+        self.ParametersDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
+        self.Parameters.setupUi(self.ParametersDialog)
         self.TableWidget = self.DialogUI.tableWidget
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
@@ -57,7 +62,7 @@ class Application(QMainWindow):
         self.UI.addSelections.clicked.connect(self.placeSelection)
         self.UI.addImage.clicked.connect(self.setUpImageFile)
         self.UI.saveImages.clicked.connect(self.saveImagesWithDocumentFields)
-        self.UI.selectColor.clicked.connect(self.applyColorToLabels)
+        self.UI.editSettings.clicked.connect(self.openParameters)
         self.UI.openTableDialog.clicked.connect(self.openTableDialog)
         self.setWindowIcon(QIcon("aobp.ico"))
         self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
@@ -129,10 +134,11 @@ class Application(QMainWindow):
         else:
             self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
 
-    def applyColorToLabels(self):
+    def openParameters(self):
         selections = self.UI.selections.selectedItems()
         if selections:
-            selection = selections[0].data(0)
+            self.ParametersDialog.open()
+            """selection = selections[0].data(0)
             dialog = QColorDialog()
             dialog.setObjectName(selection)
             color = dialog.getColor(initial=QColor(255, 255, 255), title=selection)
@@ -141,9 +147,9 @@ class Application(QMainWindow):
                 if thing.inherits("QLabel") and thing.text() == selection:
                     thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
-            selections[0].setBackground(color)
+            selections[0].setBackground(color)"""
         else:
-            self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете окрасить!", 1000)
+            self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете настроить!", 1000)
 
     def populateSelections(self):
         for i in range(self.MainSheet.number_of_columns()):

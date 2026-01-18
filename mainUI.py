@@ -137,10 +137,10 @@ class Ui_MainWindow(object):
 
         self.controlsGrid.addWidget(self.addSelections, 0, 0, 1, 1)
 
-        self.selectColor = QPushButton(self.centralwidget)
-        self.selectColor.setObjectName(u"selectColor")
+        self.editSettings = QPushButton(self.centralwidget)
+        self.editSettings.setObjectName(u"editSettings")
 
-        self.controlsGrid.addWidget(self.selectColor, 0, 1, 1, 1)
+        self.controlsGrid.addWidget(self.editSettings, 0, 1, 1, 1)
 
         self.selectExcel = QPushButton(self.centralwidget)
         self.selectExcel.setObjectName(u"selectExcel")
@@ -185,7 +185,7 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0438\u0438 (\u0438) \u0414\u0440\u0443\u0433\u0438\u0435 \u0411\u0443\u043c\u0430\u0433\u0438 \u0434\u043b\u044f \u0411\u0438\u0437\u043d\u0435\u0441\u0430", None))
         self.selectionsLabel.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u044f \u0434\u043b\u044f \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u044f:", None))
         self.addSelections.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u043b\u0435", None))
-        self.selectColor.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u0446\u0432\u0435\u0442 \u0442\u0435\u043a\u0441\u0442\u0430", None))
+        self.editSettings.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c...", None))
         self.selectExcel.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u0444\u0430\u0439\u043b Excel", None))
         self.openTableDialog.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043e\u043a\u043d\u043e \u0442\u0430\u0431\u043b\u0438\u0446\u044b", None))
         self.saveImages.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))

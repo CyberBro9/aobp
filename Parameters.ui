@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Parameters</class>
+ <widget class="QDialog" name="Parameters">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+        QMainWindow {
+        background-color: #0a192f;
+        }
+        QPushButton {
+        border: 2px solid rgb(100, 255, 218);
+        background-color: rgba(100, 255, 218, 0.05);
+        border-radius: 8px;
+        padding: 12px 20px;
+        color: rgb(255, 255, 255);
+        font: bold 12pt &quot;Yu Gothic UI&quot;;
+        min-height: 45px;
+        }
+        QPushButton:hover {
+        background-color: rgba(100, 255, 218, 0.15);
+        }
+        QPushButton:pressed {
+        background-color: rgba(100, 255, 218, 0.2);
+        }
+        QListWidget {
+        border: 2px solid rgb(100, 255, 218);
+        background-color: rgba(16, 42, 67, 0.6);
+        border-radius: 8px;
+        color: rgb(255, 255, 255);
+        font: 11pt &quot;Yu Gothic UI&quot;;
+        padding: 5px;
+        }
+        QLabel#ImageLabel {
+        border: 2px dashed rgb(100, 255, 218);
+        border-radius: 8px;
+        background-color: rgba(16, 42, 67, 0.6);
+        }
+      </string>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
