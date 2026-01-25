@@ -23,6 +23,11 @@ root.attributes("-topmost", True)
 root.withdraw()
 
 appliedFields = []
+centeringTranslation = {
+    "0": "AlignCenter",
+    "1": "AlignRight",
+    "2": "AlignLeft"
+}
 
 
 def parseDocument(path):
@@ -65,6 +70,10 @@ class Application(QMainWindow):
         self.UI.saveImages.clicked.connect(self.saveImagesWithDocumentFields)
         self.UI.editSettings.clicked.connect(self.openParameters)
         self.UI.openTableDialog.clicked.connect(self.openTableDialog)
+        self.UI.selections.currentItemChanged.connect(self.changeName)
+        self.Parameters.changeColor.clicked.connect(self.colorSelection)
+        self.Parameters.textCenteringOptions.activated.connect(self.changeTextCentering)
+        self.Parameters.textSize.sliderMoved.connect(self.changeTextFontSize)
         self.setWindowIcon(QIcon("aobp.ico"))
         self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
         self.UI.progressBar.setValue(0)
@@ -109,7 +118,7 @@ class Application(QMainWindow):
             self.MovingLabel.setFixedSize(250, 150)
             self.MovingLabel.setText(selection)
             self.MovingLabel.setStyleSheet(f"color: {selected[0].background().color().name()}")
-            self.MovingLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.MovingLabel.setAlignment(selected.textAlignment())
             self.MovingLabel.setParent(self.UI.ImageLabel)
 
             def mouseMove(x, y):
@@ -135,20 +144,45 @@ class Application(QMainWindow):
         else:
             self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
 
+    def colorSelection(self):
+        selections = self.UI.selections.selectedItems()
+        selection = selections[0].data(0)
+        dialog = QColorDialog()
+        dialog.setObjectName(selection)
+        color = dialog.getColor(initial=QColor(255, 255, 255), title=selection)
+
+        for thing in self.UI.ImageLabel.children():
+            if thing.inherits("QLabel") and thing.text() == selection:
+                thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
+
+        selections[0].setBackground(color)
+
+    def changeTextCentering(self, index):
+        selections = self.UI.selections.selectedItems()
+        selection = selections[0].data(0)
+        selection.setTextAlignment(Qt.AlignmentFlag[centeringTranslation.get(str(index))])
+
+        for thing in self.UI.ImageLabel.children():
+            if thing.inherits("QLabel") and thing.text() == selection:
+                thing.setTextAlignment(selection.textAlignment())
+
+    def changeTextFontSize(self, value):
+        selections = self.UI.selections.selectedItems()
+        selection = selections[0].data(0)
+
+        for thing in self.UI.ImageLabel.children():
+            if thing.inherits("QLabel") and thing.text() == selection:
+                font = thing.font()
+                font.size = value
+                thing.setFont(font)
+
+    def changeName(self, new):
+        self.UI.editSettings.setText("Настроить " + new.text())
+
     def openParameters(self):
         selections = self.UI.selections.selectedItems()
         if selections:
             self.ParametersDialog.open()
-            """selection = selections[0].data(0)
-            dialog = QColorDialog()
-            dialog.setObjectName(selection)
-            color = dialog.getColor(initial=QColor(255, 255, 255), title=selection)
-
-            for thing in self.UI.ImageLabel.children():
-                if thing.inherits("QLabel") and thing.text() == selection:
-                    thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
-
-            selections[0].setBackground(color)"""
         else:
             self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете настроить!", 1000)
 
