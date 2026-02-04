@@ -13,12 +13,12 @@ from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
 from tkinter import filedialog
-from mainUI import Ui_MainWindow
-from tableDialog import Ui_Dialog
-from parameters import Ui_Parameters
+from aobp.UI.mainUI import Ui_MainWindow
+from aobp.UI.tableDialog import Ui_Dialog
+from aobp.UI.parameters import Ui_Parameters
 
 root = tk.Tk()
-root.iconbitmap("aobp.ico")
+root.iconbitmap("Assets/aobp.ico")
 root.attributes("-topmost", True)
 root.withdraw()
 
@@ -27,6 +27,11 @@ centeringTranslation = {
     "0": "AlignCenter",
     "1": "AlignRight",
     "2": "AlignLeft"
+}
+historicalCenteringTranslation = {
+    0: "AlignLeft",
+    132: "AlignCenter",
+    2: "AlignRight"
 }
 
 
@@ -55,10 +60,10 @@ class Application(QMainWindow):
         self.ParametersDialog = QDialog()
         self.Parameters = Ui_Parameters()
         self.DialogUI = Ui_Dialog()
-        self.Dialog.setWindowIcon(QIcon("aobp.ico"))
+        self.Dialog.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.Dialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.DialogUI.setupUi(self.Dialog)
-        self.ParametersDialog.setWindowIcon(QIcon("aobp.ico"))
+        self.ParametersDialog.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.ParametersDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.Parameters.setupUi(self.ParametersDialog)
         self.TableWidget = self.DialogUI.tableWidget
@@ -74,7 +79,7 @@ class Application(QMainWindow):
         self.Parameters.changeColor.clicked.connect(self.colorSelection)
         self.Parameters.textCenteringOptions.activated.connect(self.changeTextCentering)
         self.Parameters.textSize.sliderMoved.connect(self.changeTextFontSize)
-        self.setWindowIcon(QIcon("aobp.ico"))
+        self.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
         self.UI.progressBar.setValue(0)
         self.UI.progressBar.setTextVisible(False)
@@ -118,7 +123,8 @@ class Application(QMainWindow):
             self.MovingLabel.setFixedSize(250, 150)
             self.MovingLabel.setText(selection)
             self.MovingLabel.setStyleSheet(f"color: {selected[0].background().color().name()}")
-            self.MovingLabel.setAlignment(selected.textAlignment())
+            print(selected[0].textAlignment())
+            self.MovingLabel.setAlignment(Qt.AlignmentFlag[historicalCenteringTranslation[selected[0].textAlignment()]])
             self.MovingLabel.setParent(self.UI.ImageLabel)
 
             def mouseMove(x, y):
@@ -156,10 +162,11 @@ class Application(QMainWindow):
                 thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
         selections[0].setBackground(color)
+        self.Parameters.colorShower.setStyleSheet(f"background-color: {color.name()}")
 
     def changeTextCentering(self, index):
         selections = self.UI.selections.selectedItems()
-        selection = selections[0].data(0)
+        selection = selections[0]
         selection.setTextAlignment(Qt.AlignmentFlag[centeringTranslation.get(str(index))])
 
         for thing in self.UI.ImageLabel.children():
@@ -168,13 +175,16 @@ class Application(QMainWindow):
 
     def changeTextFontSize(self, value):
         selections = self.UI.selections.selectedItems()
-        selection = selections[0].data(0)
+        selection = selections[0]
+        thatFont: QFont = selection.font()
+        thatFont.size = value
+        selection.setFont(thatFont)
 
         for thing in self.UI.ImageLabel.children():
-            if thing.inherits("QLabel") and thing.text() == selection:
-                font = thing.font()
-                font.size = value
-                thing.setFont(font)
+            if thing.inherits("QLabel") and thing.text() == selection.data(0):
+                thing.setFont(thatFont)
+
+        self.Parameters.label_4.setText(str(value))
 
     def changeName(self, new):
         self.UI.editSettings.setText("Настроить " + new.text())
@@ -235,11 +245,11 @@ class Application(QMainWindow):
 
                 for i in range(self.MainSheet.number_of_rows() - 1):
                     canvas = Image.open(self.PathToImage)
-                    font = ImageFont.truetype("Montserrat-Medium.ttf", size=20 * canvas.size[0] / 1000 * 1.5)
-                    print(font.size)
+                    baseFont = ImageFont.truetype("Assets/Montserrat-Medium.ttf")
                     draw = ImageDraw.Draw(canvas)
                     for k, field in enumerate(appliedFields):
                         label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
+                        font = baseFont.font_variant(size=label.font().pointSize() * canvas.size[0] / 1000 * 1.5)
                         column = 0
 
                         for j in self.MainSheet.row[0]:
