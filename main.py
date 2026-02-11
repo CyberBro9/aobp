@@ -2,6 +2,7 @@ import sys
 import pyexcel
 import os
 import ctypes
+import threading
 from datetime import datetime
 
 import pynput.mouse
@@ -34,7 +35,6 @@ historicalCenteringTranslation = {
     2: "AlignRight"
 }
 
-
 def parseDocument(path):
     """
     Parses the Excel file.
@@ -56,6 +56,8 @@ class Application(QMainWindow):
         self.Document = None
         self.MovingLabel = None
         self.PathToImage = None
+        self.RenderedImagesCounter = 0
+        self.TotalImagesAmount = 0
         self.Dialog = QDialog()
         self.ParametersDialog = QDialog()
         self.Parameters = Ui_Parameters()
@@ -123,7 +125,6 @@ class Application(QMainWindow):
             self.MovingLabel.setFixedSize(250, 150)
             self.MovingLabel.setText(selection)
             self.MovingLabel.setStyleSheet(f"color: {selected[0].background().color().name()}")
-            print(selected[0].textAlignment())
             self.MovingLabel.setAlignment(Qt.AlignmentFlag[historicalCenteringTranslation[selected[0].textAlignment()]])
             self.MovingLabel.setParent(self.UI.ImageLabel)
 
@@ -223,6 +224,40 @@ class Application(QMainWindow):
     def openTableDialog(self):
         self.Dialog.open()
 
+    def renderAndSaveImage(self, dirName, rowNum):
+        size: QSize = self.UI.ImageLabel.size()
+        pixmapSize: QSize = self.UI.ImageLabel.pixmap().size()
+        diffX = size.width() - pixmapSize.width()
+        diffY = size.height() - pixmapSize.height()
+
+        canvas = Image.open(self.PathToImage)
+        baseFont = ImageFont.truetype("Assets/Montserrat-Medium.ttf")
+        draw = ImageDraw.Draw(canvas)
+        for k, field in enumerate(appliedFields):
+            label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
+            font = baseFont.font_variant(size=label.font().pointSize() * canvas.size[0] / 1000 * 1.5)
+            column = 0
+
+            for j in self.MainSheet.row[0]:
+                if j == field:
+                    break
+
+                column += 1
+
+            text = self.MainSheet.cell_value(row=rowNum + 1, column=column)
+            thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
+            color = thing[0].background().color().toTuple()
+            posX = label.pos().x() + 125 - diffX / 2
+            posY = label.pos().y() + 75 - diffY / 2
+            xScale = posX / pixmapSize.width()
+            yScale = posY / pixmapSize.height()
+            x, y = canvas.size[0] * xScale, canvas.size[1] * yScale
+
+            draw.text((x, y), text, font=font, fill=color, anchor="ms")
+
+        self.RenderedImagesCounter += 1
+        canvas.save(dirName + fr"\{rowNum + 1}.png")
+
     def saveImagesWithDocumentFields(self):
         """
         Prompts the user to select a path to where images are saved, after which saves n images to PC,
@@ -238,40 +273,25 @@ class Application(QMainWindow):
                     os.rmdir(dirName)
 
                 os.mkdir(dirName)
-                size: QSize = self.UI.ImageLabel.size()
-                pixmapSize: QSize = self.UI.ImageLabel.pixmap().size()
-                diffX = size.width() - pixmapSize.width()
-                diffY = size.height() - pixmapSize.height()
 
-                for i in range(self.MainSheet.number_of_rows() - 1):
-                    canvas = Image.open(self.PathToImage)
-                    baseFont = ImageFont.truetype("Assets/Montserrat-Medium.ttf")
-                    draw = ImageDraw.Draw(canvas)
-                    for k, field in enumerate(appliedFields):
-                        label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
-                        font = baseFont.font_variant(size=label.font().pointSize() * canvas.size[0] / 1000 * 1.5)
-                        column = 0
+                threads = []
+                self.TotalImagesAmount = self.MainSheet.number_of_rows() - 1
 
-                        for j in self.MainSheet.row[0]:
-                            if j == field:
-                                break
+                def trackProgress():
+                    while self.RenderedImagesCounter != self.TotalImagesAmount:
+                        self.UI.progressBar.setValue(100 * (self.RenderedImagesCounter / self.TotalImagesAmount))
 
-                            column += 1
+                for i in range(self.TotalImagesAmount):
+                    thread = threading.Thread(target=self.renderAndSaveImage, args=(dirName, i))
+                    threads.append(thread)
 
-                        text = self.MainSheet.cell_value(row=i + 1, column=column)
-                        thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
-                        color = thing[0].background().color().toTuple()
-                        posX = label.pos().x() + 125 - diffX / 2
-                        posY = label.pos().y() + 75 - diffY / 2
-                        xScale = posX / pixmapSize.width()
-                        yScale = posY / pixmapSize.height()
-                        x, y = canvas.size[0] * xScale, canvas.size[1] * yScale
+                threading.Thread(target=trackProgress).start()
 
-                        draw.text((x, y), text, font=font, fill=color, anchor="ms")
-                        self.UI.progressBar.setValue(100 / (self.MainSheet.number_of_rows() - 1)
-                                                     * (i * (len(appliedFields) / (k + 1))))
+                for t in threads:
+                    t.start()
 
-                    canvas.save(dirName + fr"\{i + 1}.png")
+                for t in threads:
+                    t.join()
 
                 self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output-' + date}", 5000)
                 self.UI.progressBar.setValue(0)
