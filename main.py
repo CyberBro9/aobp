@@ -34,6 +34,12 @@ historicalCenteringTranslation = {
     132: "AlignCenter",
     2: "AlignRight"
 }
+textAnchorsTranslation = {
+    Qt.AlignmentFlag.AlignLeft: "l",
+    Qt.AlignmentFlag.AlignCenter: "m",
+    Qt.AlignmentFlag.AlignRight: "r"
+}
+
 
 def parseDocument(path):
     """
@@ -119,6 +125,7 @@ class Application(QMainWindow):
             selection = selected[0].data(0)
             self.MovingLabel = QLabel()
             self.MovingLabel.setObjectName(selection)
+            # selected[0].font().pointSize()
             font = QFont("Yu Gothic UI", 20)
             font.setBold(True)
             self.MovingLabel.setFont(font)
@@ -253,7 +260,7 @@ class Application(QMainWindow):
             yScale = posY / pixmapSize.height()
             x, y = canvas.size[0] * xScale, canvas.size[1] * yScale
 
-            draw.text((x, y), text, font=font, fill=color, anchor="ms")
+            draw.text((x, y), text, font=font, fill=color, anchor=f"{textAnchorsTranslation.get(label.alignment())}s")
 
         self.RenderedImagesCounter += 1
         canvas.save(dirName + fr"\{rowNum + 1}.png")
@@ -290,11 +297,14 @@ class Application(QMainWindow):
                 for t in threads:
                     t.start()
 
-                for t in threads:
-                    t.join()
+                def waitUntilEnd():
+                    for tt in threads:
+                        tt.join()
 
-                self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output-' + date}", 5000)
-                self.UI.progressBar.setValue(0)
+                    self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output-' + date}", 5000)
+                    self.UI.progressBar.setValue(0)
+
+                threading.Thread(target=waitUntilEnd()).start()
         else:
             self.UI.statusbar.showMessage(
                 (not self.MainSheet and "Сначала добавьте документ!")
