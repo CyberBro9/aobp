@@ -5,7 +5,6 @@ import ctypes
 import threading
 from datetime import datetime
 
-import pynput.mouse
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
@@ -97,7 +96,10 @@ class Application(QMainWindow):
         Opens a file dialog, after which fills the ExcelTable with .xls file data if there is one.
         :returns: Nothing.
         """
-        filePath = filedialog.askopenfilename(filetypes=(("Microsoft Excel sheet", "*.xls"),),
+        filePath = filedialog.askopenfilename(filetypes=(("Table Document", ("*.xls", "*.xlsx", "*.xlsm", "*.csv",
+                                                                             "*.tsv", "*.csvz", "*.tsvz", "*.ods",
+                                                                             "*.fods", "*.json", "*.html",
+                                                                             "*.simple", "*.rst", "*.mediawiki")),),
                                               title="Выбрать файл Excel")
         if filePath:
             self.Document = parseDocument(filePath)
@@ -139,8 +141,8 @@ class Application(QMainWindow):
                 self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((x - 125) / scaleFactor,
                                                                               (y - 75) / scaleFactor)))
 
-            def mouseClick(x: int, y: int, button: pynput.mouse.Button, pressed):
-                if button == pynput.mouse.Button.left:
+            def mouseClick(x: int, y: int, button: mouse.Button, pressed):
+                if button == mouse.Button.left:
                     appliedFields.append(selection)
                     self.UI.addSelections.setText("Добавить поле")
                     return False
