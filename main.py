@@ -13,9 +13,9 @@ from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
 from tkinter import filedialog
-from aobp.UI.mainUI import Ui_MainWindow
-from aobp.UI.tableDialog import Ui_Dialog
-from aobp.UI.parameters import Ui_Parameters
+from UI.mainUI import Ui_MainWindow
+from UI.tableDialog import Ui_Dialog
+from UI.parameters import Ui_Parameters
 
 root = tk.Tk()
 root.iconbitmap("Assets/aobp.ico")
@@ -121,20 +121,19 @@ class Application(QMainWindow):
         :returns: Nothing.
         """
         selected = self.UI.selections.selectedItems()
-        if selected:
+        if selected and not self.UI.ImageLabel.findChild(QLabel, selected[0].data(0)):
             scaleFactor = ctypes.windll.shcore.GetScaleFactorForDevice(0) / 100
             self.UI.addSelections.setText("ПКМ, чтобы Отменить")
             selection = selected[0].data(0)
             self.MovingLabel = QLabel()
             self.MovingLabel.setObjectName(selection)
-            # selected[0].font().pointSize()
-            font = QFont("Yu Gothic UI", 20)
+            font = QFont("Yu Gothic UI", selected[0].font().pointSize())
             font.setBold(True)
             self.MovingLabel.setFont(font)
             self.MovingLabel.setFixedSize(250, 150)
             self.MovingLabel.setText(selection)
             self.MovingLabel.setStyleSheet(f"color: {selected[0].background().color().name()}")
-            self.MovingLabel.setAlignment(Qt.AlignmentFlag[historicalCenteringTranslation[selected[0].textAlignment()]])
+            self.MovingLabel.setAlignment(Qt.AlignmentFlag[historicalCenteringTranslation[selected[0].textAlignment()]] | Qt.AlignmentFlag.AlignVCenter)
             self.MovingLabel.setParent(self.UI.ImageLabel)
 
             def mouseMove(x, y):
@@ -158,7 +157,9 @@ class Application(QMainWindow):
                                                                           (pos[1] - 75) / scaleFactor)))
             self.MovingLabel.show()
         else:
-            self.UI.statusbar.showMessage("Сначала выберите что-то!", 1000)
+            self.UI.statusbar.showMessage((not selected and "Сначала выберите что-то!") or
+                                          (self.UI.ImageLabel.findChild(QLabel, selected[0].data(0))
+                                          and "Нельзя вставлять два одинаковых поля!"), 1000)
 
     def colorSelection(self):
         selections = self.UI.selections.selectedItems()
@@ -179,20 +180,21 @@ class Application(QMainWindow):
         selection = selections[0]
         selection.setTextAlignment(Qt.AlignmentFlag[centeringTranslation.get(str(index))])
 
-        for thing in self.UI.ImageLabel.children():
-            if thing.inherits("QLabel") and thing.text() == selection:
-                thing.setTextAlignment(selection.textAlignment())
+        potentialChild = self.UI.ImageLabel.findChild(QLabel, selection.text())
+        if potentialChild is not None:
+            potentialChild.setAlignment(selection.textAlignment() | Qt.AlignmentFlag.AlignVCenter)
 
     def changeTextFontSize(self, value):
         selections = self.UI.selections.selectedItems()
         selection = selections[0]
         thatFont: QFont = selection.font()
-        thatFont.size = value
+        thatFont.setPointSize(value)
         selection.setFont(thatFont)
+        thatFont.setBold(True)
 
-        for thing in self.UI.ImageLabel.children():
-            if thing.inherits("QLabel") and thing.text() == selection.data(0):
-                thing.setFont(thatFont)
+        potentialChild = self.UI.ImageLabel.findChild(QLabel, selection.text())
+        if potentialChild is not None:
+            potentialChild.setFont(thatFont)
 
         self.Parameters.label_4.setText(str(value))
 
@@ -210,7 +212,8 @@ class Application(QMainWindow):
         for i in range(self.MainSheet.number_of_columns()):
             item = self.MainSheet.cell_value(row=0, column=i)
             helpIAmOutOfVariableIdeas = QListWidgetItem(item, self.UI.selections)
-            helpIAmOutOfVariableIdeas.setFont(QFont("Yu Gothic UI", 15))
+            helpIAmOutOfVariableIdeas.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+            helpIAmOutOfVariableIdeas.setFont(QFont("Yu Gothic UI", 20))
             helpIAmOutOfVariableIdeas.setBackground((QColor(255, 255, 255)))
             helpIAmOutOfVariableIdeas.setForeground(QColor(0, 0, 0))
 
