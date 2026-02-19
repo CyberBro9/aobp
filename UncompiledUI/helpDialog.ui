@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>980</width>
+    <height>460</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Справка</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+     QDialog {
+         background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                     stop:0 #0a1a2f,
+                                     stop:1 #0d2b4a);
+     }
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="spacing">
+    <number>20</number>
+   </property>
+   <property name="leftMargin">
+    <number>25</number>
+   </property>
+   <property name="topMargin">
+    <number>25</number>
+   </property>
+   <property name="rightMargin">
+    <number>25</number>
+   </property>
+   <property name="bottomMargin">
+    <number>25</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="styleSheet">
+      <string notr="true">
+        font: bold 20pt 'Yu Gothic UI';
+        color: #ffffff;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #64ffda;
+      </string>
+     </property>
+     <property name="text">
+      <string>Руководство пользователя</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true">
+        QTabWidget::pane {
+            background: rgba(255,255,255,0.07);
+            border: none;
+            border-radius: 16px;
+            margin-top: 12px;
+            padding: 20px;
+        }
+        QTabBar::tab {
+            background: transparent;
+            color: #8a9bb5;
+            font: 12pt 'Yu Gothic UI';
+            padding: 8px 20px;
+            margin-right: 8px;
+            border: none;
+            border-bottom: 3px solid transparent;
+        }
+        QTabBar::tab:selected {
+            color: #64ffda;
+            font-weight: bold;
+            border-bottom: 3px solid #64ffda;
+        }
+        QTabBar::tab:hover {
+            color: #b0c4de;
+        }
+      </string>
+     </property>
+     <property name="currentIndex">
+      <number>6</number>
+     </property>
+     <widget class="QWidget" name="tab_intro">
+      <attribute name="title">
+       <string>01 Введение</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="introLayout">
+       <item>
+        <widget class="QTextEdit" name="textIntro">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Программа для генерации сертификатов и дипломов&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Настоящее руководство предназначено для быстрого и эффективного запуска программы. Внимательное следование инструкции позволит Вам создать персонализированные документы в минимальные сроки.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Также вы сможете получить доступ к этому окну из меню кнопки : &amp;quot;Настроить...&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="plainText">
+          <string>Программа для генерации сертификатов и дипломов
+
+Настоящее руководство предназначено для быстрого и эффективного запуска программы. Внимательное следование инструкции позволит Вам создать персонализированные документы в минимальные сроки.
+Также вы сможете получить доступ к этому окну из меню кнопки : &quot;Настроить...&quot;.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_step1">
+      <attribute name="title">
+       <string>02 Подготовка</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="step1Layout">
+       <item>
+        <widget class="QTextEdit" name="textStep1">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>1. Подготовительный этап (Необходимые ресурсы)
+
+Для корректной работы утилиты убедитесь в наличии следующих файлов:
+
+    • Файл шаблона: графическое изображение макета сертификата/диплома (поддерживаемые форматы: JPEG, PNG).
+
+    • Файл данных: документ формата Excel (.xlsx, .xls), содержащий базу данных получателей (ФИО, наименование курса, дата и т.д.).</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_step2">
+      <attribute name="title">
+       <string>03 Запуск</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="step2Layout">
+       <item>
+        <widget class="QTextEdit" name="textStep2">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Шаг 1. Запуск программы
+Откройте исполняемый файл приложения.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_step3">
+      <attribute name="title">
+       <string>04 Шаблон</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="step3Layout">
+       <item>
+        <widget class="QTextEdit" name="textStep3">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Шаг 2. Загрузка шаблона
+В главном меню нажмите кнопку «Добавить изображение». В открывшемся окне проводника укажите путь к Вашему файлу-шаблону. Изображение отобразится в рабочей области программы.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_step4">
+      <attribute name="title">
+       <string>05 Данные</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="step4Layout">
+       <item>
+        <widget class="QTextEdit" name="textStep4">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Шаг 3. Подключение базы данных
+Активируйте функцию «Выбрать Excel файл» и загрузите подготовленный документ с данными. Система автоматически считает заголовки столбцов.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_step5">
+      <attribute name="title">
+       <string>06 Поля</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="step5Layout">
+       <item>
+        <widget class="QTextEdit" name="textStep5">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Шаг 4. Размещение переменных полей
+В правой части интерфейса расположен блок «Поля для добавления». Данный блок содержит список столбцов Вашей Excel-таблицы.
+
+    • Выберите необходимое поле (например, «ФИО»).
+    • Кликните левой кнопкой мыши в ту область изображения, куда требуется вставить данное значение.
+    • На месте клика появится маркер будущего текста. Повторите операцию для всех полей (дата, название мероприятия и т.д.).</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_step6">
+      <attribute name="title">
+       <string>07 Сохранение</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="step6Layout">
+       <item>
+        <widget class="QTextEdit" name="textStep6">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Шаг 5. Сохранение результата
+По окончании верстки нажмите кнопку «Сохранить изображения».
+
+    • Укажите целевую директорию (папку) для сохранения готовых файлов.
+    • Важно: В указанном Вами месте программа автоматически создаст папку с именем Output, в которую будут помещены все сгенерированные сертификаты.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_settings">
+      <attribute name="title">
+       <string>08 Настройки</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="settingsLayout">
+       <item>
+        <widget class="QTextEdit" name="textSettings">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>3. Дополнительные настройки (Функция «Настроить...»)
+
+Для приведения текста в соответствие с корпоративным стилем или личными предпочтениями используйте кнопку «Настроить...».
+
+Данный раздел позволяет:
+    • Изменять гарнитуру шрифта (тип начертания);
+    • Регулировать кегль шрифта (размер);
+    • Выбирать цветовую палитру текста.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_data">
+      <attribute name="title">
+       <string>09 Редактор</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="dataLayout">
+       <item>
+        <widget class="QTextEdit" name="textData">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>4. Работа с данными и исправление ошибок
+
+В случае обнаружения некорректных данных (опечатки, орфографические ошибки) в загруженном Excel-файле, не требуется закрывать программу и открывать документ отдельно.
+
+    • Нажмите кнопку «Открыть окно с таблицей».
+    • На экране отобразится встроенный редактор данных.
+    • Внесите необходимые исправления непосредственно в интерфейсе программы.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_support">
+      <attribute name="title">
+       <string>10 Поддержка</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="supportLayout">
+       <item>
+        <widget class="QTextEdit" name="textSupport">
+         <property name="styleSheet">
+          <string notr="true">
+            background: transparent;
+            color: #ffffff;
+            font: 14pt 'Yu Gothic UI';
+            border: none;
+          </string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>5. Техническая поддержка
+
+Если при выполнении инструкции возникают ошибки или сбои в работе приложения, пожалуйста, обратитесь в службу поддержки.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="bottomLayout">
+     <item>
+      <widget class="QCheckBox" name="checkBox">
+       <property name="styleSheet">
+        <string notr="true">
+          QCheckBox {
+              color: #ffffff;
+              font: 12pt 'Yu Gothic UI';
+              spacing: 10px;
+          }
+          QCheckBox::indicator {
+              width: 40px;
+              height: 20px;
+              border-radius: 10px;
+              background-color: #4f5b6b;
+          }
+          QCheckBox::indicator:checked {
+              background-color: #64ffda;
+          }
+          QCheckBox::indicator:unchecked:hover {
+              background-color: #5f6b7b;
+          }
+        </string>
+       </property>
+       <property name="text">
+        <string>Показывать при запуске</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="closeButton">
+       <property name="styleSheet">
+        <string notr="true">
+          QPushButton {
+              background: rgba(100,255,218,0.2);
+              border: 2px solid #64ffda;
+              border-radius: 20px;
+              padding: 10px 30px;
+              font: bold 12pt 'Yu Gothic UI';
+              color: #64ffda;
+          }
+          QPushButton:hover {
+              background: rgba(100,255,218,0.3);
+          }
+          QPushButton:pressed {
+              background: rgba(100,255,218,0.5);
+          }
+        </string>
+       </property>
+       <property name="text">
+        <string>Закрыть</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>851</x>
+     <y>427</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>489</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
