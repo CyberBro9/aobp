@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>730</width>
-    <height>262</height>
+    <height>338</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,7 +71,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt &quot;Yu Gothic UI&quot;; color: #64ffda;</string>
+    <string notr="true">background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt &quot;Yu Gothic UI&quot;; color: #64ffda;
+        padding: 12px 20px;</string>
    </property>
    <property name="text">
     <string>Нажмите для изменения</string>
@@ -82,8 +83,8 @@
     <rect>
      <x>430</x>
      <y>120</y>
-     <width>167</width>
-     <height>34</height>
+     <width>125</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -198,6 +199,43 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>260</y>
+     <width>351</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	font: bold 24pt &quot;Yu Gothic UI&quot;; 
+	padding: 10px;
+	color: rgb(255, 255, 255)	
+}</string>
+   </property>
+   <property name="text">
+    <string>Гайд по программе:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="changeColor_2">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>270</y>
+     <width>331</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt &quot;Yu Gothic UI&quot;; color: #64ffda;
+        padding: 12px 20px;</string>
+   </property>
+   <property name="text">
+    <string>Нажмите для открытия</string>
    </property>
   </widget>
  </widget>
