@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Parameters.UI'
+## Form generated from reading UI file 'Parameters.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.10.1
 ##
@@ -22,7 +22,7 @@ class Ui_Parameters(object):
     def setupUi(self, Parameters):
         if not Parameters.objectName():
             Parameters.setObjectName(u"Parameters")
-        Parameters.resize(730, 262)
+        Parameters.resize(730, 338)
         Parameters.setStyleSheet(u"background-color: #0a192f;\n"
 "\n"
 "      ")
@@ -46,13 +46,14 @@ class Ui_Parameters(object):
         self.changeColor = QPushButton(Parameters)
         self.changeColor.setObjectName(u"changeColor")
         self.changeColor.setGeometry(QRect(260, 30, 331, 51))
-        self.changeColor.setStyleSheet(u"background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt \"Yu Gothic UI\"; color: #64ffda;")
+        self.changeColor.setStyleSheet(u"background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt \"Yu Gothic UI\"; color: #64ffda;\n"
+"        padding: 12px 20px;")
         self.textCenteringOptions = QComboBox(Parameters)
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.setObjectName(u"textCenteringOptions")
-        self.textCenteringOptions.setGeometry(QRect(430, 120, 167, 34))
+        self.textCenteringOptions.setGeometry(QRect(430, 120, 125, 31))
         self.textCenteringOptions.setMinimumSize(QSize(1, 0))
         self.textCenteringOptions.setStyleSheet(u"background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt \"Yu Gothic UI\"; color: #64ffda;")
         self.textCenteringOptions.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToContents)
@@ -89,6 +90,19 @@ class Ui_Parameters(object):
         self.colorShower.setObjectName(u"colorShower")
         self.colorShower.setGeometry(QRect(600, 30, 54, 51))
         self.colorShower.setStyleSheet(u"background-color: rgb(255, 255, 255)")
+        self.label_5 = QLabel(Parameters)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(10, 260, 351, 61))
+        self.label_5.setStyleSheet(u"QLabel {\n"
+"	font: bold 24pt \"Yu Gothic UI\"; \n"
+"	padding: 10px;\n"
+"	color: rgb(255, 255, 255)	\n"
+"}")
+        self.changeColor_2 = QPushButton(Parameters)
+        self.changeColor_2.setObjectName(u"changeColor_2")
+        self.changeColor_2.setGeometry(QRect(380, 270, 331, 51))
+        self.changeColor_2.setStyleSheet(u"background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt \"Yu Gothic UI\"; color: #64ffda;\n"
+"        padding: 12px 20px;")
 
         self.retranslateUi(Parameters)
 
@@ -107,5 +121,7 @@ class Ui_Parameters(object):
         self.label_3.setText(QCoreApplication.translate("Parameters", u"\u0420\u0430\u0437\u043c\u0435\u0440 \u0442\u0435\u043a\u0441\u0442\u0430:", None))
         self.label_4.setText(QCoreApplication.translate("Parameters", u"20", None))
         self.colorShower.setText("")
+        self.label_5.setText(QCoreApplication.translate("Parameters", u"\u0413\u0430\u0439\u0434 \u043f\u043e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435:", None))
+        self.changeColor_2.setText(QCoreApplication.translate("Parameters", u"\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u0434\u043b\u044f \u043e\u0442\u043a\u0440\u044b\u0442\u0438\u044f", None))
     # retranslateUi
 
