@@ -293,6 +293,13 @@ class Application(QMainWindow):
                     while self.RenderedImagesCounter != self.TotalImagesAmount:
                         self.UI.progressBar.setValue(100 * (self.RenderedImagesCounter / self.TotalImagesAmount))
 
+                def waitUntilEnd():
+                    for tt in threads:
+                        tt.join()
+
+                    self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output-' + date}", 5000)
+                    self.UI.progressBar.setValue(0)
+
                 for i in range(self.TotalImagesAmount):
                     thread = threading.Thread(target=self.renderAndSaveImage, args=(dirName, i))
                     threads.append(thread)
@@ -302,14 +309,7 @@ class Application(QMainWindow):
                 for t in threads:
                     t.start()
 
-                def waitUntilEnd():
-                    for tt in threads:
-                        tt.join()
-
-                    self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output-' + date}", 5000)
-                    self.UI.progressBar.setValue(0)
-
-                threading.Thread(target=waitUntilEnd()).start()
+                threading.Thread(target=waitUntilEnd).start()
         else:
             self.UI.statusbar.showMessage(
                 (not self.MainSheet and "Сначала добавьте документ!")
