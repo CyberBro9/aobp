@@ -6,7 +6,7 @@ import threading
 from datetime import datetime
 
 from PIL import Image, ImageFont, ImageDraw
-from pynput import mouse
+from pynput import mouse, keyboard
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem)
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
@@ -16,6 +16,7 @@ from tkinter import filedialog
 from UI.mainUI import Ui_MainWindow
 from UI.tableDialog import Ui_Dialog
 from UI.parameters import Ui_Parameters
+from UI.helpDialog import Ui_HelpDialog
 
 root = tk.Tk()
 root.iconbitmap("Assets/aobp.ico")
@@ -65,14 +66,19 @@ class Application(QMainWindow):
         self.TotalImagesAmount = 0
         self.Dialog = QDialog()
         self.ParametersDialog = QDialog()
+        self.HelpDialog = QDialog()
         self.Parameters = Ui_Parameters()
         self.DialogUI = Ui_Dialog()
+        self.HelpDialogUI = Ui_HelpDialog()
         self.Dialog.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.Dialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.DialogUI.setupUi(self.Dialog)
         self.ParametersDialog.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.ParametersDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.Parameters.setupUi(self.ParametersDialog)
+        self.HelpDialog.setWindowIcon(QIcon("Assets/aobp.ico"))
+        self.HelpDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
+        self.HelpDialogUI.setupUi(self.HelpDialog)
         self.TableWidget = self.DialogUI.tableWidget
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
@@ -90,6 +96,7 @@ class Application(QMainWindow):
         self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
         self.UI.progressBar.setValue(0)
         self.UI.progressBar.setTextVisible(False)
+        keyboard.Listener(on_press=self.openHelpDialog).start()
 
     def setupExcelTable(self):
         """
@@ -160,6 +167,10 @@ class Application(QMainWindow):
             self.UI.statusbar.showMessage((not selected and "Сначала выберите что-то!") or
                                           (self.UI.ImageLabel.findChild(QLabel, selected[0].data(0))
                                           and "Нельзя вставлять два одинаковых поля!"), 1000)
+
+    def openHelpDialog(self, key):
+        if key == keyboard.Key.f1:
+            self.HelpDialog.open()
 
     def colorSelection(self):
         selections = self.UI.selections.selectedItems()

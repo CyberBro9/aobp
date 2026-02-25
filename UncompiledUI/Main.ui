@@ -58,7 +58,7 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <layout class="QHBoxLayout" name="mainLayout" stretch="3,2">
+   <layout class="QHBoxLayout" name="mainLayout" stretch="3,0">
     <item>
      <layout class="QVBoxLayout" name="leftPanel">
       <item>
@@ -108,17 +108,24 @@
     <item>
      <layout class="QVBoxLayout" name="rightPanel">
       <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+       </layout>
+      </item>
+      <item>
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
           <family>Yu Gothic UI</family>
-          <pointsize>24</pointsize>
+          <pointsize>13</pointsize>
           <italic>false</italic>
           <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: bold 24pt &quot;Yu Gothic UI&quot;; padding: 10px;
+         <string notr="true">font: bold 13pt &quot;Yu Gothic UI&quot;; padding: 2px;
 color: rgb(255, 255, 255)</string>
         </property>
         <property name="text">
