@@ -6,9 +6,9 @@ import threading
 from datetime import datetime
 
 from PIL import Image, ImageFont, ImageDraw
-from pynput import mouse, keyboard
+from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
-                               QListWidgetItem)
+                               QListWidgetItem, QProgressBar)
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
 import tkinter as tk
@@ -93,10 +93,10 @@ class Application(QMainWindow):
         self.Parameters.textCenteringOptions.activated.connect(self.changeTextCentering)
         self.Parameters.textSize.sliderMoved.connect(self.changeTextFontSize)
         self.setWindowIcon(QIcon("Assets/aobp.ico"))
-        self.UI.statusbar.addPermanentWidget(self.UI.progressBar)
-        self.UI.progressBar.setValue(0)
-        self.UI.progressBar.setTextVisible(False)
-        keyboard.Listener(on_press=self.openHelpDialog).start()
+        self.progressBar = QProgressBar()
+        self.progressBar.setValue(0)
+        self.progressBar.setTextVisible(False)
+        self.UI.statusbar.addPermanentWidget(self.progressBar)
 
     def setupExcelTable(self):
         """
@@ -167,10 +167,6 @@ class Application(QMainWindow):
             self.UI.statusbar.showMessage((not selected and "Сначала выберите что-то!") or
                                           (self.UI.ImageLabel.findChild(QLabel, selected[0].data(0))
                                           and "Нельзя вставлять два одинаковых поля!"), 1000)
-
-    def openHelpDialog(self, key):
-        if key == keyboard.Key.f1:
-            self.HelpDialog.open()
 
     def colorSelection(self):
         selections = self.UI.selections.selectedItems()
@@ -302,14 +298,14 @@ class Application(QMainWindow):
 
                 def trackProgress():
                     while self.RenderedImagesCounter != self.TotalImagesAmount:
-                        self.UI.progressBar.setValue(100 * (self.RenderedImagesCounter / self.TotalImagesAmount))
+                        self.progressBar.setValue(int(100 * (self.RenderedImagesCounter / self.TotalImagesAmount)))
 
                 def waitUntilEnd():
                     for tt in threads:
                         tt.join()
 
                     self.UI.statusbar.showMessage(f"Изображения сохранены в {filePath + '/Output-' + date}", 5000)
-                    self.UI.progressBar.setValue(0)
+                    self.progressBar.setValue(0)
 
                 for i in range(self.TotalImagesAmount):
                     thread = threading.Thread(target=self.renderAndSaveImage, args=(dirName, i))

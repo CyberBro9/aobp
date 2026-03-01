@@ -16,9 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QListWidget, QListWidgetItem, QMainWindow, QProgressBar,
-    QPushButton, QSizePolicy, QStatusBar, QVBoxLayout,
-    QWidget)
+    QListWidget, QListWidgetItem, QMainWindow, QPushButton,
+    QSizePolicy, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -30,53 +29,46 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setStyleSheet(u"\n"
-"        QMainWindow {\n"
-"        background-color: #0a192f;\n"
-"        }\n"
-"        QPushButton {\n"
-"        border: 2px solid rgb(100, 255, 218);\n"
-"        background-color: rgba(100, 255, 218, 0.05);\n"
+        MainWindow.setStyleSheet(u"		QPushButton {\n"
+"        background-color: rgb(20,20,20);\n"
 "        border-radius: 8px;\n"
 "        padding: 12px 20px;\n"
 "        color: rgb(255, 255, 255);\n"
 "        font: bold 12pt \"Yu Gothic UI\";\n"
-"        min-height: 45px;\n"
+"        min-height: 35px;\n"
 "        }\n"
 "        QPushButton:hover {\n"
-"        background-color: rgba(100, 255, 218, 0.15);\n"
+"        background-color: rgb(40,40,40);\n"
 "        }\n"
 "        QPushButton:pressed {\n"
-"        background-color: rgba(100, 255, 218, 0.2);\n"
+"        background-color: rgb(80,80,80);\n"
 "        }\n"
 "        QListWidget {\n"
-"        border: 2px solid rgb(100, 255, 218);\n"
-"        background-color: rgba(16, 42, 67, 0.6);\n"
+"        background-color: rgb(20,20,20);\n"
 "        border-radius: 8px;\n"
 "        color: rgb(255, 255, 255);\n"
 "        font: 11pt \"Yu Gothic UI\";\n"
-"        padding: 5px;\n"
 "        }\n"
 "        QLabel#ImageLabel {\n"
-"        border: 2px dashed rgb(100, 255, 218);\n"
-"        border-radius: 8px;\n"
-"        back"
-                        "ground-color: rgba(16, 42, 67, 0.6);\n"
+"		border-radius: 8px;\n"
+"        background-color: rgb(20,20,20);\n"
 "        }\n"
+"		QPushButton#saveImages {\n"
+"			border: 2px dashed #0eff93;\n"
+"			border-radius: 8px\n"
+"		}\n"
+"		QMainWindow {\n"
+"			background-color: rgb(13, 13, 13)\n"
+"		}\n"
 "      ")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"")
         self.mainLayout = QHBoxLayout(self.centralwidget)
         self.mainLayout.setObjectName(u"mainLayout")
+        self.mainLayout.setContentsMargins(6, 6, 6, 10)
         self.leftPanel = QVBoxLayout()
         self.leftPanel.setObjectName(u"leftPanel")
-        self.progressBar = QProgressBar(self.centralwidget)
-        self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(24)
-
-        self.leftPanel.addWidget(self.progressBar)
-
         self.ImageLabel = QLabel(self.centralwidget)
         self.ImageLabel.setObjectName(u"ImageLabel")
         self.ImageLabel.setMinimumSize(QSize(500, 400))
@@ -100,16 +92,23 @@ class Ui_MainWindow(object):
         self.mainLayout.addLayout(self.leftPanel)
 
         self.rightPanel = QVBoxLayout()
+        self.rightPanel.setSpacing(6)
         self.rightPanel.setObjectName(u"rightPanel")
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setSpacing(10)
+        self.gridLayout.setObjectName(u"gridLayout")
+
+        self.rightPanel.addLayout(self.gridLayout)
+
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
         font1 = QFont()
         font1.setFamilies([u"Yu Gothic UI"])
-        font1.setPointSize(24)
+        font1.setPointSize(13)
         font1.setBold(True)
         font1.setItalic(False)
         self.label.setFont(font1)
-        self.label.setStyleSheet(u"font: bold 24pt \"Yu Gothic UI\"; padding: 10px;\n"
+        self.label.setStyleSheet(u"font: bold 13pt \"Yu Gothic UI\"; padding: 2px;\n"
 "color: rgb(255, 255, 255)")
         self.label.setTextFormat(Qt.TextFormat.PlainText)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -154,7 +153,7 @@ class Ui_MainWindow(object):
 
         self.saveImages = QPushButton(self.centralwidget)
         self.saveImages.setObjectName(u"saveImages")
-        self.saveImages.setStyleSheet(u"background-color: rgba(100, 255, 218, 0.2); border: 3px solid rgb(100, 255, 218); font: bold 14pt \"Yu Gothic UI\"; color: #64ffda;")
+        self.saveImages.setStyleSheet(u"")
 
         self.controlsGrid.addWidget(self.saveImages, 2, 0, 1, 2)
 
@@ -165,12 +164,23 @@ class Ui_MainWindow(object):
         self.mainLayout.addLayout(self.rightPanel)
 
         self.mainLayout.setStretch(0, 3)
-        self.mainLayout.setStretch(1, 2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         self.statusbar.setEnabled(True)
-        self.statusbar.setStyleSheet(u"color: #64ffda; background-color: rgba(16, 42, 67, 0.8);")
+        self.statusbar.setStyleSheet(u"QStatusBar {\n"
+"	color: #0eff93; \n"
+"	background-color: rgb(0, 0, 0);\n"
+"	border: 2px dashed #0eff93;\n"
+"	padding: 1px\n"
+"}\n"
+"QProgressBar {\n"
+"	color: rgb(10, 10, 10)\n"
+"}\n"
+"QProgressBar::chunk {\n"
+"	background-color: #0eff93;\n"
+"	border-radius: 2px\n"
+"}")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
