@@ -16,8 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QListWidget, QListWidgetItem, QMainWindow, QPushButton,
-    QSizePolicy, QStatusBar, QVBoxLayout, QWidget)
+    QListWidget, QListWidgetItem, QMainWindow, QProgressBar,
+    QPushButton, QSizePolicy, QStatusBar, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,53 +30,116 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setStyleSheet(u"		QPushButton {\n"
-"        background-color: rgb(20,20,20);\n"
-"        border-radius: 8px;\n"
-"        padding: 12px 20px;\n"
-"        color: rgb(255, 255, 255);\n"
-"        font: bold 12pt \"Yu Gothic UI\";\n"
-"        min-height: 35px;\n"
+        MainWindow.setStyleSheet(u"\n"
+"        QMainWindow {\n"
+"            background-color: #0a192f;\n"
+"        }\n"
+"        QPushButton {\n"
+"            background-color: #1e293b;\n"
+"            border: 1px solid #3d4044;\n"
+"            border-radius: 8px;\n"
+"            padding: 10px 18px;\n"
+"            color: #f1f5f9;\n"
+"            font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"            min-height: 36px;\n"
 "        }\n"
 "        QPushButton:hover {\n"
-"        background-color: rgb(40,40,40);\n"
+"            background-color: #2d3a4f;\n"
+"            border-color: #5eead4;\n"
 "        }\n"
 "        QPushButton:pressed {\n"
-"        background-color: rgb(80,80,80);\n"
+"            background-color: #0f172a;\n"
 "        }\n"
+"		QPushButton#saveImages:pressed {\n"
+"            background-color: #0f172a;\n"
+"        }\n"
+"        QPushButton#saveImages {\n"
+"            background-color: #1e293b;\n"
+"            color: #f1f5f9;\n"
+"            font-weight: 600;\n"
+"			border: 2px dashed #2dd4bf;\n"
+"        }\n"
+"        QPushButton#saveImages:hover {\n"
+"            border: 3px dashed #2dd4bf;\n"
+"        "
+                        "}\n"
 "        QListWidget {\n"
-"        background-color: rgb(20,20,20);\n"
-"        border-radius: 8px;\n"
-"        color: rgb(255, 255, 255);\n"
-"        font: 11pt \"Yu Gothic UI\";\n"
+"            background-color: #1e293b;\n"
+"            border: none;\n"
+"            border-radius: 12px;\n"
+"            color: #e2e8f0;\n"
+"            font: 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"            padding: 8px;\n"
+"            outline: none;\n"
+"        }\n"
+"        QListWidget::item {\n"
+"            padding: 10px;\n"
+"            border-radius: 8px;\n"
+"        }\n"
+"        QListWidget::item:selected {\n"
+"            background-color: #2dd4bf;\n"
+"            color: #0f172a;\n"
+"        }\n"
+"        QListWidget::item:hover {\n"
+"            background-color: #2d3a4f;\n"
 "        }\n"
 "        QLabel#ImageLabel {\n"
-"		border-radius: 8px;\n"
-"        background-color: rgb(20,20,20);\n"
+"            border: 2px dashed #2dd4bf;\n"
+"            border-radius: 16px;\n"
+"            background-color: #1e293b;\n"
+"            color: #94a3b8;\n"
 "        }\n"
-"		QPushButton#saveImages {\n"
-"			border: 2px dashed #0eff93;\n"
-"			border-radius: 8px\n"
-"		}\n"
-"		QMainWindow {\n"
-"			background-color: rgb(13, 13, 13)\n"
-"		}\n"
+"        QProgressBar {\n"
+"            border: none;\n"
+"            background-color: #1e293b;\n"
+"            border-radius: 6px;\n"
+"            text-align: center;\n"
+""
+                        "            color: #f1f5f9;\n"
+"            font: bold 10pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"            height: 12px;\n"
+"        }\n"
+"        QProgressBar::chunk {\n"
+"            background-color: #2dd4bf;\n"
+"            border-radius: 6px;\n"
+"        }\n"
+"        QLabel {\n"
+"            color: #f1f5f9;\n"
+"            font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"        }\n"
+"        QLabel#label {\n"
+"            font-size: 14pt;\n"
+"            font-weight: 600;\n"
+"        }\n"
+"        QLabel#selectionsLabel {\n"
+"            font-size: 12pt;\n"
+"            font-weight: 500;\n"
+"            color: #94a3b8;\n"
+"        }\n"
+"        QStatusBar {\n"
+"            background-color: #1e293b;\n"
+"            color: #2dd4bf;\n"
+"        }\n"
 "      ")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setStyleSheet(u"")
         self.mainLayout = QHBoxLayout(self.centralwidget)
         self.mainLayout.setObjectName(u"mainLayout")
-        self.mainLayout.setContentsMargins(6, 6, 6, 10)
         self.leftPanel = QVBoxLayout()
         self.leftPanel.setObjectName(u"leftPanel")
+        self.progressBar = QProgressBar(self.centralwidget)
+        self.progressBar.setObjectName(u"progressBar")
+        self.progressBar.setValue(24)
+
+        self.leftPanel.addWidget(self.progressBar)
+
         self.ImageLabel = QLabel(self.centralwidget)
         self.ImageLabel.setObjectName(u"ImageLabel")
         self.ImageLabel.setMinimumSize(QSize(500, 400))
         font = QFont()
+        font.setFamilies([u"Inter"])
         font.setPointSize(16)
         self.ImageLabel.setFont(font)
-        self.ImageLabel.setStyleSheet(u"color: rgb(255, 255, 255)")
         self.ImageLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.leftPanel.addWidget(self.ImageLabel)
@@ -92,7 +156,6 @@ class Ui_MainWindow(object):
         self.mainLayout.addLayout(self.leftPanel)
 
         self.rightPanel = QVBoxLayout()
-        self.rightPanel.setSpacing(6)
         self.rightPanel.setObjectName(u"rightPanel")
         self.gridLayout = QGridLayout()
         self.gridLayout.setSpacing(10)
@@ -103,13 +166,11 @@ class Ui_MainWindow(object):
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
         font1 = QFont()
-        font1.setFamilies([u"Yu Gothic UI"])
-        font1.setPointSize(13)
-        font1.setBold(True)
+        font1.setFamilies([u"Inter"])
+        font1.setPointSize(14)
+        font1.setWeight(QFont.DemiBold)
         font1.setItalic(False)
         self.label.setFont(font1)
-        self.label.setStyleSheet(u"font: bold 13pt \"Yu Gothic UI\"; padding: 2px;\n"
-"color: rgb(255, 255, 255)")
         self.label.setTextFormat(Qt.TextFormat.PlainText)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label.setWordWrap(True)
@@ -118,8 +179,6 @@ class Ui_MainWindow(object):
 
         self.selectionsLabel = QLabel(self.centralwidget)
         self.selectionsLabel.setObjectName(u"selectionsLabel")
-        self.selectionsLabel.setStyleSheet(u"font: bold 14pt \"Yu Gothic UI\"; padding: 5px;\n"
-"color: rgb(255, 255, 255)")
 
         self.rightPanel.addWidget(self.selectionsLabel)
 
@@ -153,7 +212,6 @@ class Ui_MainWindow(object):
 
         self.saveImages = QPushButton(self.centralwidget)
         self.saveImages.setObjectName(u"saveImages")
-        self.saveImages.setStyleSheet(u"")
 
         self.controlsGrid.addWidget(self.saveImages, 2, 0, 1, 2)
 
@@ -168,19 +226,6 @@ class Ui_MainWindow(object):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         self.statusbar.setEnabled(True)
-        self.statusbar.setStyleSheet(u"QStatusBar {\n"
-"	color: #0eff93; \n"
-"	background-color: rgb(0, 0, 0);\n"
-"	border: 2px dashed #0eff93;\n"
-"	padding: 1px\n"
-"}\n"
-"QProgressBar {\n"
-"	color: rgb(10, 10, 10)\n"
-"}\n"
-"QProgressBar::chunk {\n"
-"	background-color: #0eff93;\n"
-"	border-radius: 2px\n"
-"}")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
