@@ -24,3 +24,7 @@
 7. Press the "Save images" button, select your destination.
 8. While saving, data corresponding to every placeholder will be pulled from your document and applied to the final image in the positions you put them on.
 9. Enjoy your created accreditations and other business papers. :)
+
+<p align="center">
+    <img width="248" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/Assets/PromImage1.png" alt="AOBP promotional image">
+</p>
