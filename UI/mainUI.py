@@ -16,9 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QListWidget, QListWidgetItem, QMainWindow, QProgressBar,
-    QPushButton, QSizePolicy, QStatusBar, QVBoxLayout,
-    QWidget)
+    QListWidget, QListWidgetItem, QMainWindow, QPushButton,
+    QSizePolicy, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -50,9 +49,6 @@ class Ui_MainWindow(object):
 "        QPushButton:pressed {\n"
 "            background-color: #0f172a;\n"
 "        }\n"
-"		QPushButton#saveImages:pressed {\n"
-"            background-color: #0f172a;\n"
-"        }\n"
 "        QPushButton#saveImages {\n"
 "            background-color: #1e293b;\n"
 "            color: #f1f5f9;\n"
@@ -61,8 +57,13 @@ class Ui_MainWindow(object):
 "        }\n"
 "        QPushButton#saveImages:hover {\n"
 "            border: 3px dashed #2dd4bf;\n"
-"        "
-                        "}\n"
+"			background-color: #2d3a4f\n"
+"        }\n"
+"		QPushButton#saveImages:pressed {\n"
+"            backgr"
+                        "ound-color: #0f172a;\n"
+"			border: 2px dashed #2dd4bf\n"
+"        }\n"
 "        QListWidget {\n"
 "            background-color: #1e293b;\n"
 "            border: none;\n"
@@ -72,36 +73,11 @@ class Ui_MainWindow(object):
 "            padding: 8px;\n"
 "            outline: none;\n"
 "        }\n"
-"        QListWidget::item {\n"
-"            padding: 10px;\n"
-"            border-radius: 8px;\n"
-"        }\n"
-"        QListWidget::item:selected {\n"
-"            background-color: #2dd4bf;\n"
-"            color: #0f172a;\n"
-"        }\n"
-"        QListWidget::item:hover {\n"
-"            background-color: #2d3a4f;\n"
-"        }\n"
 "        QLabel#ImageLabel {\n"
 "            border: 2px dashed #2dd4bf;\n"
 "            border-radius: 16px;\n"
 "            background-color: #1e293b;\n"
 "            color: #94a3b8;\n"
-"        }\n"
-"        QProgressBar {\n"
-"            border: none;\n"
-"            background-color: #1e293b;\n"
-"            border-radius: 6px;\n"
-"            text-align: center;\n"
-""
-                        "            color: #f1f5f9;\n"
-"            font: bold 10pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
-"            height: 12px;\n"
-"        }\n"
-"        QProgressBar::chunk {\n"
-"            background-color: #2dd4bf;\n"
-"            border-radius: 6px;\n"
 "        }\n"
 "        QLabel {\n"
 "            color: #f1f5f9;\n"
@@ -117,7 +93,8 @@ class Ui_MainWindow(object):
 "            color: #94a3b8;\n"
 "        }\n"
 "        QStatusBar {\n"
-"            background-color: #1e293b;\n"
+"            background-colo"
+                        "r: #1e293b;\n"
 "            color: #2dd4bf;\n"
 "        }\n"
 "      ")
@@ -127,12 +104,6 @@ class Ui_MainWindow(object):
         self.mainLayout.setObjectName(u"mainLayout")
         self.leftPanel = QVBoxLayout()
         self.leftPanel.setObjectName(u"leftPanel")
-        self.progressBar = QProgressBar(self.centralwidget)
-        self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(24)
-
-        self.leftPanel.addWidget(self.progressBar)
-
         self.ImageLabel = QLabel(self.centralwidget)
         self.ImageLabel.setObjectName(u"ImageLabel")
         self.ImageLabel.setMinimumSize(QSize(500, 400))
@@ -226,6 +197,19 @@ class Ui_MainWindow(object):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         self.statusbar.setEnabled(True)
+        self.statusbar.setStyleSheet(u"QProgressBar {\n"
+"            border: none;\n"
+"            background-color: #1e293b;\n"
+"            border-radius: 6px;\n"
+"            text-align: center;\n"
+"            color: #f1f5f9;\n"
+"            font: bold 10pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"            height: 12px;\n"
+"        }\n"
+"        QProgressBar::chunk {\n"
+"            background-color: #2dd4bf;\n"
+"            border-radius: 6px;\n"
+"        }")
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)

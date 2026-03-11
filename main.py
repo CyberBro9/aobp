@@ -95,7 +95,7 @@ class Application(QMainWindow):
         self.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.progressBar = QProgressBar()
         self.progressBar.setValue(0)
-        self.progressBar.setTextVisible(False)
+        self.progressBar.setTextVisible(True)
         self.UI.statusbar.addPermanentWidget(self.progressBar)
 
     def setupExcelTable(self):
@@ -276,6 +276,7 @@ class Application(QMainWindow):
 
         self.RenderedImagesCounter += 1
         canvas.save(dirName + fr"\{rowNum + 1}.png")
+        del canvas
 
     def saveImagesWithDocumentFields(self):
         """
