@@ -97,6 +97,7 @@ class Application(QMainWindow):
         self.progressBar.setValue(0)
         self.progressBar.setTextVisible(True)
         self.UI.statusbar.addPermanentWidget(self.progressBar)
+        self.HelpDialog.open()
 
     def setupExcelTable(self):
         """
