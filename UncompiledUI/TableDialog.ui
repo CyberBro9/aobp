@@ -17,7 +17,23 @@
    <string>Таблица Excel</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #0a192f</string>
+   <string notr="true">QDialog {
+	background-color: #0a192f
+}
+QTableWidget {
+	border: 3px dashed #2dd4bf;
+	background-color: transparent;
+	border-radius: 10px;
+	padding: 10px 10px;
+}
+QTableWidget::item {
+	background-color: #ffffff;
+	font: 8px &quot;Inter&quot;;
+	color: #000000
+}
+QTableWidget QHeaderView::section {
+	padding: 2px;
+}</string>
   </property>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
@@ -29,12 +45,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QTableWidget {
-	border: 3px solid #64ffda;;
-	background-color: transparent;
-	border-radius: 10px;
-	padding: 10px 10px;
-}</string>
+    <string notr="true"/>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -48,11 +59,15 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>9</pointsize>
+     <family>Inter</family>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255)</string>
+    <string notr="true">color: rgb(255, 255, 255);
+font: 16px &quot;Inter&quot;</string>
    </property>
    <property name="text">
     <string>В этом окне Вы можете просмотреть свою таблицу Excel.</string>

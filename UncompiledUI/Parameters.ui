@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>845</width>
-    <height>287</height>
+    <height>275</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,7 +63,7 @@ QSlider::groove {
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>20</y>
+     <y>10</y>
      <width>821</width>
      <height>261</height>
     </rect>
@@ -117,9 +117,12 @@ QSlider::groove {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="changeColor_2">
+       <widget class="QPushButton" name="changeColor">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
-         <string>Нажмите для открытия</string>
+         <string>Нажмите для изменения</string>
         </property>
        </widget>
       </item>
@@ -256,12 +259,9 @@ QSlider::groove {
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QPushButton" name="changeColor">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
+     <widget class="QPushButton" name="changeColor_2">
       <property name="text">
-       <string>Нажмите для изменения</string>
+       <string>Нажмите для открытия</string>
       </property>
      </widget>
     </item>

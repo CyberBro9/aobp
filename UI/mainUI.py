@@ -29,10 +29,9 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setStyleSheet(u"\n"
-"        QMainWindow {\n"
-"            background-color: #0a192f;\n"
-"        }\n"
+        MainWindow.setStyleSheet(u"QMainWindow {\n"
+"	background-color: #0a192f;\n"
+"}\n"
 "        QPushButton {\n"
 "            background-color: #1e293b;\n"
 "            border: 1px solid #3d4044;\n"
@@ -60,9 +59,9 @@ class Ui_MainWindow(object):
 "			background-color: #2d3a4f\n"
 "        }\n"
 "		QPushButton#saveImages:pressed {\n"
-"            backgr"
-                        "ound-color: #0f172a;\n"
-"			border: 2px dashed #2dd4bf\n"
+"            background-color: #0f172a;\n"
+"			bord"
+                        "er: 2px dashed #2dd4bf\n"
 "        }\n"
 "        QListWidget {\n"
 "            background-color: #1e293b;\n"
@@ -93,9 +92,9 @@ class Ui_MainWindow(object):
 "            color: #94a3b8;\n"
 "        }\n"
 "        QStatusBar {\n"
-"            background-colo"
-                        "r: #1e293b;\n"
-"            color: #2dd4bf;\n"
+"            background-color: #1e293b;\n"
+"            colo"
+                        "r: #2dd4bf;\n"
 "        }\n"
 "      ")
         self.centralwidget = QWidget(MainWindow)

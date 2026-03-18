@@ -24,23 +24,37 @@ class Ui_Dialog(object):
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(521, 288)
         Dialog.setAcceptDrops(False)
-        Dialog.setStyleSheet(u"background-color: #0a192f")
-        self.tableWidget = QTableWidget(Dialog)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setGeometry(QRect(20, 50, 481, 221))
-        self.tableWidget.setStyleSheet(u"QTableWidget {\n"
-"	border: 3px solid #64ffda;;\n"
+        Dialog.setStyleSheet(u"QDialog {\n"
+"	background-color: #0a192f\n"
+"}\n"
+"QTableWidget {\n"
+"	border: 3px dashed #2dd4bf;\n"
 "	background-color: transparent;\n"
 "	border-radius: 10px;\n"
 "	padding: 10px 10px;\n"
+"}\n"
+"QTableWidget::item {\n"
+"	background-color: #ffffff;\n"
+"	font: 8px \"Inter\";\n"
+"	color: #000000\n"
+"}\n"
+"QTableWidget QHeaderView::section {\n"
+"	padding: 2px;\n"
 "}")
+        self.tableWidget = QTableWidget(Dialog)
+        self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget.setGeometry(QRect(20, 50, 481, 221))
+        self.tableWidget.setStyleSheet(u"")
         self.label = QLabel(Dialog)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(20, 10, 481, 31))
         font = QFont()
-        font.setPointSize(9)
+        font.setFamilies([u"Inter"])
+        font.setBold(False)
+        font.setItalic(False)
         self.label.setFont(font)
-        self.label.setStyleSheet(u"color: rgb(255, 255, 255)")
+        self.label.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+"font: 16px \"Inter\"")
         self.label.setScaledContents(False)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label.setWordWrap(True)
