@@ -20,10 +20,9 @@
    <string>Аккредитации (и) Другие Бумаги для Бизнеса</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-        QMainWindow {
-            background-color: #0a192f;
-        }
+   <string notr="true">QMainWindow {
+	background-color: #0a192f;
+}
         QPushButton {
             background-color: #1e293b;
             border: 1px solid #3d4044;
