@@ -19,39 +19,57 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QHBoxLayout,
     QLabel, QPushButton, QSizePolicy, QSpacerItem,
     QTabWidget, QTextEdit, QVBoxLayout, QWidget)
 
-class Ui_HelpDialog(object):
+class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(980, 460)
-        Dialog.setStyleSheet(u"\n"
-"     QDialog {\n"
-"         background: qlineargradient(x1:0, y1:0, x2:1, y2:1,\n"
-"                                     stop:0 #0a1a2f,\n"
-"                                     stop:1 #0d2b4a);\n"
-"     }\n"
-"   ")
-        self.mainLayout = QVBoxLayout(Dialog)
-        self.mainLayout.setSpacing(20)
-        self.mainLayout.setObjectName(u"mainLayout")
-        self.mainLayout.setContentsMargins(25, 25, 25, 25)
-        self.titleLabel = QLabel(Dialog)
-        self.titleLabel.setObjectName(u"titleLabel")
-        self.titleLabel.setStyleSheet(u"\n"
-"        font: bold 20pt 'Yu Gothic UI';\n"
-"        color: #ffffff;\n"
-"        padding-bottom: 8px;\n"
-"        border-bottom: 2px solid #64ffda;\n"
-"      ")
-
-        self.mainLayout.addWidget(self.titleLabel)
-
-        self.tabWidget = QTabWidget(Dialog)
-        self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setStyleSheet(u"\n"
+        Dialog.setStyleSheet(u"QDialog {\n"
+"	background: #0a192f;\n"
+"}\n"
+"QLabel {\n"
+"	font: 20pt 'InterI';\n"
+"    color: #ffffff;\n"
+"    padding-bottom: 8px;\n"
+"    border-bottom: 2px solid #64ffda;\n"
+"}\n"
+"QPushButton {\n"
+"            background-color: #1e293b;\n"
+"            border: 1px solid #3d4044;\n"
+"            border-radius: 8px;\n"
+"            padding: 10px 18px;\n"
+"            color: #f1f5f9;\n"
+"            font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"          }\n"
+"          QPushButton:hover {\n"
+"              background: rgba(100,255,218,0.3);\n"
+"          }\n"
+"          QPushButton:pressed {\n"
+"              background: rgba(100,255,218,0.5);\n"
+"          }\n"
+"QCheckBox {\n"
+"              color: #ffffff;\n"
+"              font: 12pt 'Inter';\n"
+"          }\n"
+"          QCheckBox::indicator {\n"
+"              width: 20px;\n"
+"              height: 20px;\n"
+"              border-radius: 6px;\n"
+"              background-color: rgb(255, 255, 255);\n"
+"          }\n"
+"          	QCheckBox::ind"
+                        "icator:checked {\n"
+"             	background-color: #2dd4bf;\n"
+"          	}\n"
+"		  	QCheckBox::indicator:unchecked {\n"
+"				background-color: rgb(5, 14, 25)\n"
+"			}\n"
+"          QCheckBox::indicator:hover {\n"
+"              background-color: rgb(156, 212, 191)\n"
+"          }\n"
+"\n"
 "        QTabWidget::pane {\n"
-"            background: rgba(255,255,255,0.07);\n"
-"            border: none;\n"
+"            background: #050e19;\n"
 "            border-radius: 16px;\n"
 "            margin-top: 12px;\n"
 "            padding: 20px;\n"
@@ -59,33 +77,44 @@ class Ui_HelpDialog(object):
 "        QTabBar::tab {\n"
 "            background: transparent;\n"
 "            color: #8a9bb5;\n"
-"            font: 12pt 'Yu Gothic UI';\n"
+"            font: 12pt 'Inter';\n"
 "            padding: 8px 20px;\n"
 "            margin-right: 8px;\n"
-"            border: none;\n"
-"            border-bottom: 3px solid transparent;\n"
 "        }\n"
 "        QTabBar::tab:selected {\n"
-"            color: #64ffda;\n"
+"            color: #2dd4bf;\n"
 "            font-weight: bold;\n"
 "            border-bottom: 3px solid #64ffda;\n"
 "        }\n"
 "        QTabBar::tab:hover {\n"
-"            color: #b0c4de;\n"
+"            color: rgb(156, 212, 191);\n"
 "        }\n"
-"      ")
+"QTextEdit {\n"
+"	background: transparent;\n"
+"    color: #ffffff;\n"
+""
+                        "    font: 12pt 'Inter';\n"
+"    border: none;\n"
+"}")
+        self.mainLayout = QVBoxLayout(Dialog)
+        self.mainLayout.setSpacing(20)
+        self.mainLayout.setObjectName(u"mainLayout")
+        self.mainLayout.setContentsMargins(25, 25, 25, 25)
+        self.titleLabel = QLabel(Dialog)
+        self.titleLabel.setObjectName(u"titleLabel")
+        self.titleLabel.setStyleSheet(u"")
+
+        self.mainLayout.addWidget(self.titleLabel)
+
+        self.tabWidget = QTabWidget(Dialog)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setStyleSheet(u"")
         self.tab_intro = QWidget()
         self.tab_intro.setObjectName(u"tab_intro")
         self.introLayout = QVBoxLayout(self.tab_intro)
         self.introLayout.setObjectName(u"introLayout")
         self.textIntro = QTextEdit(self.tab_intro)
         self.textIntro.setObjectName(u"textIntro")
-        self.textIntro.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textIntro.setReadOnly(True)
 
         self.introLayout.addWidget(self.textIntro)
@@ -97,12 +126,6 @@ class Ui_HelpDialog(object):
         self.step1Layout.setObjectName(u"step1Layout")
         self.textStep1 = QTextEdit(self.tab_step1)
         self.textStep1.setObjectName(u"textStep1")
-        self.textStep1.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textStep1.setReadOnly(True)
 
         self.step1Layout.addWidget(self.textStep1)
@@ -114,12 +137,6 @@ class Ui_HelpDialog(object):
         self.step2Layout.setObjectName(u"step2Layout")
         self.textStep2 = QTextEdit(self.tab_step2)
         self.textStep2.setObjectName(u"textStep2")
-        self.textStep2.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textStep2.setReadOnly(True)
 
         self.step2Layout.addWidget(self.textStep2)
@@ -131,12 +148,6 @@ class Ui_HelpDialog(object):
         self.step3Layout.setObjectName(u"step3Layout")
         self.textStep3 = QTextEdit(self.tab_step3)
         self.textStep3.setObjectName(u"textStep3")
-        self.textStep3.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textStep3.setReadOnly(True)
 
         self.step3Layout.addWidget(self.textStep3)
@@ -148,12 +159,6 @@ class Ui_HelpDialog(object):
         self.step4Layout.setObjectName(u"step4Layout")
         self.textStep4 = QTextEdit(self.tab_step4)
         self.textStep4.setObjectName(u"textStep4")
-        self.textStep4.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textStep4.setReadOnly(True)
 
         self.step4Layout.addWidget(self.textStep4)
@@ -165,12 +170,6 @@ class Ui_HelpDialog(object):
         self.step5Layout.setObjectName(u"step5Layout")
         self.textStep5 = QTextEdit(self.tab_step5)
         self.textStep5.setObjectName(u"textStep5")
-        self.textStep5.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textStep5.setReadOnly(True)
 
         self.step5Layout.addWidget(self.textStep5)
@@ -182,12 +181,6 @@ class Ui_HelpDialog(object):
         self.step6Layout.setObjectName(u"step6Layout")
         self.textStep6 = QTextEdit(self.tab_step6)
         self.textStep6.setObjectName(u"textStep6")
-        self.textStep6.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textStep6.setReadOnly(True)
 
         self.step6Layout.addWidget(self.textStep6)
@@ -199,12 +192,6 @@ class Ui_HelpDialog(object):
         self.settingsLayout.setObjectName(u"settingsLayout")
         self.textSettings = QTextEdit(self.tab_settings)
         self.textSettings.setObjectName(u"textSettings")
-        self.textSettings.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textSettings.setReadOnly(True)
 
         self.settingsLayout.addWidget(self.textSettings)
@@ -216,12 +203,6 @@ class Ui_HelpDialog(object):
         self.dataLayout.setObjectName(u"dataLayout")
         self.textData = QTextEdit(self.tab_data)
         self.textData.setObjectName(u"textData")
-        self.textData.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textData.setReadOnly(True)
 
         self.dataLayout.addWidget(self.textData)
@@ -233,12 +214,6 @@ class Ui_HelpDialog(object):
         self.supportLayout.setObjectName(u"supportLayout")
         self.textSupport = QTextEdit(self.tab_support)
         self.textSupport.setObjectName(u"textSupport")
-        self.textSupport.setStyleSheet(u"\n"
-"            background: transparent;\n"
-"            color: #ffffff;\n"
-"            font: 14pt 'Yu Gothic UI';\n"
-"            border: none;\n"
-"          ")
         self.textSupport.setReadOnly(True)
 
         self.supportLayout.addWidget(self.textSupport)
@@ -251,25 +226,7 @@ class Ui_HelpDialog(object):
         self.bottomLayout.setObjectName(u"bottomLayout")
         self.checkBox = QCheckBox(Dialog)
         self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setStyleSheet(u"\n"
-"          QCheckBox {\n"
-"              color: #ffffff;\n"
-"              font: 12pt 'Yu Gothic UI';\n"
-"              spacing: 10px;\n"
-"          }\n"
-"          QCheckBox::indicator {\n"
-"              width: 40px;\n"
-"              height: 20px;\n"
-"              border-radius: 6px;\n"
-"              background-color: #4f5b6b;\n"
-"          }\n"
-"          QCheckBox::indicator:checked {\n"
-"              background-color: #64ffda;\n"
-"          }\n"
-"          QCheckBox::indicator:unchecked:hover {\n"
-"              background-color: #5f6b7b;\n"
-"          }\n"
-"        ")
+        self.checkBox.setStyleSheet(u"")
         self.checkBox.setChecked(True)
 
         self.bottomLayout.addWidget(self.checkBox)
@@ -280,22 +237,7 @@ class Ui_HelpDialog(object):
 
         self.closeButton = QPushButton(Dialog)
         self.closeButton.setObjectName(u"closeButton")
-        self.closeButton.setStyleSheet(u"\n"
-"          QPushButton {\n"
-"              background: rgba(100,255,218,0.2);\n"
-"              border: 2px solid #64ffda;\n"
-"              border-radius: 8px;\n"
-"              padding: 10px 30px;\n"
-"              font: bold 12pt 'Yu Gothic UI';\n"
-"              color: #64ffda;\n"
-"          }\n"
-"          QPushButton:hover {\n"
-"              background: rgba(100,255,218,0.3);\n"
-"          }\n"
-"          QPushButton:pressed {\n"
-"              background: rgba(100,255,218,0.5);\n"
-"          }\n"
-"        ")
+        self.closeButton.setStyleSheet(u"")
 
         self.bottomLayout.addWidget(self.closeButton)
 
@@ -321,12 +263,12 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0410\u043a\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0438\u0438 \u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u0431\u0443\u043c\u0430\u0433\u0438 \u0434\u043b\u044f \u0431\u0438\u0437\u043d\u0435\u0441\u0441\u0430</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style"
-                        "=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u042d\u0442\u043e \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u043e \u043f\u0440\u0435\u0434\u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u043e \u0434\u043b\u044f \u0431\u044b\u0441\u0442\u0440\u043e\u0433\u043e \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u044f \u0441\u043c\u044b\u0441\u043b\u0430 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b. \u0412\u043d\u0438\u043c\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438 \u043f\u043e\u0437\u0432\u043e\u043b\u0438\u0442 \u0412\u0430\u043c \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0435 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b \u0432 \u043c\u0438\u043d\u0438\u043c\u0430"
-                        "\u043b\u044c\u043d\u044b\u0435 \u0441\u0440\u043e\u043a\u0438.</p>\n"
+"<p style=\" mar"
+                        "gin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u042d\u0442\u043e \u0440\u0443\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u043e \u043f\u0440\u0435\u0434\u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u043e \u0434\u043b\u044f \u0431\u044b\u0441\u0442\u0440\u043e\u0433\u043e \u043f\u043e\u043d\u0438\u043c\u0430\u043d\u0438\u044f \u0441\u043c\u044b\u0441\u043b\u0430 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b. \u0412\u043d\u0438\u043c\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0435 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438 \u043f\u043e\u0437\u0432\u043e\u043b\u0438\u0442 \u0412\u0430\u043c \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0435 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b \u0432 \u043c\u0438\u043d\u0438\u043c\u0430\u043b\u044c"
+                        "\u043d\u044b\u0435 \u0441\u0440\u043e\u043a\u0438.</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0422\u0430\u043a\u0436\u0435 \u0432\u044b \u0441\u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u044d\u0442\u043e\u043c\u0443 \u043e\u043a\u043d\u0443 \u0438\u0437 \u043a\u043d\u043e\u043f\u043a\u0438 : &quot;\u041e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435&quot;.</p></body></html>", None))
         self.textIntro.setPlainText(QCoreApplication.translate("Dialog", u"\u0410\u043a\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0438\u0438 \u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u0431\u0443\u043c\u0430\u0433\u0438 \u0434\u043b\u044f \u0431\u0438\u0437\u043d\u0435\u0441\u0441\u0430\n"
 "\n"
@@ -340,17 +282,17 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u041f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u044d\u0442\u0430\u043f (\u041d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u044b\u0435 \u0440\u0435\u0441\u0443\u0440\u0441\u044b)</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-""
-                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0414\u043b\u044f \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b \u0443\u0442\u0438\u043b\u0438\u0442\u044b \u0443\u0431\u0435\u0434\u0438\u0442\u0435\u0441\u044c \u0432 \u043d\u0430\u043b\u0438\u0447\u0438\u0438 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 \u0444\u0430\u0439\u043b\u043e\u0432:</p>\n"
+"<p "
+                        "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0414\u043b\u044f \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b \u0443\u0442\u0438\u043b\u0438\u0442\u044b \u0443\u0431\u0435\u0434\u0438\u0442\u0435\u0441\u044c \u0432 \u043d\u0430\u043b\u0438\u0447\u0438\u0438 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 \u0444\u0430\u0439\u043b\u043e\u0432:</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0424\u0430\u0439\u043b \u0448\u0430\u0431\u043b\u043e\u043d\u0430: \u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043c\u0430\u043a\u0435\u0442\u0430 \u0441"
-                        "\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u0430/\u0434\u0438\u043f\u043b\u043e\u043c\u0430 (\u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u043c\u044b\u0435 \u0444\u043e\u0440\u043c\u0430\u0442\u044b: JPEG, PNG \u0438 \u0434\u0440\u0443\u0433\u0438\u0435).</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0424\u0430\u0439\u043b \u0448\u0430\u0431\u043b\u043e\u043d\u0430: \u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043c\u0430\u043a\u0435\u0442\u0430 \u0441\u0435"
+                        "\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u0430/\u0434\u0438\u043f\u043b\u043e\u043c\u0430 (\u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u043c\u044b\u0435 \u0444\u043e\u0440\u043c\u0430\u0442\u044b: JPEG, PNG \u0438 \u0434\u0440\u0443\u0433\u0438\u0435).</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0424\u0430\u0439\u043b \u0434\u0430\u043d\u043d\u044b\u0445: \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u043b\u0438\u0441\u0442\u043e\u0432\u043e\u0433\u043e \u0444\u043e\u0440\u043c\u0430\u0442\u0430 (.xlsx, .xls, .ods \u0438 \u0434\u0440\u0443\u0433\u0438\u0435), \u0441\u043e\u0434\u0435\u0440\u0436\u0430\u0449\u0438\u0439 \u0431\u0430\u0437\u0443 \u0434\u0430\u043d\u043d\u044b\u0445 \u043f\u043e\u043b\u0443\u0447\u0430"
-                        "\u0442\u0435\u043b\u0435\u0439 (\u0424\u0418\u041e, \u043d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435 \u043a\u0443\u0440\u0441\u0430, \u0434\u0430\u0442\u0430 \u0438 \u0442.\u0434.).</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0424\u0430\u0439\u043b \u0434\u0430\u043d\u043d\u044b\u0445: \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u043b\u0438\u0441\u0442\u043e\u0432\u043e\u0433\u043e \u0444\u043e\u0440\u043c\u0430\u0442\u0430 (.xlsx, .xls, .ods \u0438 \u0434\u0440\u0443\u0433\u0438\u0435), \u0441\u043e\u0434\u0435\u0440\u0436\u0430\u0449\u0438\u0439 \u0431\u0430\u0437\u0443 \u0434\u0430\u043d\u043d\u044b\u0445 \u043f\u043e\u043b\u0443\u0447\u0430\u0442"
+                        "\u0435\u043b\u0435\u0439 (\u0424\u0418\u041e, \u043d\u0430\u0438\u043c\u0435\u043d\u043e\u0432\u0430\u043d\u0438\u0435 \u043a\u0443\u0440\u0441\u0430, \u0434\u0430\u0442\u0430 \u0438 \u0442.\u0434.).</p></body></html>", None))
         self.textStep1.setPlainText(QCoreApplication.translate("Dialog", u"\u041f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u044d\u0442\u0430\u043f (\u041d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u044b\u0435 \u0440\u0435\u0441\u0443\u0440\u0441\u044b)\n"
 "\n"
 "\u0414\u043b\u044f \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0439 \u0440\u0430\u0431\u043e\u0442\u044b \u0443\u0442\u0438\u043b\u0438\u0442\u044b \u0443\u0431\u0435\u0434\u0438\u0442\u0435\u0441\u044c \u0432 \u043d\u0430\u043b\u0438\u0447\u0438\u0438 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 \u0444\u0430\u0439\u043b\u043e\u0432:\n"
@@ -366,10 +308,10 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0417\u0430\u043f\u0443\u0441\u043a \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u0438\u0441\u043f\u043e\u043b\u043d\u044f\u0435\u043c\u044b\u0439 \u0444\u0430\u0439\u043b \u043f\u0440\u0438\u043b\u043e\u0436\u0435"
-                        "\u043d\u0438\u044f.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u0438\u0441\u043f\u043e\u043b\u043d\u044f\u0435\u043c\u044b\u0439 \u0444\u0430\u0439\u043b \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d"
+                        "\u0438\u044f.</p></body></html>", None))
         self.textStep2.setPlainText(QCoreApplication.translate("Dialog", u"\u0417\u0430\u043f\u0443\u0441\u043a \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b\n"
 "\u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u0438\u0441\u043f\u043e\u043b\u043d\u044f\u0435\u043c\u044b\u0439 \u0444\u0430\u0439\u043b \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f.", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_step2), QCoreApplication.translate("Dialog", u"03 \u0417\u0430\u043f\u0443\u0441\u043a", None))
@@ -379,10 +321,10 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u0448\u0430\u0431\u043b\u043e\u043d\u0430</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0412 \u0433\u043b\u0430\u0432\u043d\u043e\u043c \u043c\u0435\u043d\u044e \u043d\u0430\u0436\u043c\u0438\u0442\u0435 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u0414\u043e\u0431"
-                        "\u0430\u0432\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435\u00bb. \u0412 \u043e\u0442\u043a\u0440\u044b\u0432\u0448\u0435\u043c\u0441\u044f \u043e\u043a\u043d\u0435 \u043f\u0440\u043e\u0432\u043e\u0434\u043d\u0438\u043a\u0430 \u0443\u043a\u0430\u0436\u0438\u0442\u0435 \u043f\u0443\u0442\u044c \u043a \u0412\u0430\u0448\u0435\u043c\u0443 \u0444\u0430\u0439\u043b\u0443-\u0448\u0430\u0431\u043b\u043e\u043d\u0443. \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0437\u0438\u0442\u0441\u044f \u0432 \u0440\u0430\u0431\u043e\u0447\u0435\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0412 \u0433\u043b\u0430\u0432\u043d\u043e\u043c \u043c\u0435\u043d\u044e \u043d\u0430\u0436\u043c\u0438\u0442\u0435 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u0414\u043e\u0431\u0430"
+                        "\u0432\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435\u00bb. \u0412 \u043e\u0442\u043a\u0440\u044b\u0432\u0448\u0435\u043c\u0441\u044f \u043e\u043a\u043d\u0435 \u043f\u0440\u043e\u0432\u043e\u0434\u043d\u0438\u043a\u0430 \u0443\u043a\u0430\u0436\u0438\u0442\u0435 \u043f\u0443\u0442\u044c \u043a \u0412\u0430\u0448\u0435\u043c\u0443 \u0444\u0430\u0439\u043b\u0443-\u0448\u0430\u0431\u043b\u043e\u043d\u0443. \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0437\u0438\u0442\u0441\u044f \u0432 \u0440\u0430\u0431\u043e\u0447\u0435\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b.</p></body></html>", None))
         self.textStep3.setPlainText(QCoreApplication.translate("Dialog", u"\u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u0448\u0430\u0431\u043b\u043e\u043d\u0430\n"
 "\u0412 \u0433\u043b\u0430\u0432\u043d\u043e\u043c \u043c\u0435\u043d\u044e \u043d\u0430\u0436\u043c\u0438\u0442\u0435 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435\u00bb. \u0412 \u043e\u0442\u043a\u0440\u044b\u0432\u0448\u0435\u043c\u0441\u044f \u043e\u043a\u043d\u0435 \u043f\u0440\u043e\u0432\u043e\u0434\u043d\u0438\u043a\u0430 \u0443\u043a\u0430\u0436\u0438\u0442\u0435 \u043f\u0443\u0442\u044c \u043a \u0412\u0430\u0448\u0435\u043c\u0443 \u0444\u0430\u0439\u043b\u0443-\u0448\u0430\u0431\u043b\u043e\u043d\u0443. \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0437\u0438\u0442\u0441\u044f \u0432 \u0440\u0430\u0431\u043e\u0447\u0435\u0439 \u043e\u0431\u043b\u0430\u0441\u0442\u0438 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b.", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_step3), QCoreApplication.translate("Dialog", u"04 \u0428\u0430\u0431\u043b\u043e\u043d", None))
@@ -392,10 +334,10 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043d\u0430 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u0412\u044b\u0431\u0440\u0430\u0442\u044c"
-                        " Excel \u0444\u0430\u0439\u043b\u00bb \u0438 \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u0435 \u043f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0439 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u0441 \u0434\u0430\u043d\u043d\u044b\u043c\u0438. \u0421\u0438\u0441\u0442\u0435\u043c\u0430 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0441\u0447\u0438\u0442\u0430\u0435\u0442 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0438 \u0441\u0442\u043e\u043b\u0431\u0446\u043e\u0432.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043d\u0430 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u0412\u044b\u0431\u0440\u0430\u0442\u044c Excel "
+                        "\u0444\u0430\u0439\u043b\u00bb \u0438 \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u0435 \u043f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0439 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u0441 \u0434\u0430\u043d\u043d\u044b\u043c\u0438. \u0421\u0438\u0441\u0442\u0435\u043c\u0430 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0441\u0447\u0438\u0442\u0430\u0435\u0442 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0438 \u0441\u0442\u043e\u043b\u0431\u0446\u043e\u0432.</p></body></html>", None))
         self.textStep4.setPlainText(QCoreApplication.translate("Dialog", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u0431\u0430\u0437\u044b \u0434\u0430\u043d\u043d\u044b\u0445\n"
 "\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043d\u0430 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u0412\u044b\u0431\u0440\u0430\u0442\u044c Excel \u0444\u0430\u0439\u043b\u00bb \u0438 \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u0435 \u043f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u043b\u0435\u043d\u043d\u044b\u0439 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u0441 \u0434\u0430\u043d\u043d\u044b\u043c\u0438. \u0421\u0438\u0441\u0442\u0435\u043c\u0430 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0441\u0447\u0438\u0442\u0430\u0435\u0442 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0438 \u0441\u0442\u043e\u043b\u0431\u0446\u043e\u0432.", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_step4), QCoreApplication.translate("Dialog", u"05 \u0414\u0430\u043d\u043d\u044b\u0435", None))
@@ -405,16 +347,16 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0420\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u0435 \u043f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0445 \u043f\u043e\u043b\u0435\u0439</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0412 \u043f\u0440\u0430\u0432\u043e\u0439 \u0447\u0430\u0441\u0442\u0438 \u0438\u043d\u0442\u0435\u0440\u0444\u0435"
-                        "\u0439\u0441\u0430 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d \u0431\u043b\u043e\u043a \u00ab\u041f\u043e\u043b\u044f \u0434\u043b\u044f \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u044f\u00bb. \u0414\u0430\u043d\u043d\u044b\u0439 \u0431\u043b\u043e\u043a \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u043e\u043b\u0431\u0446\u043e\u0432 \u0412\u0430\u0448\u0435\u0439 Excel-\u0442\u0430\u0431\u043b\u0438\u0446\u044b.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0412 \u043f\u0440\u0430\u0432\u043e\u0439 \u0447\u0430\u0441\u0442\u0438 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441"
+                        "\u0430 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d \u0431\u043b\u043e\u043a \u00ab\u041f\u043e\u043b\u044f \u0434\u043b\u044f \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u044f\u00bb. \u0414\u0430\u043d\u043d\u044b\u0439 \u0431\u043b\u043e\u043a \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u043e\u043b\u0431\u0446\u043e\u0432 \u0412\u0430\u0448\u0435\u0439 Excel-\u0442\u0430\u0431\u043b\u0438\u0446\u044b.</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0435 \u043f\u043e\u043b\u0435 (\u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u00ab\u0424\u0418\u041e\u00bb)"
-                        ".</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u041a\u043b\u0438\u043a\u043d\u0438\u0442\u0435 \u043b\u0435\u0432\u043e\u0439 \u043a\u043d\u043e\u043f\u043a\u043e\u0439 \u043c\u044b\u0448\u0438 \u0432 \u0442\u0443 \u043e\u0431\u043b\u0430\u0441\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f, \u043a\u0443\u0434\u0430 \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0432\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u041d\u0430 \u043c\u0435\u0441\u0442\u0435 \u043a\u043b\u0438\u043a\u0430 \u043f\u043e\u044f\u0432\u0438\u0442\u0441\u044f \u043c\u0430\u0440\u043a\u0435\u0440 \u0431\u0443\u0434\u0443\u0449\u0435\u0433\u043e \u0442\u0435\u043a\u0441\u0442\u0430. "
-                        "\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u044e \u0434\u043b\u044f \u0432\u0441\u0435\u0445 \u043f\u043e\u043b\u0435\u0439 (\u0434\u0430\u0442\u0430, \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043c\u0435\u0440\u043e\u043f\u0440\u0438\u044f\u0442\u0438\u044f \u0438 \u0442.\u0434.).</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0435 \u043f\u043e\u043b\u0435 (\u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u00ab\u0424\u0418\u041e\u00bb).</p>\n"
+"<p"
+                        " style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u041a\u043b\u0438\u043a\u043d\u0438\u0442\u0435 \u043b\u0435\u0432\u043e\u0439 \u043a\u043d\u043e\u043f\u043a\u043e\u0439 \u043c\u044b\u0448\u0438 \u0432 \u0442\u0443 \u043e\u0431\u043b\u0430\u0441\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f, \u043a\u0443\u0434\u0430 \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0432\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u041d\u0430 \u043c\u0435\u0441\u0442\u0435 \u043a\u043b\u0438\u043a\u0430 \u043f\u043e\u044f\u0432\u0438\u0442\u0441\u044f \u043c\u0430\u0440\u043a\u0435\u0440 \u0431\u0443\u0434\u0443\u0449\u0435\u0433\u043e \u0442\u0435\u043a\u0441\u0442\u0430. \u041f\u043e"
+                        "\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u044e \u0434\u043b\u044f \u0432\u0441\u0435\u0445 \u043f\u043e\u043b\u0435\u0439 (\u0434\u0430\u0442\u0430, \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043c\u0435\u0440\u043e\u043f\u0440\u0438\u044f\u0442\u0438\u044f \u0438 \u0442.\u0434.).</p></body></html>", None))
         self.textStep5.setPlainText(QCoreApplication.translate("Dialog", u"\u0420\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u0435 \u043f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0445 \u043f\u043e\u043b\u0435\u0439\n"
 "\u0412 \u043f\u0440\u0430\u0432\u043e\u0439 \u0447\u0430\u0441\u0442\u0438 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0430 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d \u0431\u043b\u043e\u043a \u00ab\u041f\u043e\u043b\u044f \u0434\u043b\u044f \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u044f\u00bb. \u0414\u0430\u043d\u043d\u044b\u0439 \u0431\u043b\u043e\u043a \u0441\u043e\u0434\u0435\u0440\u0436\u0438\u0442 \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u0442\u043e\u043b\u0431\u0446\u043e\u0432 \u0412\u0430\u0448\u0435\u0439 Excel-\u0442\u0430\u0431\u043b\u0438\u0446\u044b.\n"
 "\n"
@@ -430,14 +372,14 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0421\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u0430</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u041f\u043e \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u0438 \u0432\u0435\u0440\u0441\u0442\u043a\u0438 \u043d\u0430\u0436\u043c\u0438\u0442\u0435"
-                        " \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f\u00bb.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u041f\u043e \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u0438 \u0432\u0435\u0440\u0441\u0442\u043a\u0438 \u043d\u0430\u0436\u043c\u0438\u0442\u0435 \u043a"
+                        "\u043d\u043e\u043f\u043a\u0443 \u00ab\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f\u00bb.</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412 \u043f\u043e\u044f\u0432\u0438\u0432\u0448\u0435\u043c\u0441\u044f \u043e\u043a\u043d\u0435 \u0443\u043a\u0430\u0436\u0438\u0442\u0435 \u0446\u0435\u043b\u0435\u0432\u0443\u044e \u043f\u0430\u043f\u043a\u0443 \u0434\u043b\u044f \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f \u0433\u043e\u0442\u043e\u0432\u044b\u0445 \u0444\u0430\u0439\u043b\u043e\u0432.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412 \u0443\u043a\u0430\u0437\u0430"
-                        "\u043d\u043d\u043e\u043c \u0412\u0430\u043c\u0438 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0438 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0430 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0441\u043e\u0437\u0434\u0430\u0441\u0442 \u043f\u0430\u043f\u043a\u0443 \u0441 \u0438\u043c\u0435\u043d\u0435\u043c \u0444\u043e\u0440\u043c\u0430\u0442\u0430 Output-\u0414\u0414-\u041c\u041c-\u0413\u0413 \u0427\u0427\u041c\u041c\u0421\u0421, \u0432 \u043a\u043e\u0442\u043e\u0440\u0443\u044e \u0431\u0443\u0434\u0443\u0442 \u043f\u043e\u043c\u0435\u0449\u0435\u043d\u044b \u0432\u0441\u0435 \u0441\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0435 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u044b.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412 \u0443\u043a\u0430\u0437\u0430\u043d"
+                        "\u043d\u043e\u043c \u0412\u0430\u043c\u0438 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0438 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0430 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438 \u0441\u043e\u0437\u0434\u0430\u0441\u0442 \u043f\u0430\u043f\u043a\u0443 \u0441 \u0438\u043c\u0435\u043d\u0435\u043c \u0444\u043e\u0440\u043c\u0430\u0442\u0430 Output-\u0414\u0414-\u041c\u041c-\u0413\u0413 \u0427\u0427\u041c\u041c\u0421\u0421, \u0432 \u043a\u043e\u0442\u043e\u0440\u0443\u044e \u0431\u0443\u0434\u0443\u0442 \u043f\u043e\u043c\u0435\u0449\u0435\u043d\u044b \u0432\u0441\u0435 \u0441\u0433\u0435\u043d\u0435\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0435 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u044b.</p></body></html>", None))
         self.textStep6.setPlainText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u0430\n"
 "\u041f\u043e \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u0438 \u0432\u0435\u0440\u0441\u0442\u043a\u0438 \u043d\u0430\u0436\u043c\u0438\u0442\u0435 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f\u00bb.\n"
 "\n"
@@ -451,18 +393,18 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 (\u0424\u0443\u043d\u043a\u0446\u0438\u044f \u00ab\u041d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c...\u00bb)</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inde"
-                        "nt:0px;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+                        "\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0414\u043b\u044f \u043f\u0440\u0438\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u0442\u0435\u043a\u0441\u0442\u0430 \u0432 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0435 \u0441 \u043a\u043e\u0440\u043f\u043e\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u043c \u0441\u0442\u0438\u043b\u0435\u043c \u0438\u043b\u0438 \u043b\u0438\u0447\u043d\u044b\u043c\u0438 \u043f\u0440\u0435\u0434\u043f\u043e\u0447\u0442\u0435\u043d\u0438\u044f\u043c\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u041d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c...\u00bb.</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; marg"
-                        "in-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0414\u0430\u043d\u043d\u044b\u0439 \u0440\u0430\u0437\u0434\u0435\u043b \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-righ"
+                        "t:0px; -qt-block-indent:0; text-indent:0px;\">\u0414\u0430\u043d\u043d\u044b\u0439 \u0440\u0430\u0437\u0434\u0435\u043b \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442:</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0418\u0437\u043c\u0435\u043d\u044f\u0442\u044c \u0446\u0435\u043d\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0442\u0435\u043a\u0441\u0442\u0430;</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0420\u0435\u0433\u0443\u043b\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043a\u0435\u0433\u043b\u044c \u0448\u0440\u0438\u0444\u0442\u0430 (\u0440\u0430\u0437\u043c\u0435\u0440);</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412\u044b\u0431\u0438\u0440\u0430\u0442\u044c \u0446\u0432\u0435\u0442\u043e"
-                        "\u0432\u0443\u044e \u043f\u0430\u043b\u0438\u0442\u0440\u0443 \u0442\u0435\u043a\u0441\u0442\u0430.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412\u044b\u0431\u0438\u0440\u0430\u0442\u044c \u0446\u0432\u0435\u0442\u043e\u0432"
+                        "\u0443\u044e \u043f\u0430\u043b\u0438\u0442\u0440\u0443 \u0442\u0435\u043a\u0441\u0442\u0430.</p></body></html>", None))
         self.textSettings.setPlainText(QCoreApplication.translate("Dialog", u"\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 (\u0424\u0443\u043d\u043a\u0446\u0438\u044f \u00ab\u041d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c...\u00bb)\n"
 "\n"
 "\u0414\u043b\u044f \u043f\u0440\u0438\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u0442\u0435\u043a\u0441\u0442\u0430 \u0432 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0435 \u0441 \u043a\u043e\u0440\u043f\u043e\u0440\u0430\u0442\u0438\u0432\u043d\u044b\u043c \u0441\u0442\u0438\u043b\u0435\u043c \u0438\u043b\u0438 \u043b\u0438\u0447\u043d\u044b\u043c\u0438 \u043f\u0440\u0435\u0434\u043f\u043e\u0447\u0442\u0435\u043d\u0438\u044f\u043c\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u041d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c...\u00bb.\n"
@@ -479,17 +421,17 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0420\u0430\u0431\u043e\u0442\u0430 \u0441 \u0434\u0430\u043d\u043d\u044b\u043c\u0438 \u0438 \u0438\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043e\u0448\u0438\u0431\u043e\u043a</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; marg"
-                        "in-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0412 \u0441\u043b\u0443\u0447\u0430\u0435 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u043d\u0435\u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445 (\u043e\u043f\u0435\u0447\u0430\u0442\u043a\u0438, \u043e\u0440\u0444\u043e\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u043e\u0448\u0438\u0431\u043a\u0438) \u0432 \u0437\u0430\u0433\u0440\u0443\u0436\u0435\u043d\u043d\u043e\u043c Excel-\u0444\u0430\u0439\u043b\u0435, \u043d\u0435 \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0437\u0430\u043a\u0440\u044b\u0432\u0430\u0442\u044c \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0443 \u0438 \u043e\u0442\u043a\u0440\u044b\u0432\u0430\u0442\u044c \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; marg"
-                        "in-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bott"
+                        "om:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0412 \u0441\u043b\u0443\u0447\u0430\u0435 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u043d\u0435\u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445 (\u043e\u043f\u0435\u0447\u0430\u0442\u043a\u0438, \u043e\u0440\u0444\u043e\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u043e\u0448\u0438\u0431\u043a\u0438) \u0432 \u0437\u0430\u0433\u0440\u0443\u0436\u0435\u043d\u043d\u043e\u043c Excel-\u0444\u0430\u0439\u043b\u0435, \u043d\u0435 \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0437\u0430\u043a\u0440\u044b\u0432\u0430\u0442\u044c \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0443 \u0438 \u043e\u0442\u043a\u0440\u044b\u0432\u0430\u0442\u044c \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u043e.</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left"
+                        ":0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043a\u043d\u043e\u043f\u043a\u0443 \u00ab\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043e\u043a\u043d\u043e \u0441 \u0442\u0430\u0431\u043b\u0438\u0446\u0435\u0439\u00bb.</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u041d\u0430 \u044d\u043a\u0440\u0430\u043d\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0437\u0438\u0442\u0441\u044f \u0432\u0441\u0442\u0440\u043e\u0435\u043d\u043d\u044b\u0439 \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440 \u0434\u0430\u043d\u043d\u044b\u0445.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412\u043d\u0435\u0441\u0438\u0442\u0435 \u043d"
-                        "\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u044b\u0435 \u0438\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f \u043d\u0435\u043f\u043e\u0441\u0440\u0435\u0434\u0441\u0442\u0432\u0435\u043d\u043d\u043e \u0432 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0435 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">    \u2022 \u0412\u043d\u0435\u0441\u0438\u0442\u0435 \u043d\u0435"
+                        "\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u044b\u0435 \u0438\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f \u043d\u0435\u043f\u043e\u0441\u0440\u0435\u0434\u0441\u0442\u0432\u0435\u043d\u043d\u043e \u0432 \u0438\u043d\u0442\u0435\u0440\u0444\u0435\u0439\u0441\u0435 \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b.</p></body></html>", None))
         self.textData.setPlainText(QCoreApplication.translate("Dialog", u"\u0420\u0430\u0431\u043e\u0442\u0430 \u0441 \u0434\u0430\u043d\u043d\u044b\u043c\u0438 \u0438 \u0438\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043e\u0448\u0438\u0431\u043e\u043a\n"
 "\n"
 "\u0412 \u0441\u043b\u0443\u0447\u0430\u0435 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u043d\u0435\u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445 (\u043e\u043f\u0435\u0447\u0430\u0442\u043a\u0438, \u043e\u0440\u0444\u043e\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u043e\u0448\u0438\u0431\u043a\u0438) \u0432 \u0437\u0430\u0433\u0440\u0443\u0436\u0435\u043d\u043d\u043e\u043c Excel-\u0444\u0430\u0439\u043b\u0435, \u043d\u0435 \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0437\u0430\u043a\u0440\u044b\u0432\u0430\u0442\u044c \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0443 \u0438 \u043e\u0442\u043a\u0440\u044b\u0432\u0430\u0442\u044c \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442 \u043e\u0442\u0434"
@@ -505,11 +447,11 @@ class Ui_HelpDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-i"
-                        "ndent:0px;\">\u0415\u0441\u043b\u0438 \u043f\u0440\u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0438 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438 \u0432\u043e\u0437\u043d\u0438\u043a\u0430\u044e\u0442 \u043e\u0448\u0438\u0431\u043a\u0438 \u0438\u043b\u0438 \u0441\u0431\u043e\u0438 \u0432 \u0440\u0430\u0431\u043e\u0442\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f, \u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0441\u043e\u0437\u0434\u0430\u0439\u0442\u0435 \u041f\u0440\u043e\u0431\u043b\u0435\u043c\u0443 \u0432 \u043d\u0430\u0448\u0435\u043c <a href=\"https://github.com/CyberBro9/aobp\"><span style=\" text-decoration: underline; color:#004275;\">\u0440\u0435\u043f\u043e\u0437\u0438\u0442\u043e\u0440\u0438\u0438 GitHub</span></a>.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0"
+                        "px;\">\u0415\u0441\u043b\u0438 \u043f\u0440\u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0438 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438 \u0432\u043e\u0437\u043d\u0438\u043a\u0430\u044e\u0442 \u043e\u0448\u0438\u0431\u043a\u0438 \u0438\u043b\u0438 \u0441\u0431\u043e\u0438 \u0432 \u0440\u0430\u0431\u043e\u0442\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f, \u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0441\u043e\u0437\u0434\u0430\u0439\u0442\u0435 \u041f\u0440\u043e\u0431\u043b\u0435\u043c\u0443 \u0432 \u043d\u0430\u0448\u0435\u043c \u0440\u0435\u043f\u043e\u0437\u0438\u0442\u043e\u0440\u0438\u0438 GitHub.</p></body></html>", None))
         self.textSupport.setPlainText(QCoreApplication.translate("Dialog", u"\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430\n"
 "\n"
 "\u0415\u0441\u043b\u0438 \u043f\u0440\u0438 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u0438 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438 \u0432\u043e\u0437\u043d\u0438\u043a\u0430\u044e\u0442 \u043e\u0448\u0438\u0431\u043a\u0438 \u0438\u043b\u0438 \u0441\u0431\u043e\u0438 \u0432 \u0440\u0430\u0431\u043e\u0442\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f, \u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0441\u043e\u0437\u0434\u0430\u0439\u0442\u0435 \u041f\u0440\u043e\u0431\u043b\u0435\u043c\u0443 \u0432 \u043d\u0430\u0448\u0435\u043c \u0440\u0435\u043f\u043e\u0437\u0438\u0442\u043e\u0440\u0438\u0438 GitHub.", None))

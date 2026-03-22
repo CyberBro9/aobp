@@ -14,13 +14,76 @@
    <string>Справка</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-     QDialog {
-         background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                                     stop:0 #0a1a2f,
-                                     stop:1 #0d2b4a);
-     }
-   </string>
+   <string notr="true">QDialog {
+	background: #0a192f;
+}
+QLabel {
+	font: 20pt 'InterI';
+    color: #ffffff;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #64ffda;
+}
+QPushButton {
+            background-color: #1e293b;
+            border: 1px solid #3d4044;
+            border-radius: 8px;
+            padding: 10px 18px;
+            color: #f1f5f9;
+            font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';
+          }
+          QPushButton:hover {
+              background: rgba(100,255,218,0.3);
+          }
+          QPushButton:pressed {
+              background: rgba(100,255,218,0.5);
+          }
+QCheckBox {
+              color: #ffffff;
+              font: 12pt 'Inter';
+          }
+          QCheckBox::indicator {
+              width: 20px;
+              height: 20px;
+              border-radius: 6px;
+              background-color: rgb(255, 255, 255);
+          }
+          	QCheckBox::indicator:checked {
+             	background-color: #2dd4bf;
+          	}
+		  	QCheckBox::indicator:unchecked {
+				background-color: rgb(5, 14, 25)
+			}
+          QCheckBox::indicator:hover {
+              background-color: rgb(156, 212, 191)
+          }
+
+        QTabWidget::pane {
+            background: #050e19;
+            border-radius: 16px;
+            margin-top: 12px;
+            padding: 20px;
+        }
+        QTabBar::tab {
+            background: transparent;
+            color: #8a9bb5;
+            font: 12pt 'Inter';
+            padding: 8px 20px;
+            margin-right: 8px;
+        }
+        QTabBar::tab:selected {
+            color: #2dd4bf;
+            font-weight: bold;
+            border-bottom: 3px solid #64ffda;
+        }
+        QTabBar::tab:hover {
+            color: rgb(156, 212, 191);
+        }
+QTextEdit {
+	background: transparent;
+    color: #ffffff;
+    font: 12pt 'Inter';
+    border: none;
+}</string>
   </property>
   <layout class="QVBoxLayout" name="mainLayout">
    <property name="spacing">
@@ -42,10 +105,6 @@
     <widget class="QLabel" name="titleLabel">
      <property name="styleSheet">
       <string notr="true">
-        font: bold 20pt 'Yu Gothic UI';
-        color: #ffffff;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #64ffda;
       </string>
      </property>
      <property name="text">
@@ -57,30 +116,6 @@
     <widget class="QTabWidget" name="tabWidget">
      <property name="styleSheet">
       <string notr="true">
-        QTabWidget::pane {
-            background: rgba(255,255,255,0.07);
-            border: none;
-            border-radius: 16px;
-            margin-top: 12px;
-            padding: 20px;
-        }
-        QTabBar::tab {
-            background: transparent;
-            color: #8a9bb5;
-            font: 12pt 'Yu Gothic UI';
-            padding: 8px 20px;
-            margin-right: 8px;
-            border: none;
-            border-bottom: 3px solid transparent;
-        }
-        QTabBar::tab:selected {
-            color: #64ffda;
-            font-weight: bold;
-            border-bottom: 3px solid #64ffda;
-        }
-        QTabBar::tab:hover {
-            color: #b0c4de;
-        }
       </string>
      </property>
      <property name="currentIndex">
@@ -93,14 +128,6 @@
       <layout class="QVBoxLayout" name="introLayout">
        <item>
         <widget class="QTextEdit" name="textIntro">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -111,7 +138,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Аккредитации и другие бумаги для бизнесса&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Это руководство предназначено для быстрого понимания смысла программы. Внимательное следование инструкции позволит Вам создавать персонализированные документы в минимальные сроки.&lt;/p&gt;
@@ -134,14 +161,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="step1Layout">
        <item>
         <widget class="QTextEdit" name="textStep1">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -152,7 +171,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Подготовительный этап (Необходимые ресурсы)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Для корректной работы утилиты убедитесь в наличии следующих файлов:&lt;/p&gt;
@@ -181,14 +200,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="step2Layout">
        <item>
         <widget class="QTextEdit" name="textStep2">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -199,7 +210,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Запуск программы&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Откройте исполняемый файл приложения.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
@@ -218,14 +229,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="step3Layout">
        <item>
         <widget class="QTextEdit" name="textStep3">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -236,7 +239,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Загрузка шаблона&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;В главном меню нажмите кнопку «Добавить изображение». В открывшемся окне проводника укажите путь к Вашему файлу-шаблону. Изображение отобразится в рабочей области программы.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
@@ -255,14 +258,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="step4Layout">
        <item>
         <widget class="QTextEdit" name="textStep4">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -273,7 +268,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Подключение базы данных&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Нажмите на кнопку «Выбрать Excel файл» и загрузите подготовленный документ с данными. Система автоматически считает заголовки столбцов.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
@@ -292,14 +287,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="step5Layout">
        <item>
         <widget class="QTextEdit" name="textStep5">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -310,7 +297,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Размещение переменных полей&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;В правой части интерфейса расположен блок «Поля для добавления». Данный блок содержит список столбцов Вашей Excel-таблицы.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -337,14 +324,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="step6Layout">
        <item>
         <widget class="QTextEdit" name="textStep6">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -355,7 +334,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Сохранение результата&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;По окончании верстки нажмите кнопку «Сохранить изображения».&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
@@ -380,14 +359,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="settingsLayout">
        <item>
         <widget class="QTextEdit" name="textSettings">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -398,7 +369,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Дополнительные настройки (Функция «Настроить...»)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Для приведения текста в соответствие с корпоративным стилем или личными предпочтениями используйте кнопку «Настроить...».&lt;/p&gt;
@@ -429,14 +400,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="dataLayout">
        <item>
         <widget class="QTextEdit" name="textData">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -447,7 +410,7 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Работа с данными и исправление ошибок&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;В случае обнаружения некорректных данных (опечатки, орфографические ошибки) в загруженном Excel-файле, не требуется закрывать программу и открывать документ отдельно.&lt;/p&gt;
@@ -476,14 +439,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <layout class="QVBoxLayout" name="supportLayout">
        <item>
         <widget class="QTextEdit" name="textSupport">
-         <property name="styleSheet">
-          <string notr="true">
-            background: transparent;
-            color: #ffffff;
-            font: 14pt 'Yu Gothic UI';
-            border: none;
-          </string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -494,10 +449,10 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Yu Gothic UI'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Inter'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Техническая поддержка&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Если при выполнении инструкции возникают ошибки или сбои в работе приложения, пожалуйста, создайте Проблему в нашем &lt;a href=&quot;https://github.com/CyberBro9/aobp&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#004275;&quot;&gt;репозитории GitHub&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Если при выполнении инструкции возникают ошибки или сбои в работе приложения, пожалуйста, создайте Проблему в нашем репозитории GitHub.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="plainText">
           <string>Техническая поддержка
@@ -516,23 +471,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <widget class="QCheckBox" name="checkBox">
        <property name="styleSheet">
         <string notr="true">
-          QCheckBox {
-              color: #ffffff;
-              font: 12pt 'Yu Gothic UI';
-              spacing: 10px;
-          }
-          QCheckBox::indicator {
-              width: 40px;
-              height: 20px;
-              border-radius: 6px;
-              background-color: #4f5b6b;
-          }
-          QCheckBox::indicator:checked {
-              background-color: #64ffda;
-          }
-          QCheckBox::indicator:unchecked:hover {
-              background-color: #5f6b7b;
-          }
         </string>
        </property>
        <property name="text">
@@ -560,20 +498,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <widget class="QPushButton" name="closeButton">
        <property name="styleSheet">
         <string notr="true">
-          QPushButton {
-              background: rgba(100,255,218,0.2);
-              border: 2px solid #64ffda;
-              border-radius: 8px;
-              padding: 10px 30px;
-              font: bold 12pt 'Yu Gothic UI';
-              color: #64ffda;
-          }
-          QPushButton:hover {
-              background: rgba(100,255,218,0.3);
-          }
-          QPushButton:pressed {
-              background: rgba(100,255,218,0.5);
-          }
         </string>
        </property>
        <property name="text">
