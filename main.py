@@ -3,22 +3,22 @@ import pyexcel
 import os
 import ctypes
 import threading
-from datetime import datetime
+import tkinter
 
+from datetime import datetime
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem, QProgressBar)
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
 from PySide6.QtCore import Qt, QSize, QPoint
-import tkinter as tk
 from tkinter import filedialog
 from UI.mainUI import Ui_MainWindow
 from UI.tableDialog import Ui_Dialog
 from UI.parameters import Ui_Parameters
 from UI.helpDialog import Ui_HelpDialog
 
-root = tk.Tk()
+root = tkinter.Tk()
 root.iconbitmap("Assets/aobp.ico")
 root.attributes("-topmost", True)
 root.withdraw()
@@ -78,6 +78,7 @@ class Application(QMainWindow):
         self.Parameters.setupUi(self.ParametersDialog)
         self.HelpDialog.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.HelpDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
+        self.HelpDialog.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
         self.HelpDialogUI.setupUi(self.HelpDialog)
         self.TableWidget = self.DialogUI.tableWidget
         self.UI = Ui_MainWindow()
@@ -276,7 +277,7 @@ class Application(QMainWindow):
             draw.text((x, y), text, font=font, fill=color, anchor=f"{textAnchorsTranslation.get(label.alignment())}s")
 
         self.RenderedImagesCounter += 1
-        canvas.save(dirName + fr"\{rowNum + 1}.png")
+        canvas.save(dirName + fr"\{self.MainSheet.cell_value(row=rowNum, column=1)}.png")
         del canvas
 
     def saveImagesWithDocumentFields(self):

@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QHBoxLayout,
     QLabel, QPushButton, QSizePolicy, QSpacerItem,
     QTabWidget, QTextEdit, QVBoxLayout, QWidget)
 
-class Ui_Dialog(object):
+class Ui_HelpDialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
@@ -67,6 +67,9 @@ class Ui_Dialog(object):
 "          QCheckBox::indicator:hover {\n"
 "              background-color: rgb(156, 212, 191)\n"
 "          }\n"
+"		 QCheckBox::indicator:pressed {\n"
+"			 background-color: rgb(52, 247, 221)\n"
+"		 }\n"
 "\n"
 "        QTabWidget::pane {\n"
 "            background: #050e19;\n"
@@ -87,13 +90,13 @@ class Ui_Dialog(object):
 "            border-bottom: 3px solid #64ffda;\n"
 "        }\n"
 "        QTabBar::tab:hover {\n"
-"            color: rgb(156, 212, 191);\n"
+"            color: rgb(156, 212, 191"
+                        ");\n"
 "        }\n"
 "QTextEdit {\n"
 "	background: transparent;\n"
 "    color: #ffffff;\n"
-""
-                        "    font: 12pt 'Inter';\n"
+"    font: 12pt 'Inter';\n"
 "    border: none;\n"
 "}")
         self.mainLayout = QVBoxLayout(Dialog)
@@ -109,6 +112,9 @@ class Ui_Dialog(object):
         self.tabWidget = QTabWidget(Dialog)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setStyleSheet(u"")
+        self.tabWidget.setTabPosition(QTabWidget.TabPosition.North)
+        self.tabWidget.setTabShape(QTabWidget.TabShape.Rounded)
+        self.tabWidget.setElideMode(Qt.TextElideMode.ElideNone)
         self.tab_intro = QWidget()
         self.tab_intro.setObjectName(u"tab_intro")
         self.introLayout = QVBoxLayout(self.tab_intro)
@@ -248,7 +254,7 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         self.closeButton.clicked.connect(Dialog.accept)
 
-        self.tabWidget.setCurrentIndex(9)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Dialog)

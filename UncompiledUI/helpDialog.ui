@@ -56,6 +56,9 @@ QCheckBox {
           QCheckBox::indicator:hover {
               background-color: rgb(156, 212, 191)
           }
+		 QCheckBox::indicator:pressed {
+			 background-color: rgb(52, 247, 221)
+		 }
 
         QTabWidget::pane {
             background: #050e19;
@@ -104,8 +107,7 @@ QTextEdit {
    <item>
     <widget class="QLabel" name="titleLabel">
      <property name="styleSheet">
-      <string notr="true">
-      </string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Руководство пользователя</string>
@@ -115,11 +117,19 @@ QTextEdit {
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="styleSheet">
-      <string notr="true">
-      </string>
+      <string notr="true"/>
+     </property>
+     <property name="tabPosition">
+      <enum>QTabWidget::TabPosition::North</enum>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::TabShape::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>9</number>
+      <number>0</number>
+     </property>
+     <property name="elideMode">
+      <enum>Qt::TextElideMode::ElideNone</enum>
      </property>
      <widget class="QWidget" name="tab_intro">
       <attribute name="title">
@@ -470,8 +480,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <widget class="QCheckBox" name="checkBox">
        <property name="styleSheet">
-        <string notr="true">
-        </string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Показывать при запуске</string>
@@ -497,8 +506,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <widget class="QPushButton" name="closeButton">
        <property name="styleSheet">
-        <string notr="true">
-        </string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Закрыть</string>
