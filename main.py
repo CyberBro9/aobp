@@ -62,6 +62,19 @@ class Application(QMainWindow):
         self.Document = None
         self.MovingLabel = None
         self.PathToImage = None
+        self.Settings = {}
+        with open("Configs/settings.txt", "rt") as f:
+            iHateThis = {
+                "True": True,
+                "False": False
+            }
+            settings = f.read().replace("\n", "").split(",")
+            for s in settings:
+                split = s.split("=")
+                index, value = split[0], split[1]
+                self.Settings[index] = iHateThis[value]
+
+        print(self.Settings)
         self.RenderedImagesCounter = 0
         self.TotalImagesAmount = 0
         self.Dialog = QDialog()
