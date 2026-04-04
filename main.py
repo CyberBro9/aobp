@@ -10,12 +10,11 @@ from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem, QProgressBar)
-from PySide6.QtGui import QPixmap, QFont, QIcon, QColor
+from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QAction, QKeySequence
 from PySide6.QtCore import Qt, QSize, QPoint
 from tkinter import filedialog
 from UI.mainUI import Ui_MainWindow
 from UI.tableDialog import Ui_Dialog
-from UI.parameters import Ui_Parameters
 from UI.helpDialog import Ui_HelpDialog
 
 root = tkinter.Tk()
@@ -78,17 +77,35 @@ class Application(QMainWindow):
         self.RenderedImagesCounter = 0
         self.TotalImagesAmount = 0
         self.Dialog = QDialog()
-        self.ParametersDialog = QDialog()
         self.HelpDialog = QDialog()
-        self.Parameters = Ui_Parameters()
         self.DialogUI = Ui_Dialog()
         self.HelpDialogUI = Ui_HelpDialog()
+
+        menu = self.menuBar()
+        fileMenu = menu.addMenu("&Файл")
+        helpMenu = menu.addMenu("&Справка")
+
+        openImage = QAction("Выбрать изображение", self)
+        openImage.setShortcut(QKeySequence("Ctrl+O"))
+        fileMenu.addAction(openImage)
+
+        openTableFile = QAction("Выбрать таблицу данных", self)
+        openTableFile.setShortcut(QKeySequence("Ctrl+Shift+O"))
+        fileMenu.addAction(openTableFile)
+
+        editTableFile = QAction("Изменить таблицу данных", self)
+        fileMenu.addAction(editTableFile)
+
+        openTutorial = QAction("Руководство о программе", self)
+        openTutorial.setShortcut(QKeySequence("Ctrl+H"))
+        helpMenu.addAction(openTutorial)
+
+        about = QAction("О программе", self)
+        helpMenu.addAction(about)
+
         self.Dialog.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.Dialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.DialogUI.setupUi(self.Dialog)
-        self.ParametersDialog.setWindowIcon(QIcon("Assets/aobp.ico"))
-        self.ParametersDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
-        self.Parameters.setupUi(self.ParametersDialog)
         self.HelpDialog.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.HelpDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.HelpDialog.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
@@ -96,16 +113,18 @@ class Application(QMainWindow):
         self.TableWidget = self.DialogUI.tableWidget
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
-        self.UI.selectExcel.clicked.connect(self.setupExcelTable)
+
+        openTableFile.triggered.connect(self.setupExcelTable)
         self.UI.addSelections.clicked.connect(self.placeSelection)
-        self.UI.addImage.clicked.connect(self.setUpImageFile)
+        openImage.triggered.connect(self.setUpImageFile)
         self.UI.saveImages.clicked.connect(self.saveImagesWithDocumentFields)
-        self.UI.editSettings.clicked.connect(self.openParameters)
-        self.UI.openTableDialog.clicked.connect(self.openTableDialog)
-        self.UI.selections.currentItemChanged.connect(self.changeName)
-        self.Parameters.changeColor.clicked.connect(self.colorSelection)
-        self.Parameters.textCenteringOptions.activated.connect(self.changeTextCentering)
-        self.Parameters.textSize.sliderMoved.connect(self.changeTextFontSize)
+        self.UI.selections.itemClicked.connect(self.openParameters)
+        editTableFile.triggered.connect(self.openTableDialog)
+        self.UI.changeColor.clicked.connect(self.colorSelection)
+        self.UI.textCenteringOptions.activated.connect(self.changeTextCentering)
+        self.UI.textSize.sliderMoved.connect(self.changeTextFontSize)
+        openTutorial.triggered.connect(self.openHelpDialog)
+
         self.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.progressBar = QProgressBar()
         self.progressBar.setValue(0)
@@ -195,7 +214,7 @@ class Application(QMainWindow):
                 thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
         selections[0].setBackground(color)
-        self.Parameters.colorShower.setStyleSheet(f"background-color: {color.name()}")
+        self.UI.colorShower.setStyleSheet(f"background-color: {color.name()}")
 
     def changeTextCentering(self, index):
         selections = self.UI.selections.selectedItems()
@@ -218,17 +237,17 @@ class Application(QMainWindow):
         if potentialChild is not None:
             potentialChild.setFont(thatFont)
 
-        self.Parameters.label_4.setText(str(value))
-
-    def changeName(self, new):
-        self.UI.editSettings.setText("Настроить " + new.text())
+        self.UI.label_1.setText(str(value))
 
     def openParameters(self):
         selections = self.UI.selections.selectedItems()
         if selections:
-            self.ParametersDialog.open()
+            pass # TODO: make text settings saving logic and implement settings loading here
         else:
             self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете настроить!", 1000)
+
+    def openHelpDialog(self):
+        self.HelpDialog.open()
 
     def populateSelections(self):
         for i in range(self.MainSheet.number_of_columns()):
@@ -290,7 +309,7 @@ class Application(QMainWindow):
             draw.text((x, y), text, font=font, fill=color, anchor=f"{textAnchorsTranslation.get(label.alignment())}s")
 
         self.RenderedImagesCounter += 1
-        canvas.save(dirName + fr"\{self.MainSheet.cell_value(row=rowNum, column=1)}.png")
+        canvas.save(dirName + fr"\{self.RenderedImagesCounter}.png")
         del canvas
 
     def saveImagesWithDocumentFields(self):
