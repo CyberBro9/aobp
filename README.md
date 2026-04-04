@@ -26,5 +26,5 @@
 9. Enjoy your created accreditations and other business papers. :)
 
 <p align="center">
-    <img width="248" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/Assets/PromImage1.png" alt="AOBP promotional image">
+    <img width="248" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/PromImage1.png" alt="AOBP promotional image">
 </p>
