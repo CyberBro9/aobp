@@ -73,7 +73,6 @@ class Application(QMainWindow):
                 index, value = split[0], split[1]
                 self.Settings[index] = iHateThis[value]
 
-        print(self.Settings)
         self.RenderedImagesCounter = 0
         self.TotalImagesAmount = 0
         self.Dialog = QDialog()
@@ -104,7 +103,6 @@ class Application(QMainWindow):
         helpMenu.addAction(about)
 
         self.Dialog.setWindowIcon(QIcon("Assets/aobp.ico"))
-        self.Dialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.DialogUI.setupUi(self.Dialog)
         self.HelpDialog.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.HelpDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
