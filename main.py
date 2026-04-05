@@ -240,7 +240,10 @@ class Application(QMainWindow):
     def openParameters(self):
         selections = self.UI.selections.selectedItems()
         if selections:
-            pass # TODO: make text settings saving logic and implement settings loading here
+            selection = selections[0]
+            self.UI.label_1.setText(str(selection.font().pointSize()))
+            self.UI.textSize.setValue(selection.font().pointSize())
+            self.UI.colorShower.setStyleSheet(f"background-color: {selection.background().color().name()}")
         else:
             self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете настроить!", 1000)
 
@@ -304,7 +307,7 @@ class Application(QMainWindow):
             yScale = posY / pixmapSize.height()
             x, y = canvas.size[0] * xScale, canvas.size[1] * yScale
 
-            draw.text((x, y), text, font=font, fill=color, anchor=f"{textAnchorsTranslation.get(label.alignment())}s")
+            draw.text((x, y), text, font=font, fill=color, anchor=f"{textAnchorsTranslation.get(label.alignment())}d")
 
         self.RenderedImagesCounter += 1
         canvas.save(dirName + fr"\{self.RenderedImagesCounter}.png")
