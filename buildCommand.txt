@@ -1,1 +1,1 @@
-pyinstaller --onefile --icon=Assets/aobp.ico --hiddenimport pyexcel --hiddenimport pyexcel_io --hiddenimport pyexcel_xls --hiddenimport  pyexcel_xlsx --hiddenimport pyexcel_ods --hiddenimport xlrd --hiddenimport xlwt main.py
+pyinstaller --onefile --icon=Assets/aobp.ico --hiddenimport pyexcel --hiddenimport pyexcel_io --hiddenimport pyexcel_xls --hiddenimport pyexcel_xlsx --hiddenimport pyexcel_ods --hiddenimport xlrd --hiddenimport xlwt main.py
