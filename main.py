@@ -10,12 +10,13 @@ from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem, QProgressBar)
-from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QAction, QKeySequence
-from PySide6.QtCore import Qt, QSize, QPoint
+from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QAction, QKeySequence, QDesktopServices
+from PySide6.QtCore import Qt, QSize, QPoint, QUrl
 from tkinter import filedialog
 from UI.mainUI import Ui_MainWindow
 from UI.tableDialog import Ui_Dialog
 from UI.helpDialog import Ui_HelpDialog
+from UI.about import Ui_About
 
 root = tkinter.Tk()
 root.iconbitmap("Assets/aobp.ico")
@@ -75,10 +76,10 @@ class Application(QMainWindow):
 
         self.RenderedImagesCounter = 0
         self.TotalImagesAmount = 0
-        self.Dialog = QDialog()
-        self.HelpDialog = QDialog()
+        self.Dialog, self.HelpDialog, self.About = QDialog(), QDialog(), QDialog()
         self.DialogUI = Ui_Dialog()
         self.HelpDialogUI = Ui_HelpDialog()
+        self.AboutUI = Ui_About()
 
         menu = self.menuBar()
         fileMenu = menu.addMenu("&Файл")
@@ -108,6 +109,8 @@ class Application(QMainWindow):
         self.HelpDialog.setWindowFlag(Qt.WindowType.MSWindowsFixedSizeDialogHint)
         self.HelpDialog.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
         self.HelpDialogUI.setupUi(self.HelpDialog)
+        self.About.setWindowIcon(QIcon("Assets/aobp.ico"))
+        self.AboutUI.setupUi(self.About)
         self.TableWidget = self.DialogUI.tableWidget
         self.UI = Ui_MainWindow()
         self.UI.setupUi(self)
@@ -122,6 +125,7 @@ class Application(QMainWindow):
         self.UI.textCenteringOptions.activated.connect(self.changeTextCentering)
         self.UI.textSize.sliderMoved.connect(self.changeTextFontSize)
         openTutorial.triggered.connect(self.openHelpDialog)
+        about.triggered.connect(self.About.open)
 
         self.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.progressBar = QProgressBar()
