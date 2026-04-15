@@ -51,6 +51,10 @@ def parseDocument(path):
     return pyexcel.get_book(file_name=path)
 
 
+def openRepository():
+    QDesktopServices.openUrl(QUrl("https://github.com/CyberBro9/aobp"))
+
+
 class Application(QMainWindow):
     """
     Useless OOP declaration of the Qt application.
@@ -120,12 +124,13 @@ class Application(QMainWindow):
         openImage.triggered.connect(self.setUpImageFile)
         self.UI.saveImages.clicked.connect(self.saveImagesWithDocumentFields)
         self.UI.selections.itemClicked.connect(self.openParameters)
-        editTableFile.triggered.connect(self.openTableDialog)
+        editTableFile.triggered.connect(self.Dialog.open)
         self.UI.changeColor.clicked.connect(self.colorSelection)
         self.UI.textCenteringOptions.activated.connect(self.changeTextCentering)
         self.UI.textSize.sliderMoved.connect(self.changeTextFontSize)
-        openTutorial.triggered.connect(self.openHelpDialog)
+        openTutorial.triggered.connect(self.HelpDialog.open)
         about.triggered.connect(self.About.open)
+        self.AboutUI.pushButton.clicked.connect(openRepository)
 
         self.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.progressBar = QProgressBar()
@@ -251,9 +256,6 @@ class Application(QMainWindow):
         else:
             self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете настроить!", 1000)
 
-    def openHelpDialog(self):
-        self.HelpDialog.open()
-
     def populateSelections(self):
         for i in range(self.MainSheet.number_of_columns()):
             item = self.MainSheet.cell_value(row=0, column=i)
@@ -278,9 +280,6 @@ class Application(QMainWindow):
 
             self.PathToImage = filePath
             self.UI.ImageLabel.setPixmap(pixMap)
-
-    def openTableDialog(self):
-        self.Dialog.open()
 
     def renderAndSaveImage(self, dirName, rowNum):
         size: QSize = self.UI.ImageLabel.size()
