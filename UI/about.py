@@ -25,30 +25,36 @@ class Ui_About(object):
         Dialog.resize(500, 500)
         Dialog.setAcceptDrops(False)
         Dialog.setStyleSheet(u"QDialog {\n"
-"	background-color: #0a192f\n"
+"	background-color: #F5F7FAf\n"
 "}\n"
 "QLabel {\n"
 "	font: 16px 'Inter';\n"
-"	color: rgb(255, 255, 255)\n"
+"	color: #1F2937\n"
 "}\n"
 "QLabel#label {\n"
 "	font: 24px 'Inter';\n"
 "	color: rgb(255, 255, 255)\n"
 "}\n"
-"QPushButton {\n"
-"    background-color: #1e293b;\n"
-"    border: 1px solid #3d4044;\n"
-"    border-radius: 8px;\n"
-"    padding: 10px 18px;\n"
-"    color: #f1f5f9;\n"
-"	font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
-"}")
+" QPushButton {\n"
+"            background-color: rgb(79, 125, 243);\n"
+"            border: 1px solid rgb(171, 196, 243);\n"
+"            border-radius: 8px;\n"
+"            padding: 10px 18px;\n"
+"            color: #f1f5f9;\n"
+"            font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"        }\n"
+"        QPushButton:hover {\n"
+"            background-color: rgb(105, 136, 248);\n"
+"        }\n"
+"        QPushButton:pressed {\n"
+"            background-color: rgb(63, 100, 194);\n"
+"        }")
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setSpacing(9)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(Dialog)
         self.label.setObjectName(u"label")
-        self.label.setPixmap(QPixmap(u"../Assets/aobp.ico"))
+        self.label.setStyleSheet(u"image: url(:/Assets/aobp.ico)")
         self.label.setScaledContents(False)
         self.label.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
@@ -91,7 +97,7 @@ class Ui_About(object):
     # setupUi
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u0422\u0430\u0431\u043b\u0438\u0446\u0430 Excel", None))
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u041e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435", None))
         self.label.setText("")
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u0410\u043a\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0438\u0438 \u0438 \u0414\u0440\u0443\u0433\u0438\u0435 \u0411\u0443\u043c\u0430\u0433\u0438 \u0434\u043b\u044f \u0411\u0438\u0437\u043d\u0435\u0441\u0430", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"\u0412\u0435\u0440\u0441\u0438\u044f: 2.0.0", None))

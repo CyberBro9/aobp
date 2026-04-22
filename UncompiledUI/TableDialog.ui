@@ -18,18 +18,18 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
-	background-color: #0a192f
+	background-color: #F5F7FAf
 }
 QTableWidget {
-	border: 3px dashed #2dd4bf;
-	background-color: transparent;
-	border-radius: 10px;
+	border: 2px solid rgb(185, 186, 189);
+	border-radius: 5px;
+	background-color: rgb(225, 226, 229);
 	padding: 10px 10px;
 }
 QTableWidget::item {
 	background-color: #ffffff;
 	font: 8px &quot;Inter&quot;;
-	color: #000000
+	color: #1F2937
 }
 QTableWidget QHeaderView::section {
 	padding: 2px;
@@ -50,7 +50,7 @@ QTableWidget QHeaderView::section {
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
+      <string notr="true">color: #1F2937;
 font: 16px &quot;Inter&quot;</string>
      </property>
      <property name="text">

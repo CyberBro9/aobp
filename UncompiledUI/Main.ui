@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1272</width>
+    <width>1279</width>
     <height>700</height>
    </rect>
   </property>
@@ -41,32 +41,29 @@
             font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';
         }
         QPushButton:hover {
-            background-color: #3F6EE8;
+            background-color: rgb(105, 136, 248);
         }
         QPushButton:pressed {
-            background-color: #0f172a;
+            background-color: rgb(63, 100, 194);
         }
         QPushButton#saveImages {
             font-weight: 500;
 			background-color: rgb(34, 197, 94)
         }
         QPushButton#saveImages:hover {
-            border: 3px dashed #2dd4bf;
-			background-color: #2d3a4f
+			background-color: rgb(39, 226, 108)
         }
 		QPushButton#saveImages:pressed {
-            background-color: #0f172a;
-			border: 2px dashed #2dd4bf
+            background-color: rgb(30, 173, 82)
+        }
+ QLabel {
+            color: #1F2937;
+            font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI';
         }
         QLabel#ImageLabel {
             background-color: rgb(225, 226, 229);
 			border: 2px solid rgb(185, 186, 189);
 			border-radius: 8px;
-            color: #1F2937;
-        }
-        QLabel {
-            color: #1F2937;
-            font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI';
         }
         QLabel#label {
             font-size: 14pt;
@@ -78,7 +75,7 @@
         }
         QStatusBar {
             background-color: #d1d2d5;
-            color: #2dd4bf;
+            color: #1F2937;
         }
 		QComboBox {
 	background-color: rgb(225, 226, 229);
@@ -477,15 +474,15 @@ QSlider::handle:pressed {
    </property>
    <property name="styleSheet">
     <string notr="true">QProgressBar {
-            background-color: #1F2937;
+            background-color: rgb(178, 179, 181);
             border-radius: 6px;
             text-align: center;
-            color: #f1f5f9;
+            color: #1F2937;
             font: bold 10pt 'Inter', 'Segoe UI', 'Yu Gothic UI';
             height: 12px;
         }
         QProgressBar::chunk {
-            background-color: #2dd4bf;
+            background-color: rgb(79, 125, 243);
             border-radius: 6px;
         }</string>
    </property>

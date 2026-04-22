@@ -15,69 +15,66 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFormLayout, QGridLayout,
-    QHBoxLayout, QLabel, QLayout, QListWidget,
-    QListWidgetItem, QMainWindow, QPushButton, QSizePolicy,
-    QSlider, QStatusBar, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFormLayout, QHBoxLayout,
+    QLabel, QLayout, QListWidget, QListWidgetItem,
+    QMainWindow, QPushButton, QSizePolicy, QSlider,
+    QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1256, 700)
+        MainWindow.resize(1279, 700)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setStyleSheet(u"QMainWindow {\n"
-"	background-color: #0a192f;\n"
+"	background-color: #F5F7FAf;\n"
 "}\n"
 "\n"
 " QListWidget {\n"
-"            background-color: #1e293b;\n"
+"            background-color: rgb(225, 226, 229);\n"
+"			border: 2px solid rgb(185, 186, 189);\n"
+"			border-radius: 5px;\n"
 "            color: #e2e8f0;\n"
 "            font: 11pt 'Inter';\n"
 "            padding: 8px;\n"
 "        }\n"
 "        QPushButton {\n"
-"            background-color: #1e293b;\n"
-"            border: 1px solid #3d4044;\n"
+"            background-color: rgb(79, 125, 243);\n"
+"            border: 1px solid rgb(171, 196, 243);\n"
 "            border-radius: 8px;\n"
 "            padding: 10px 18px;\n"
 "            color: #f1f5f9;\n"
 "            font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
 "        }\n"
 "        QPushButton:hover {\n"
-"            background-color: #2d3a4f;\n"
-"            border-color: #5eead4;\n"
+"            background-color: rgb(105, 136, 248);\n"
 "        }\n"
 "        QPushButton:pressed {\n"
-"            background-color: #0f172a;\n"
+"            background-color: rgb(63, 100, 194);\n"
 "        }\n"
 "        QPushButton#saveImages {\n"
-"            background-color: #1e293b;\n"
-"            color: #f1f5f9;\n"
-"            font-weight: 600;\n"
-"			border: 2px dashed #2dd4bf;\n"
+"            font-weight: 500;\n"
+"			background-color: rgb(34, 197, 94)\n"
 "        }\n"
 "        QPushButton#saveImages:hover {\n"
-"            border: 3px dashed #2dd"
-                        "4bf;\n"
-"			background-color: #2d3a4f\n"
+"			background-co"
+                        "lor: rgb(39, 226, 108)\n"
 "        }\n"
 "		QPushButton#saveImages:pressed {\n"
-"            background-color: #0f172a;\n"
-"			border: 2px dashed #2dd4bf\n"
+"            background-color: rgb(30, 173, 82)\n"
 "        }\n"
 "        QLabel#ImageLabel {\n"
-"            border: 2px dashed #2dd4bf;\n"
-"            border-radius: 16px;\n"
-"            background-color: #1e293b;\n"
-"            color: #94a3b8;\n"
+"            background-color: rgb(225, 226, 229);\n"
+"			border: 2px solid rgb(185, 186, 189);\n"
+"			border-radius: 8px;\n"
+"            color: #1F2937;\n"
 "        }\n"
 "        QLabel {\n"
-"            color: #f1f5f9;\n"
+"            color: #1F2937;\n"
 "            font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
 "        }\n"
 "        QLabel#label {\n"
@@ -87,34 +84,42 @@ class Ui_MainWindow(object):
 "        QLabel#selectionsLabel {\n"
 "            font-size: 12pt;\n"
 "            font-weight: 500;\n"
-"            color: #94a3b8;\n"
 "        }\n"
 "        QStatusBar {\n"
-"            background-color: #1e293b;\n"
-"            color: #2dd4bf;\n"
+"            background-color: #d1d2d5;\n"
+"            color: #1F2937;\n"
 "        }\n"
 "		QComboBox {\n"
-"	background-color: #1e293b;\n"
-"    border: 1px solid #3d4044;\n"
+"	background-color: rgb(225, 226, 229);\n"
+"	border: 2px solid rgb(185, 186, 189);\n"
 "    border-radius: 8px;\n"
-"    padding: 10px 1"
-                        "8px;\n"
-"    color: #f1f5f9;\n"
-"    font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"    padding: 10px 18px;\n"
+"    color: #1F2937;\n"
+"    font: 500 11pt "
+                        "'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"}\n"
+"QComboBox QAbstractItemView {\n"
+"    border: 2px solid rgb(185, 186, 189);\n"
+"	border-radius: 8px;\n"
+"    background-color: rgb(225, 226, 229);\n"
+"    selection-background-color: #505050;\n"
+"    color: #1F2937;\n"
 "}\n"
 "QSlider::sub-page {\n"
-"	background-color: rgba(45, 212, 191, 190);\n"
-"	border: 4px solid #1e293b;\n"
+"	background-color: rgb(79, 125, 243);\n"
 "	border-radius: 8px;\n"
 "}\n"
 "QSlider::handle {\n"
-"	border: 2px dashed #1e293b;\n"
-"	background-color: rgb(45, 212, 191);\n"
+"	background-color: rgb(79, 125, 243);\n"
+"	border-radius: 8px;\n"
 "}\n"
 "QSlider::handle:hover {\n"
-"	border: 3px dashed #1e293b;\n"
-"	background-color: #2d3a4f;\n"
+"	background-color: #3F6EE8;\n"
 "}\n"
+"QSlider::handle:pressed {\n"
+"	background-color: #315BD0\n"
+"}\n"
+"\n"
 "      \n"
 "      ")
         self.centralwidget = QWidget(MainWindow)
@@ -146,12 +151,6 @@ class Ui_MainWindow(object):
         self.rightPanel.setSpacing(6)
         self.rightPanel.setObjectName(u"rightPanel")
         self.rightPanel.setContentsMargins(6, -1, 6, -1)
-        self.gridLayout = QGridLayout()
-        self.gridLayout.setSpacing(10)
-        self.gridLayout.setObjectName(u"gridLayout")
-
-        self.rightPanel.addLayout(self.gridLayout)
-
         self.selectionsLabel = QLabel(self.centralwidget)
         self.selectionsLabel.setObjectName(u"selectionsLabel")
 
@@ -186,9 +185,7 @@ class Ui_MainWindow(object):
         font1.setItalic(False)
         self.label_2.setFont(font1)
         self.label_2.setStyleSheet(u"QLabel {\n"
-"	font: 12pt \"Inter\"; \n"
 "	padding: 10px;\n"
-"	color: rgb(255, 255, 255)	\n"
 "}")
         self.label_2.setScaledContents(True)
 
@@ -204,6 +201,7 @@ class Ui_MainWindow(object):
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.colorShower.sizePolicy().hasHeightForWidth())
         self.colorShower.setSizePolicy(sizePolicy3)
+        self.colorShower.setMinimumSize(QSize(20, 0))
         self.colorShower.setBaseSize(QSize(0, 0))
         self.colorShower.setStyleSheet(u"background-color: rgb(255, 255, 255)")
 
@@ -230,9 +228,7 @@ class Ui_MainWindow(object):
         self.label_3.setSizePolicy(sizePolicy2)
         self.label_3.setFont(font1)
         self.label_3.setStyleSheet(u"QLabel {\n"
-"	font: 12pt \"Inter\"; \n"
 "	padding: 10px;\n"
-"	color: rgb(255, 255, 255)	\n"
 "}")
 
         self.formLayout_4.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_3)
@@ -293,9 +289,7 @@ class Ui_MainWindow(object):
         self.label_4.setSizePolicy(sizePolicy2)
         self.label_4.setFont(font1)
         self.label_4.setStyleSheet(u"QLabel {\n"
-"	font: 12pt \"Inter\"; \n"
 "	padding: 10px;\n"
-"	color: rgb(255, 255, 255)	\n"
 "}")
 
         self.formLayout_4.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_4)
@@ -332,16 +326,15 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName(u"statusbar")
         self.statusbar.setEnabled(True)
         self.statusbar.setStyleSheet(u"QProgressBar {\n"
-"            border: none;\n"
-"            background-color: #1e293b;\n"
+"            background-color: rgb(178, 179, 181);\n"
 "            border-radius: 6px;\n"
 "            text-align: center;\n"
-"            color: #f1f5f9;\n"
+"            color: #1F2937;\n"
 "            font: bold 10pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
 "            height: 12px;\n"
 "        }\n"
 "        QProgressBar::chunk {\n"
-"            background-color: #2dd4bf;\n"
+"            background-color: rgb(79, 125, 243);\n"
 "            border-radius: 6px;\n"
 "        }")
         MainWindow.setStatusBar(self.statusbar)

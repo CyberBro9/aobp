@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'TableDialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.10.1
+## Created by: Qt User Interface Compiler version 6.11.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -26,18 +26,18 @@ class Ui_Dialog(object):
         Dialog.resize(500, 300)
         Dialog.setAcceptDrops(False)
         Dialog.setStyleSheet(u"QDialog {\n"
-"	background-color: #0a192f\n"
+"	background-color: #F5F7FAf\n"
 "}\n"
 "QTableWidget {\n"
-"	border: 3px dashed #2dd4bf;\n"
-"	background-color: transparent;\n"
-"	border-radius: 10px;\n"
+"	border: 2px solid rgb(185, 186, 189);\n"
+"	border-radius: 5px;\n"
+"	background-color: rgb(225, 226, 229);\n"
 "	padding: 10px 10px;\n"
 "}\n"
 "QTableWidget::item {\n"
 "	background-color: #ffffff;\n"
 "	font: 8px \"Inter\";\n"
-"	color: #000000\n"
+"	color: #1F2937\n"
 "}\n"
 "QTableWidget QHeaderView::section {\n"
 "	padding: 2px;\n"
@@ -52,7 +52,7 @@ class Ui_Dialog(object):
         font.setBold(False)
         font.setItalic(False)
         self.label.setFont(font)
-        self.label.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+        self.label.setStyleSheet(u"color: #1F2937;\n"
 "font: 16px \"Inter\"")
         self.label.setScaledContents(False)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
