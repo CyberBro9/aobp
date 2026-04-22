@@ -9,7 +9,7 @@ from datetime import datetime
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
-                               QListWidgetItem, QProgressBar)
+                               QListWidgetItem, QProgressBar, QFontDialog)
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QAction, QKeySequence, QDesktopServices
 from PySide6.QtCore import Qt, QSize, QPoint, QUrl
 from tkinter import filedialog
@@ -137,7 +137,6 @@ class Application(QMainWindow):
         self.progressBar.setValue(0)
         self.progressBar.setTextVisible(True)
         self.UI.statusbar.addPermanentWidget(self.progressBar)
-        self.HelpDialog.open()
 
     def setupExcelTable(self):
         """
@@ -175,8 +174,7 @@ class Application(QMainWindow):
             selection = selected[0].data(0)
             self.MovingLabel = QLabel()
             self.MovingLabel.setObjectName(selection)
-            font = QFont("Yu Gothic UI", selected[0].font().pointSize())
-            font.setBold(True)
+            font = selected[0].font()
             self.MovingLabel.setFont(font)
             self.MovingLabel.setFixedSize(250, 150)
             self.MovingLabel.setText(selection)
@@ -246,6 +244,20 @@ class Application(QMainWindow):
 
         self.UI.label_1.setText(str(value))
 
+    def changeFont(self):
+        selections = self.UI.selections.selectedItems()
+        if selections:
+            selection = selections[0]
+            font, ok = QFontDialog().getFont()
+    
+            if ok:
+                selection.setFont(font)
+                potentialChild = self.UI.ImageLabel.findChild(QLabel, selection.text())
+                if potentialChild is not None:
+                    potentialChild.setFont(font)
+        else:
+            self.UI.statusbar.showMessage("Сначала выберите поле, которое желаете настроить!", 1000)
+
     def openParameters(self):
         selections = self.UI.selections.selectedItems()
         if selections:
@@ -254,7 +266,7 @@ class Application(QMainWindow):
             self.UI.textSize.setValue(selection.font().pointSize())
             self.UI.colorShower.setStyleSheet(f"background-color: {selection.background().color().name()}")
         else:
-            self.UI.statusbar.showMessage("Сначала выберите категорию, которую желаете настроить!", 1000)
+            self.UI.statusbar.showMessage("Сначала выберите поле, которое желаете настроить!", 1000)
 
     def populateSelections(self):
         for i in range(self.MainSheet.number_of_columns()):

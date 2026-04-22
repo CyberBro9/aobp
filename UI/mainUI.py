@@ -67,15 +67,14 @@ class Ui_MainWindow(object):
 "		QPushButton#saveImages:pressed {\n"
 "            background-color: rgb(30, 173, 82)\n"
 "        }\n"
+" QLabel {\n"
+"            color: #1F2937;\n"
+"            font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"        }\n"
 "        QLabel#ImageLabel {\n"
 "            background-color: rgb(225, 226, 229);\n"
 "			border: 2px solid rgb(185, 186, 189);\n"
 "			border-radius: 8px;\n"
-"            color: #1F2937;\n"
-"        }\n"
-"        QLabel {\n"
-"            color: #1F2937;\n"
-"            font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
 "        }\n"
 "        QLabel#label {\n"
 "            font-size: 14pt;\n"
@@ -95,9 +94,9 @@ class Ui_MainWindow(object):
 "    border-radius: 8px;\n"
 "    padding: 10px 18px;\n"
 "    color: #1F2937;\n"
-"    font: 500 11pt "
-                        "'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
-"}\n"
+"    font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+""
+                        "}\n"
 "QComboBox QAbstractItemView {\n"
 "    border: 2px solid rgb(185, 186, 189);\n"
 "	border-radius: 8px;\n"
@@ -271,6 +270,17 @@ class Ui_MainWindow(object):
 
         self.formLayout_4.setLayout(1, QFormLayout.ItemRole.FieldRole, self.horizontalLayout_6)
 
+        self.label_4 = QLabel(self.centralwidget)
+        self.label_4.setObjectName(u"label_4")
+        sizePolicy2.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy2)
+        self.label_4.setFont(font1)
+        self.label_4.setStyleSheet(u"QLabel {\n"
+"	padding: 10px;\n"
+"}")
+
+        self.formLayout_4.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_4)
+
         self.textCenteringOptions = QComboBox(self.centralwidget)
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.addItem("")
@@ -283,16 +293,22 @@ class Ui_MainWindow(object):
 
         self.formLayout_4.setWidget(2, QFormLayout.ItemRole.FieldRole, self.textCenteringOptions)
 
-        self.label_4 = QLabel(self.centralwidget)
-        self.label_4.setObjectName(u"label_4")
-        sizePolicy2.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy2)
-        self.label_4.setFont(font1)
-        self.label_4.setStyleSheet(u"QLabel {\n"
+        self.label_5 = QLabel(self.centralwidget)
+        self.label_5.setObjectName(u"label_5")
+        sizePolicy2.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy2)
+        self.label_5.setStyleSheet(u"QLabel {\n"
 "	padding: 10px;\n"
 "}")
 
-        self.formLayout_4.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_4)
+        self.formLayout_4.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_5)
+
+        self.selectFont = QPushButton(self.centralwidget)
+        self.selectFont.setObjectName(u"selectFont")
+        sizePolicy4.setHeightForWidth(self.selectFont.sizePolicy().hasHeightForWidth())
+        self.selectFont.setSizePolicy(sizePolicy4)
+
+        self.formLayout_4.setWidget(3, QFormLayout.ItemRole.FieldRole, self.selectFont)
 
 
         self.rightPanel.addLayout(self.formLayout_4)
@@ -353,11 +369,13 @@ class Ui_MainWindow(object):
         self.changeColor.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u0434\u043b\u044f \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0437\u043c\u0435\u0440 \u0442\u0435\u043a\u0441\u0442\u0430:", None))
         self.label_1.setText(QCoreApplication.translate("MainWindow", u"20", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0426\u0435\u043d\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0442\u0435\u043a\u0441\u0442\u0430:", None))
         self.textCenteringOptions.setItemText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e \u0446\u0435\u043d\u0442\u0440\u0443", None))
         self.textCenteringOptions.setItemText(1, QCoreApplication.translate("MainWindow", u"\u0421\u043f\u0440\u0430\u0432\u0430", None))
         self.textCenteringOptions.setItemText(2, QCoreApplication.translate("MainWindow", u"\u0421\u043b\u0435\u0432\u0430", None))
 
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0426\u0435\u043d\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0442\u0435\u043a\u0441\u0442\u0430:", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u0428\u0440\u0438\u0444\u0442 \u0442\u0435\u043a\u0441\u0442\u0430:", None))
+        self.selectFont.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u0434\u043b\u044f \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f", None))
         self.addSelections.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u043b\u0435 \u043d\u0430 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435", None))
         self.saveImages.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f", None))
     # retranslateUi

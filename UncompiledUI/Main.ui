@@ -375,6 +375,32 @@ QSlider::handle:pressed {
           </item>
          </layout>
         </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter</family>
+            <pointsize>12</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+	padding: 10px;
+}</string>
+          </property>
+          <property name="text">
+           <string>Центрирование текста:</string>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="1">
          <widget class="QComboBox" name="textCenteringOptions">
           <property name="sizePolicy">
@@ -409,21 +435,13 @@ QSlider::handle:pressed {
           </item>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_4">
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_5">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Inter</family>
-            <pointsize>12</pointsize>
-            <italic>false</italic>
-            <bold>false</bold>
-           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">QLabel {
@@ -431,7 +449,20 @@ QSlider::handle:pressed {
 }</string>
           </property>
           <property name="text">
-           <string>Центрирование текста:</string>
+           <string>Шрифт текста:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="selectFont">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Нажмите для изменения</string>
           </property>
          </widget>
         </item>
