@@ -1,4 +1,6 @@
 import sys
+
+import fontTools.ttLib
 import pyexcel
 import os
 import ctypes
@@ -8,6 +10,7 @@ import tkinter
 from datetime import datetime
 from PIL import Image, ImageFont, ImageDraw
 from pynput import mouse
+from fontTools.ttLib import TTFont
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem, QProgressBar, QFontDialog)
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QAction, QKeySequence, QDesktopServices
@@ -60,9 +63,15 @@ def getFontPath(fontName):
     for directory in fontDirs:
         for root_dir, dirs, files in os.walk(directory):
             for file in files:
-                print(file)
-                if fontName.lower() in file.lower():
-                    return os.path.join(root_dir, file)
+                try:
+                    font = TTFont(os.path.join(root_dir, file))
+                except fontTools.ttLib.TTLibError:
+                    continue
+                if font:
+                    print(font["name"].getDebugName(1))
+                    if fontName == font["name"].getDebugName(1):
+                        return os.path.join(root_dir, file)
+
     return None
 
 
@@ -316,7 +325,8 @@ class Application(QMainWindow):
         draw = ImageDraw.Draw(canvas)
         for k, field in enumerate(appliedFields):
             label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
-            baseFont = ImageFont.truetype(getFontPath(label.font().family()))
+            fontPath = getFontPath(label.font().family()) or "C:/Windows/Fonts/arial.ttf"
+            baseFont = ImageFont.truetype(fontPath)
             font = baseFont.font_variant(size=label.font().pointSize() * canvas.size[0] / 1000 * 1.5)
             column = 0
 
