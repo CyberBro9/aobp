@@ -83,7 +83,7 @@
     border-radius: 8px;
     padding: 10px 18px;
     color: #1F2937;
-    font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';
+    font: 500 9pt 'Inter', 'Segoe UI', 'Yu Gothic UI';
 }
 QComboBox QAbstractItemView {
     border: 2px solid rgb(185, 186, 189);
@@ -404,7 +404,7 @@ QSlider::handle:pressed {
         <item row="2" column="1">
          <widget class="QComboBox" name="textCenteringOptions">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -414,6 +414,14 @@ QSlider::handle:pressed {
             <width>1</width>
             <height>0</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter</family>
+            <pointsize>9</pointsize>
+            <italic>false</italic>
+            <fontweight>Medium</fontweight>
+           </font>
           </property>
           <property name="sizeAdjustPolicy">
            <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
@@ -442,6 +450,12 @@ QSlider::handle:pressed {
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Inter</family>
+            <pointsize>12</pointsize>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">QLabel {

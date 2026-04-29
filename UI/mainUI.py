@@ -94,7 +94,7 @@ class Ui_MainWindow(object):
 "    border-radius: 8px;\n"
 "    padding: 10px 18px;\n"
 "    color: #1F2937;\n"
-"    font: 500 11pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
+"    font: 500 9pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
 ""
                         "}\n"
 "QComboBox QAbstractItemView {\n"
@@ -286,9 +286,18 @@ class Ui_MainWindow(object):
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.setObjectName(u"textCenteringOptions")
-        sizePolicy1.setHeightForWidth(self.textCenteringOptions.sizePolicy().hasHeightForWidth())
-        self.textCenteringOptions.setSizePolicy(sizePolicy1)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Minimum)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.textCenteringOptions.sizePolicy().hasHeightForWidth())
+        self.textCenteringOptions.setSizePolicy(sizePolicy7)
         self.textCenteringOptions.setMinimumSize(QSize(1, 0))
+        font2 = QFont()
+        font2.setFamilies([u"Inter"])
+        font2.setPointSize(9)
+        font2.setWeight(QFont.Medium)
+        font2.setItalic(False)
+        self.textCenteringOptions.setFont(font2)
         self.textCenteringOptions.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToContents)
 
         self.formLayout_4.setWidget(2, QFormLayout.ItemRole.FieldRole, self.textCenteringOptions)
@@ -297,6 +306,10 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName(u"label_5")
         sizePolicy2.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy2)
+        font3 = QFont()
+        font3.setFamilies([u"Inter"])
+        font3.setPointSize(12)
+        self.label_5.setFont(font3)
         self.label_5.setStyleSheet(u"QLabel {\n"
 "	padding: 10px;\n"
 "}")
@@ -315,11 +328,11 @@ class Ui_MainWindow(object):
 
         self.addSelections = QPushButton(self.centralwidget)
         self.addSelections.setObjectName(u"addSelections")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.addSelections.sizePolicy().hasHeightForWidth())
-        self.addSelections.setSizePolicy(sizePolicy7)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.addSelections.sizePolicy().hasHeightForWidth())
+        self.addSelections.setSizePolicy(sizePolicy8)
 
         self.rightPanel.addWidget(self.addSelections)
 

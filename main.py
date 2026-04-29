@@ -11,7 +11,7 @@ from pynput import mouse
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem, QProgressBar, QFontDialog)
 from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QAction, QKeySequence, QDesktopServices
-from PySide6.QtCore import Qt, QSize, QPoint, QUrl
+from PySide6.QtCore import Qt, QSize, QPoint, QUrl, QStandardPaths
 from tkinter import filedialog
 from UI.mainUI import Ui_MainWindow
 from UI.tableDialog import Ui_Dialog
@@ -53,6 +53,17 @@ def parseDocument(path):
 
 def openRepository():
     QDesktopServices.openUrl(QUrl("https://github.com/CyberBro9/aobp"))
+
+
+def getFontPath(fontName):
+    fontDirs = QStandardPaths.standardLocations(QStandardPaths.StandardLocation.FontsLocation)
+    for directory in fontDirs:
+        for root_dir, dirs, files in os.walk(directory):
+            for file in files:
+                print(file)
+                if fontName.lower() in file.lower():
+                    return os.path.join(root_dir, file)
+    return None
 
 
 class Application(QMainWindow):
@@ -131,6 +142,7 @@ class Application(QMainWindow):
         openTutorial.triggered.connect(self.HelpDialog.open)
         about.triggered.connect(self.About.open)
         self.AboutUI.pushButton.clicked.connect(openRepository)
+        self.UI.selectFont.clicked.connect(self.changeFont)
 
         self.setWindowIcon(QIcon("Assets/aobp.ico"))
         self.progressBar = QProgressBar()
@@ -236,7 +248,6 @@ class Application(QMainWindow):
         thatFont: QFont = selection.font()
         thatFont.setPointSize(value)
         selection.setFont(thatFont)
-        thatFont.setBold(True)
 
         potentialChild = self.UI.ImageLabel.findChild(QLabel, selection.text())
         if potentialChild is not None:
@@ -248,7 +259,9 @@ class Application(QMainWindow):
         selections = self.UI.selections.selectedItems()
         if selections:
             selection = selections[0]
-            font, ok = QFontDialog().getFont()
+            dialog = QFontDialog()
+            dialog.setObjectName(selection.data(0))
+            ok, font = QFontDialog().getFont()
     
             if ok:
                 selection.setFont(font)
@@ -300,10 +313,10 @@ class Application(QMainWindow):
         diffY = size.height() - pixmapSize.height()
 
         canvas = Image.open(self.PathToImage)
-        baseFont = ImageFont.truetype("Assets/Montserrat-Medium.ttf")
         draw = ImageDraw.Draw(canvas)
         for k, field in enumerate(appliedFields):
             label: QLabel = self.UI.ImageLabel.findChild(QLabel, field)
+            baseFont = ImageFont.truetype(getFontPath(label.font().family()))
             font = baseFont.font_variant(size=label.font().pointSize() * canvas.size[0] / 1000 * 1.5)
             column = 0
 
