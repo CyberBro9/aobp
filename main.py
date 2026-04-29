@@ -1,5 +1,4 @@
 import sys
-
 import fontTools.ttLib
 import pyexcel
 import os
