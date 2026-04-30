@@ -67,7 +67,6 @@ def getFontPath(fontName):
                 except fontTools.ttLib.TTLibError:
                     continue
                 if font:
-                    print(font["name"].getDebugName(1))
                     if fontName == font["name"].getDebugName(1):
                         return os.path.join(root_dir, file)
 
@@ -146,7 +145,6 @@ class Application(QMainWindow):
         editTableFile.triggered.connect(self.Dialog.open)
         self.UI.changeColor.clicked.connect(self.colorSelection)
         self.UI.textCenteringOptions.activated.connect(self.changeTextCentering)
-        self.UI.textSize.sliderMoved.connect(self.changeTextFontSize)
         openTutorial.triggered.connect(self.HelpDialog.open)
         about.triggered.connect(self.About.open)
         self.AboutUI.pushButton.clicked.connect(openRepository)
@@ -250,19 +248,6 @@ class Application(QMainWindow):
         if potentialChild is not None:
             potentialChild.setAlignment(selection.textAlignment() | Qt.AlignmentFlag.AlignVCenter)
 
-    def changeTextFontSize(self, value):
-        selections = self.UI.selections.selectedItems()
-        selection = selections[0]
-        thatFont: QFont = selection.font()
-        thatFont.setPointSize(value)
-        selection.setFont(thatFont)
-
-        potentialChild = self.UI.ImageLabel.findChild(QLabel, selection.text())
-        if potentialChild is not None:
-            potentialChild.setFont(thatFont)
-
-        self.UI.label_1.setText(str(value))
-
     def changeFont(self):
         selections = self.UI.selections.selectedItems()
         if selections:
@@ -283,8 +268,6 @@ class Application(QMainWindow):
         selections = self.UI.selections.selectedItems()
         if selections:
             selection = selections[0]
-            self.UI.label_1.setText(str(selection.font().pointSize()))
-            self.UI.textSize.setValue(selection.font().pointSize())
             self.UI.colorShower.setStyleSheet(f"background-color: {selection.background().color().name()}")
         else:
             self.UI.statusbar.showMessage("Сначала выберите поле, которое желаете настроить!", 1000)

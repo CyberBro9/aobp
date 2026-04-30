@@ -17,8 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFormLayout, QHBoxLayout,
     QLabel, QLayout, QListWidget, QListWidgetItem,
-    QMainWindow, QPushButton, QSizePolicy, QSlider,
-    QStatusBar, QVBoxLayout, QWidget)
+    QMainWindow, QPushButton, QSizePolicy, QStatusBar,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -221,55 +221,6 @@ class Ui_MainWindow(object):
 
         self.formLayout_4.setLayout(0, QFormLayout.ItemRole.FieldRole, self.horizontalLayout_5)
 
-        self.label_3 = QLabel(self.centralwidget)
-        self.label_3.setObjectName(u"label_3")
-        sizePolicy2.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy2)
-        self.label_3.setFont(font1)
-        self.label_3.setStyleSheet(u"QLabel {\n"
-"	padding: 10px;\n"
-"}")
-
-        self.formLayout_4.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_3)
-
-        self.horizontalLayout_6 = QHBoxLayout()
-        self.horizontalLayout_6.setSpacing(12)
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.label_1 = QLabel(self.centralwidget)
-        self.label_1.setObjectName(u"label_1")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.MinimumExpanding)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.label_1.sizePolicy().hasHeightForWidth())
-        self.label_1.setSizePolicy(sizePolicy5)
-        self.label_1.setFont(font1)
-        self.label_1.setStyleSheet(u"QLabel {\n"
-"	font: 12pt \"Inter\"; \n"
-"	color: #2dd4bf;\n"
-"}")
-        self.label_1.setScaledContents(False)
-        self.label_1.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.horizontalLayout_6.addWidget(self.label_1)
-
-        self.textSize = QSlider(self.centralwidget)
-        self.textSize.setObjectName(u"textSize")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.textSize.sizePolicy().hasHeightForWidth())
-        self.textSize.setSizePolicy(sizePolicy6)
-        self.textSize.setMinimumSize(QSize(0, 0))
-        self.textSize.setAutoFillBackground(False)
-        self.textSize.setMinimum(12)
-        self.textSize.setSliderPosition(20)
-        self.textSize.setOrientation(Qt.Orientation.Horizontal)
-
-        self.horizontalLayout_6.addWidget(self.textSize)
-
-
-        self.formLayout_4.setLayout(1, QFormLayout.ItemRole.FieldRole, self.horizontalLayout_6)
-
         self.label_4 = QLabel(self.centralwidget)
         self.label_4.setObjectName(u"label_4")
         sizePolicy2.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
@@ -279,18 +230,18 @@ class Ui_MainWindow(object):
 "	padding: 10px;\n"
 "}")
 
-        self.formLayout_4.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_4)
+        self.formLayout_4.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_4)
 
         self.textCenteringOptions = QComboBox(self.centralwidget)
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.addItem("")
         self.textCenteringOptions.setObjectName(u"textCenteringOptions")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Minimum)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.textCenteringOptions.sizePolicy().hasHeightForWidth())
-        self.textCenteringOptions.setSizePolicy(sizePolicy7)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Minimum)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.textCenteringOptions.sizePolicy().hasHeightForWidth())
+        self.textCenteringOptions.setSizePolicy(sizePolicy5)
         self.textCenteringOptions.setMinimumSize(QSize(1, 0))
         font2 = QFont()
         font2.setFamilies([u"Inter"])
@@ -300,7 +251,7 @@ class Ui_MainWindow(object):
         self.textCenteringOptions.setFont(font2)
         self.textCenteringOptions.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToContents)
 
-        self.formLayout_4.setWidget(2, QFormLayout.ItemRole.FieldRole, self.textCenteringOptions)
+        self.formLayout_4.setWidget(1, QFormLayout.ItemRole.FieldRole, self.textCenteringOptions)
 
         self.label_5 = QLabel(self.centralwidget)
         self.label_5.setObjectName(u"label_5")
@@ -314,25 +265,25 @@ class Ui_MainWindow(object):
 "	padding: 10px;\n"
 "}")
 
-        self.formLayout_4.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_5)
+        self.formLayout_4.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_5)
 
         self.selectFont = QPushButton(self.centralwidget)
         self.selectFont.setObjectName(u"selectFont")
         sizePolicy4.setHeightForWidth(self.selectFont.sizePolicy().hasHeightForWidth())
         self.selectFont.setSizePolicy(sizePolicy4)
 
-        self.formLayout_4.setWidget(3, QFormLayout.ItemRole.FieldRole, self.selectFont)
+        self.formLayout_4.setWidget(2, QFormLayout.ItemRole.FieldRole, self.selectFont)
 
 
         self.rightPanel.addLayout(self.formLayout_4)
 
         self.addSelections = QPushButton(self.centralwidget)
         self.addSelections.setObjectName(u"addSelections")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.addSelections.sizePolicy().hasHeightForWidth())
-        self.addSelections.setSizePolicy(sizePolicy8)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.addSelections.sizePolicy().hasHeightForWidth())
+        self.addSelections.setSizePolicy(sizePolicy6)
 
         self.rightPanel.addWidget(self.addSelections)
 
@@ -380,8 +331,6 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u0426\u0432\u0435\u0442 \u0442\u0435\u043a\u0441\u0442\u0430:", None))
         self.colorShower.setText("")
         self.changeColor.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u0434\u043b\u044f \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0437\u043c\u0435\u0440 \u0442\u0435\u043a\u0441\u0442\u0430:", None))
-        self.label_1.setText(QCoreApplication.translate("MainWindow", u"20", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0426\u0435\u043d\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0442\u0435\u043a\u0441\u0442\u0430:", None))
         self.textCenteringOptions.setItemText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e \u0446\u0435\u043d\u0442\u0440\u0443", None))
         self.textCenteringOptions.setItemText(1, QCoreApplication.translate("MainWindow", u"\u0421\u043f\u0440\u0430\u0432\u0430", None))
