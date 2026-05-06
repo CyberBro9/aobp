@@ -194,15 +194,21 @@ class Application(QMainWindow):
             self.MovingLabel.setObjectName(selection)
             font = selected[0].font()
             self.MovingLabel.setFont(font)
-            self.MovingLabel.setFixedSize(250, 150)
-            self.MovingLabel.setText(selection)
+            self.MovingLabel.setFixedSize(1000, 1000)
+            text = None
+            for x in range(self.MainSheet.number_of_columns()):
+                value = self.MainSheet.cell_value(row=0, column=x)
+                if value == selection:
+                    text = self.MainSheet.cell_value(row=1, column=x)
+
+            self.MovingLabel.setText(text)
             self.MovingLabel.setStyleSheet(f"color: {selected[0].background().color().name()}")
             self.MovingLabel.setAlignment(Qt.AlignmentFlag[historicalCenteringTranslation[selected[0].textAlignment()]] | Qt.AlignmentFlag.AlignVCenter)
             self.MovingLabel.setParent(self.UI.ImageLabel)
 
             def mouseMove(x, y):
-                self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((x - 125) / scaleFactor,
-                                                                              (y - 75) / scaleFactor)))
+                self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((x - 500) / scaleFactor,
+                                                                              (y - 500) / scaleFactor)))
 
             def mouseClick(x: int, y: int, button: mouse.Button, pressed):
                 if button == mouse.Button.left:
@@ -217,8 +223,8 @@ class Application(QMainWindow):
             listener = mouse.Listener(on_move=mouseMove, on_click=mouseClick)
             listener.start()
             pos = mouse.Controller().position
-            self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((pos[0] - 125) / scaleFactor,
-                                                                          (pos[1] - 75) / scaleFactor)))
+            self.MovingLabel.move(self.UI.ImageLabel.mapFromGlobal(QPoint((pos[0] - 500) / scaleFactor,
+                                                                          (pos[1] - 500) / scaleFactor)))
             self.MovingLabel.show()
         else:
             self.UI.statusbar.showMessage((not selected and "Сначала выберите что-то!") or
@@ -233,7 +239,7 @@ class Application(QMainWindow):
         color = dialog.getColor(initial=QColor(255, 255, 255), title=selection)
 
         for thing in self.UI.ImageLabel.children():
-            if thing.inherits("QLabel") and thing.text() == selection:
+            if thing.inherits("QLabel") and thing.objectName() == selection:
                 thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
         selections[0].setBackground(color)
@@ -277,7 +283,7 @@ class Application(QMainWindow):
             item = self.MainSheet.cell_value(row=0, column=i)
             helpIAmOutOfVariableIdeas = QListWidgetItem(item, self.UI.selections)
             helpIAmOutOfVariableIdeas.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-            helpIAmOutOfVariableIdeas.setFont(QFont("Yu Gothic UI", 20))
+            helpIAmOutOfVariableIdeas.setFont(QFont("Inter", 20))
             helpIAmOutOfVariableIdeas.setBackground((QColor(255, 255, 255)))
             helpIAmOutOfVariableIdeas.setForeground(QColor(0, 0, 0))
 
@@ -321,13 +327,13 @@ class Application(QMainWindow):
             text = self.MainSheet.cell_value(row=rowNum + 1, column=column)
             thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
             color = thing[0].background().color().toTuple()
-            posX = label.pos().x() + 125 - diffX / 2
-            posY = label.pos().y() + 75 - diffY / 2
+            posX = label.pos().x() + 500 - diffX / 2
+            posY = label.pos().y() + 500 - diffY / 2
             xScale = posX / pixmapSize.width()
             yScale = posY / pixmapSize.height()
             x, y = canvas.size[0] * xScale, canvas.size[1] * yScale
 
-            draw.text((x, y), text, font=font, fill=color, anchor=f"{textAnchorsTranslation.get(label.alignment())}d")
+            draw.text((x, y), text, font=font, fill=color, anchor=f"{textAnchorsTranslation.get(label.alignment())}m")
 
         self.RenderedImagesCounter += 1
         canvas.save(dirName + fr"\{self.RenderedImagesCounter}.png")
@@ -351,6 +357,7 @@ class Application(QMainWindow):
 
                 threads = []
                 self.TotalImagesAmount = self.MainSheet.number_of_rows() - 1
+                self.UI.statusbar.showMessage("Изображения сохраняются...")
 
                 def trackProgress():
                     while self.RenderedImagesCounter != self.TotalImagesAmount:

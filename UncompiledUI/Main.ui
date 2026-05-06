@@ -58,7 +58,6 @@
         }
  QLabel {
             color: #1F2937;
-            font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI';
         }
         QLabel#ImageLabel {
             background-color: rgb(225, 226, 229);
@@ -157,6 +156,9 @@ QSlider::handle:pressed {
       </property>
       <item>
        <widget class="QLabel" name="selectionsLabel">
+        <property name="styleSheet">
+         <string notr="true">font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI'</string>
+        </property>
         <property name="text">
          <string>Поля для добавления:</string>
         </property>
@@ -214,6 +216,7 @@ QSlider::handle:pressed {
           <property name="styleSheet">
            <string notr="true">QLabel {
 	padding: 10px;
+	font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI'
 }</string>
           </property>
           <property name="text">
@@ -300,6 +303,7 @@ QSlider::handle:pressed {
           <property name="styleSheet">
            <string notr="true">QLabel {
 	padding: 10px;
+	font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI'
 }</string>
           </property>
           <property name="text">
@@ -366,6 +370,7 @@ QSlider::handle:pressed {
           <property name="styleSheet">
            <string notr="true">QLabel {
 	padding: 10px;
+	font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI'
 }</string>
           </property>
           <property name="text">

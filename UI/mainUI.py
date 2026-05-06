@@ -69,7 +69,6 @@ class Ui_MainWindow(object):
 "        }\n"
 " QLabel {\n"
 "            color: #1F2937;\n"
-"            font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
 "        }\n"
 "        QLabel#ImageLabel {\n"
 "            background-color: rgb(225, 226, 229);\n"
@@ -95,10 +94,10 @@ class Ui_MainWindow(object):
 "    padding: 10px 18px;\n"
 "    color: #1F2937;\n"
 "    font: 500 9pt 'Inter', 'Segoe UI', 'Yu Gothic UI';\n"
-""
-                        "}\n"
+"}\n"
 "QComboBox QAbstractItemView {\n"
-"    border: 2px solid rgb(185, 186, 189);\n"
+"    border: 2px solid rgb"
+                        "(185, 186, 189);\n"
 "	border-radius: 8px;\n"
 "    background-color: rgb(225, 226, 229);\n"
 "    selection-background-color: #505050;\n"
@@ -152,6 +151,7 @@ class Ui_MainWindow(object):
         self.rightPanel.setContentsMargins(6, -1, 6, -1)
         self.selectionsLabel = QLabel(self.centralwidget)
         self.selectionsLabel.setObjectName(u"selectionsLabel")
+        self.selectionsLabel.setStyleSheet(u"font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI'")
 
         self.rightPanel.addWidget(self.selectionsLabel)
 
@@ -185,6 +185,7 @@ class Ui_MainWindow(object):
         self.label_2.setFont(font1)
         self.label_2.setStyleSheet(u"QLabel {\n"
 "	padding: 10px;\n"
+"	font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI'\n"
 "}")
         self.label_2.setScaledContents(True)
 
@@ -228,6 +229,7 @@ class Ui_MainWindow(object):
         self.label_4.setFont(font1)
         self.label_4.setStyleSheet(u"QLabel {\n"
 "	padding: 10px;\n"
+"	font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI'\n"
 "}")
 
         self.formLayout_4.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_4)
@@ -263,6 +265,7 @@ class Ui_MainWindow(object):
         self.label_5.setFont(font3)
         self.label_5.setStyleSheet(u"QLabel {\n"
 "	padding: 10px;\n"
+"	font-family: 'Inter', 'Segoe UI', 'Yu Gothic UI'\n"
 "}")
 
         self.formLayout_4.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_5)
