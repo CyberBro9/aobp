@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="256" height="256" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/Assets/aobp.ico" alt="AOBP logo which was made in 10 minutes">
+    <img width="256" height="256" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/Assets/aobp.ico" alt="Логотип AOBP, сделанный за 10 минут">
 </p>
 
 # Аккредитации и Другие Бумаги для Бизнеса
@@ -53,5 +53,5 @@ pyinstaller --onefile --icon=Assets/aobp.ico --hiddenimport pyexcel --hiddenimpo
 6. Теперь программа должна запуститься.
 
 <p align="center">
-    <img width="500" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/PromImage1.png" alt="AOBP promotional image">
+    <img width="500" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/PromImage1.png" alt="Как выглядит AOBP">
 </p>
