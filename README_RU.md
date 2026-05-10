@@ -44,11 +44,10 @@ pip install -r requirements.txt
 ```
 pip install pyinstaller
 ```
-4. Скомпилируйте программу:
+4. Скомпилируйте программу (вы также можете найти команду для компиляции в buildCommand.txt):
 ```
-pyinstaller --onefile --icon=Assets/aobp.ico --hiddenimport pyexcel --hiddenimport pyexcel_io --hiddenimport pyexcel_xls --hiddenimport pyexcel_xlsx --hiddenimport pyexcel_ods --hiddenimport xlrd --hiddenimport xlwt main.py
+pyinstaller --onefile --windowed --icon=Assets/aobp.ico --hiddenimport pyexcel --hiddenimport pyexcel_io --hiddenimport pyexcel_xls --hiddenimport pyexcel_xlsx --hiddenimport pyexcel_ods --hiddenimport xlrd --hiddenimport xlwt main.py
 ```
-Вы также можете найти команду для компиляции в buildCommand.txt.
 5. Добавте папку Assets внутри папки dist (она появится при завершении компиляции).
 6. Теперь программа должна запуститься.
 
