@@ -51,10 +51,10 @@ QTableWidget QHeaderView::section {
      </property>
      <property name="styleSheet">
       <string notr="true">color: #1F2937;
-font: 16px &quot;Inter&quot;</string>
+font: 13px &quot;Inter&quot;</string>
      </property>
      <property name="text">
-      <string>В этом окне Вы можете просмотреть свою таблицу данных.</string>
+      <string>В этом окне Вы можете просмотреть и изменить свою таблицу данных.</string>
      </property>
      <property name="scaledContents">
       <bool>false</bool>

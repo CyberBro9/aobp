@@ -21,7 +21,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
-	background-color: #F5F7FAf;
+	background-color: #F5F7FA;
 }
 
  QListWidget {

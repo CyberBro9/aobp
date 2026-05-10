@@ -267,7 +267,7 @@ class Application(QMainWindow):
         selections = self.UI.selections.selectedItems()
         if selections:
             selection = selections[0]
-            dialog = QFontDialog()
+            dialog = QFontDialog(currentFont=selection.font())
             dialog.setObjectName(selection.data(0))
             ok, font = QFontDialog().getFont()
     
@@ -332,8 +332,8 @@ class Application(QMainWindow):
                     break
 
                 column += 1
-
-            text = self.MainSheet.cell_value(row=rowNum + 1, column=column)
+            text = self.TableWidget.item(rowNum + 1, column).text()
+            # text = self.MainSheet.cell_value(row=rowNum + 1, column=column)
             thing = self.UI.selections.findItems(field, Qt.MatchFlag.MatchExactly)
             color = thing[0].background().color().toTuple()
             posX = label.pos().x() + 500 - diffX / 2

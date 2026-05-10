@@ -15,14 +15,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDialog, QGridLayout, QLabel,
-    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QDialog, QLabel, QPushButton,
+    QSizePolicy, QVBoxLayout, QWidget)
 
 class Ui_About(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(500, 500)
+        Dialog.resize(427, 184)
         Dialog.setAcceptDrops(False)
         Dialog.setStyleSheet(u"QDialog {\n"
 "	background-color: #F5F7FAf\n"
@@ -50,18 +50,19 @@ class Ui_About(object):
 "            background-color: rgb(63, 100, 194);\n"
 "        }")
         self.verticalLayout = QVBoxLayout(Dialog)
-        self.verticalLayout.setSpacing(9)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.label = QLabel(Dialog)
-        self.label.setObjectName(u"label")
-        self.label.setStyleSheet(u"image: url(:/Assets/aobp.ico)")
-        self.label.setScaledContents(False)
-        self.label.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
-
-        self.verticalLayout.addWidget(self.label)
-
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
+        font = QFont()
+        font.setFamilies([u"Inter"])
+        font.setBold(False)
+        font.setItalic(False)
+        self.label_2.setFont(font)
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_2.setWordWrap(True)
 
@@ -69,23 +70,21 @@ class Ui_About(object):
 
         self.label_4 = QLabel(Dialog)
         self.label_4.setObjectName(u"label_4")
+        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy)
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout.addWidget(self.label_4)
 
-        self.gridLayout = QGridLayout()
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setHorizontalSpacing(6)
         self.pushButton = QPushButton(Dialog)
         self.pushButton.setObjectName(u"pushButton")
 
-        self.gridLayout.addWidget(self.pushButton, 0, 0, 1, 1)
-
-
-        self.verticalLayout.addLayout(self.gridLayout)
+        self.verticalLayout.addWidget(self.pushButton)
 
         self.label_3 = QLabel(Dialog)
         self.label_3.setObjectName(u"label_3")
+        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy)
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout.addWidget(self.label_3)
@@ -98,7 +97,6 @@ class Ui_About(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u041e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435", None))
-        self.label.setText("")
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u0410\u043a\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0438\u0438 \u0438 \u0414\u0440\u0443\u0433\u0438\u0435 \u0411\u0443\u043c\u0430\u0433\u0438 \u0434\u043b\u044f \u0411\u0438\u0437\u043d\u0435\u0441\u0430", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"\u0412\u0435\u0440\u0441\u0438\u044f: 2.0.0", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u0420\u0435\u043f\u043e\u0437\u0438\u0442\u043e\u0440\u0438\u0439 GitHub", None))
