@@ -12,7 +12,7 @@ from pynput import mouse
 from fontTools.ttLib import TTFont
 from PySide6.QtWidgets import (QApplication, QMainWindow, QTableWidgetItem, QLabel, QColorDialog, QDialog,
                                QListWidgetItem, QProgressBar, QFontDialog)
-from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QAction, QKeySequence, QDesktopServices
+from PySide6.QtGui import QPixmap, QFont, QIcon, QColor, QAction, QKeySequence, QDesktopServices, QResizeEvent
 from PySide6.QtCore import Qt, QSize, QPoint, QUrl, QStandardPaths
 from tkinter import filedialog
 from UI.mainUI import Ui_MainWindow
@@ -155,6 +155,15 @@ class Application(QMainWindow):
         self.progressBar.setValue(0)
         self.progressBar.setTextVisible(True)
         self.UI.statusbar.addPermanentWidget(self.progressBar)
+
+    def resizeEvent(self, event: QResizeEvent):
+        if self.PathToImage:
+            pixmap = QPixmap(self.PathToImage)
+            pixmap = pixmap.scaled(QSize(self.UI.ImageLabel.width(), self.UI.ImageLabel.height()),
+                                   Qt.AspectRatioMode.KeepAspectRatio,
+                                   Qt.TransformationMode.SmoothTransformation)
+            self.UI.ImageLabel.setPixmap(pixmap)
+        super().resizeEvent(event)
 
     def setupExcelTable(self):
         """
