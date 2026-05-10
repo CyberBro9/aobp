@@ -53,5 +53,5 @@ You can also find the compilation command in buildCommand.txt.
 6. The program should now run.
 
 <p align="center">
-    <img width="500" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/PromImage1.png" alt="AOBP promotional image">
+    <img width="500" height="250" src="https://raw.githubusercontent.com/CyberBro9/aobp/main/PromImage1.png" alt="How AOBP looks like">
 </p>
