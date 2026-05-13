@@ -252,6 +252,11 @@ class Application(QMainWindow):
                 thing.setStyleSheet(f"color: rgb({color.red()},{color.green()},{color.blue()})")
 
         selections[0].setBackground(color)
+        if color.value() >= 76:
+            selections[0].setForeground(QColor(255, 255, 255))
+        else:
+            selections[0].setForeground(QColor(0, 0, 0))
+            
         self.UI.colorShower.setStyleSheet(f"background-color: {color.name()}")
 
     def changeTextCentering(self, index):
